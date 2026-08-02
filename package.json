@@ -15,8 +15,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "build:prepare": "tsc --project tsconfig.prepare.json",
-    "prepare:facelines": "node tools/extract-rfl-facelines.mjs .local/facesjs/RFL_Res.dat src/adapters/facesjs/assets/facelines.json",
-    "prepare:model": "pnpm prepare:facelines && pnpm build:prepare && node .build/prepare/src/adapters/facesjs/scripts/prepare.mjs",
+    "prepare:model": "pnpm build:prepare && node .build/prepare/src/adapters/facesjs/scripts/prepare.mjs",
     "check": "pnpm typecheck && pnpm build"
   },
   "dependencies": {
