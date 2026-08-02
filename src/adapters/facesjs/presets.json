@@ -1,0 +1,103 @@
+[
+  {
+    "id": "classic",
+    "name": "Classic",
+    "modelId": "facesjs-lowpoly-head",
+    "face": {
+      "fatness": 0.55,
+      "teamColors": ["#89bfd3", "#7a1319", "#07364f"],
+      "hairBg": { "id": "none" },
+      "body": { "id": "body", "color": "#ad6453", "size": 1 },
+      "jersey": { "id": "jersey" },
+      "ear": { "id": "ear1", "size": 0.8 },
+      "head": { "id": "head1", "shave": "rgba(0, 0, 0, 0)" },
+      "eyeLine": { "id": "none" },
+      "smileLine": { "id": "none", "size": 1 },
+      "miscLine": { "id": "none" },
+      "facialHair": { "id": "none" },
+      "eye": { "id": "eye1", "angle": 0 },
+      "eyebrow": { "id": "eyebrow1", "angle": 5 },
+      "hair": { "id": "short", "color": "#272421", "flip": false },
+      "mouth": { "id": "smile", "flip": false },
+      "nose": { "id": "nose3", "flip": false, "size": 0.9 },
+      "glasses": { "id": "none" },
+      "accessories": { "id": "none" }
+    }
+  },
+  {
+    "id": "afro",
+    "name": "Afro",
+    "modelId": "facesjs-lowpoly-head-afro",
+    "face": {
+      "fatness": 0.34,
+      "teamColors": ["#d9a441", "#712f37", "#183f48"],
+      "hairBg": { "id": "none" },
+      "body": { "id": "body", "color": "#714639", "size": 1 },
+      "jersey": { "id": "jersey" },
+      "ear": { "id": "ear1", "size": 1.05 },
+      "head": { "id": "head3", "shave": "rgba(0, 0, 0, 0)" },
+      "eyeLine": { "id": "none" },
+      "smileLine": { "id": "none", "size": 1 },
+      "miscLine": { "id": "none" },
+      "facialHair": { "id": "none" },
+      "eye": { "id": "eye2", "angle": -2 },
+      "eyebrow": { "id": "eyebrow1", "angle": -2 },
+      "hair": { "id": "afro", "color": "#1c1715", "flip": false },
+      "mouth": { "id": "smile", "flip": false },
+      "nose": { "id": "nose1", "flip": false, "size": 0.78 },
+      "glasses": { "id": "none" },
+      "accessories": { "id": "none" }
+    }
+  },
+  {
+    "id": "bald",
+    "name": "Bald",
+    "modelId": "facesjs-lowpoly-head-bald",
+    "random": false,
+    "face": {
+      "fatness": 0.7,
+      "teamColors": ["#436f8a", "#9d5a3d", "#e0b36a"],
+      "hairBg": { "id": "none" },
+      "body": { "id": "body", "color": "#d8a17e", "size": 1 },
+      "jersey": { "id": "jersey" },
+      "ear": { "id": "ear1", "size": 0.72 },
+      "head": { "id": "head6", "shave": "rgba(0, 0, 0, 0)" },
+      "eyeLine": { "id": "none" },
+      "smileLine": { "id": "none", "size": 1 },
+      "miscLine": { "id": "none" },
+      "facialHair": { "id": "none" },
+      "eye": { "id": "eye1", "angle": 0 },
+      "eyebrow": { "id": "eyebrow1", "angle": 10 },
+      "hair": { "id": "bald", "color": "#8f6650", "flip": false },
+      "mouth": { "id": "closed", "flip": false },
+      "nose": { "id": "nose3", "flip": false, "size": 1.08 },
+      "glasses": { "id": "none" },
+      "accessories": { "id": "none" }
+    }
+  },
+  {
+    "id": "short2",
+    "name": "Short 2",
+    "modelId": "facesjs-lowpoly-head-short2",
+    "face": {
+      "fatness": 0.46,
+      "teamColors": ["#547f66", "#9c3848", "#e5bd70"],
+      "hairBg": { "id": "none" },
+      "body": { "id": "body", "color": "#bd7b5f", "size": 1 },
+      "jersey": { "id": "jersey" },
+      "ear": { "id": "ear1", "size": 0.92 },
+      "head": { "id": "head8", "shave": "rgba(0, 0, 0, 0)" },
+      "eyeLine": { "id": "none" },
+      "smileLine": { "id": "none", "size": 1 },
+      "miscLine": { "id": "none" },
+      "facialHair": { "id": "none" },
+      "eye": { "id": "eye2", "angle": 2 },
+      "eyebrow": { "id": "eyebrow1", "angle": 3 },
+      "hair": { "id": "short2", "color": "#6a3d2a", "flip": false },
+      "mouth": { "id": "smile", "flip": false },
+      "nose": { "id": "nose1", "flip": false, "size": 0.88 },
+      "glasses": { "id": "none" },
+      "accessories": { "id": "none" }
+    }
+  }
+]

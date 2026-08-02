@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FacesJS to PolyCSS face prototype." />
+    <link rel="icon" href="data:," />
+    <title>cssFace</title>
+    <script type="module" src="/main.ts"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <h1>
+          <span><span class="title-css">css</span>Face</span>
+        </h1>
+        <span class="title-smile" aria-hidden="true">☺</span>
+        <label class="seed-control">
+          <span class="visually-hidden">Seed</span>
+          <input id="seed-input" type="range" min="0" max="9999" value="0" step="1" />
+        </label>
+        <button id="random-button" class="control-action control-action-with-icon" type="button">
+          <svg class="topbar-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
+          </svg>
+          <span>Randomize</span>
+        </button>
+        <button
+          id="share-button"
+          class="control-action control-action-with-icon"
+          type="button"
+          title="Share face"
+        >
+          <svg class="topbar-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="18" cy="5" r="2.5" />
+            <circle cx="6" cy="12" r="2.5" />
+            <circle cx="18" cy="19" r="2.5" />
+            <path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5" />
+          </svg>
+          <span>Share</span>
+        </button>
+        <button
+          id="download-button"
+          class="control-action control-action-with-icon"
+          type="button"
+          title="Download face config"
+        >
+          <svg class="topbar-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 3v12m-4-4 4 4 4-4M5 20h14" />
+          </svg>
+          <span>Download</span>
+        </button>
+        <span id="action-status" class="visually-hidden" aria-live="polite"></span>
+      </header>
+
+      <main id="comparison-lab" class="lab">
+        <div id="mobile-view-toggle" class="mobile-view-toggle" role="group" aria-label="Face view" hidden>
+          <button class="mobile-view-button" type="button" data-mobile-view="2d" aria-pressed="true">2D</button>
+          <button class="mobile-view-button" type="button" data-mobile-view="3d" aria-pressed="false">3D</button>
+        </div>
+
+        <section class="panel source-panel" aria-label="FacesJS">
+          <div class="source-canvas" aria-busy="true">
+            <div
+              id="source-loading-spinner"
+              class="face-spinner"
+              role="status"
+              aria-label="Loading FacesJS face"
+            ></div>
+            <div id="source-face" role="img" aria-label="FacesJS face"></div>
+          </div>
+
+          <pre class="code-sample" tabindex="0" aria-label="FacesJS rendering code"><code id="facesjs-code"></code></pre>
+          <form
+            id="facesjs-codepen-form"
+            class="codepen-form"
+            action="https://codepen.io/pen/define"
+            method="post"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <input id="facesjs-codepen-data" type="hidden" name="data" />
+            <button
+              id="facesjs-codepen-button"
+              class="codepen-button"
+              type="submit"
+              title="Open the FacesJS example in CodePen"
+            >
+              <span>CodePen</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M7 17 17 7M9 7h8v8" />
+              </svg>
+            </button>
+          </form>
+        </section>
+
+        <section class="panel output-panel" aria-label="PolyCSS">
+          <div id="stage" class="stage" aria-label="Interactive low-poly face" aria-busy="true">
+            <div
+              id="polycss-loading-spinner"
+              class="face-spinner"
+              role="status"
+              aria-label="Loading PolyCSS face"
+            ></div>
+            <div class="runtime-proof" hidden aria-live="polite">
+              <b id="leaf-count">—</b>
+              <b id="canvas-count">0</b>
+              <b id="topology-state">—</b>
+            </div>
+          </div>
+
+          <pre class="code-sample" tabindex="0" aria-label="PolyCSS rendering code"><code id="polycss-code"></code></pre>
+          <form
+            id="polycss-codepen-form"
+            class="codepen-form"
+            action="https://codepen.io/pen/define"
+            method="post"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <input id="polycss-codepen-data" type="hidden" name="data" />
+            <button
+              id="polycss-codepen-button"
+              class="codepen-button"
+              type="submit"
+              title="Open the current PolyCSS scene as static HTML in CodePen"
+            >
+              <span>CodePen</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M7 17 17 7M9 7h8v8" />
+              </svg>
+            </button>
+          </form>
+        </section>
+      </main>
+      <code id="face-config-summary" hidden></code>
+    </div>
+  </body>
+</html>
