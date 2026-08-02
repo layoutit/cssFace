@@ -60,7 +60,13 @@
         </div>
 
         <section class="panel source-panel" aria-label="FacesJS">
-          <div class="source-canvas">
+          <div class="source-canvas" aria-busy="true">
+            <div
+              id="source-loading-spinner"
+              class="face-spinner"
+              role="status"
+              aria-label="Loading FacesJS face"
+            ></div>
             <div id="source-face" role="img" aria-label="FacesJS face"></div>
           </div>
 
@@ -89,7 +95,13 @@
         </section>
 
         <section class="panel output-panel" aria-label="PolyCSS">
-          <div id="stage" class="stage" aria-label="Interactive low-poly face">
+          <div id="stage" class="stage" aria-label="Interactive low-poly face" aria-busy="true">
+            <div
+              id="polycss-loading-spinner"
+              class="face-spinner"
+              role="status"
+              aria-label="Loading PolyCSS face"
+            ></div>
             <div class="runtime-proof" hidden aria-live="polite">
               <b id="leaf-count">—</b>
               <b id="canvas-count">0</b>

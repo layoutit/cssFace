@@ -9,3 +9,6 @@ output/
 src/adapters/facesjs/assets/facelines.json
 public/cssgraphics/
 public/faces/
+
+# Local Netlify folder
+.netlify

@@ -110,7 +110,14 @@ const stage = requiredElement<HTMLDivElement>("#stage");
 const leafCount = requiredElement<HTMLElement>("#leaf-count");
 const canvasCount = requiredElement<HTMLElement>("#canvas-count");
 const topologyState = requiredElement<HTMLElement>("#topology-state");
+const sourceCanvas = requiredElement<HTMLDivElement>(".source-canvas");
 const sourceFace = requiredElement<HTMLDivElement>("#source-face");
+const sourceLoadingSpinner = requiredElement<HTMLDivElement>(
+  "#source-loading-spinner",
+);
+const polyCssLoadingSpinner = requiredElement<HTMLDivElement>(
+  "#polycss-loading-spinner",
+);
 const faceConfigSummary = requiredElement<HTMLElement>("#face-config-summary");
 const facesJsCode = requiredElement<HTMLElement>("#facesjs-code");
 const polyCssCode = requiredElement<HTMLElement>("#polycss-code");
@@ -319,6 +326,9 @@ function syncSourceFace(): void {
   svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
   svg.setAttribute("role", "img");
   svg.setAttribute("aria-label", `${currentPreset.name} FacesJS face`);
+  requestAnimationFrame(() => {
+    setFaceLoading(sourceCanvas, sourceLoadingSpinner, false);
+  });
 }
 
 function currentFaceConfig(): FaceConfig {
@@ -542,8 +552,23 @@ function syncCodePenButtonState(): void {
   polyCssCodePenButton.setAttribute("aria-busy", "false");
 }
 
+function setFaceLoading(
+  container: HTMLElement,
+  spinner: HTMLElement,
+  loading: boolean,
+): void {
+  container.setAttribute("aria-busy", String(loading));
+  spinner.hidden = !loading;
+}
+
 function setControlsBusy(busy: boolean): void {
   switching = busy;
+  if (busy) {
+    setFaceLoading(sourceCanvas, sourceLoadingSpinner, true);
+    setFaceLoading(stage, polyCssLoadingSpinner, true);
+  } else {
+    setFaceLoading(stage, polyCssLoadingSpinner, false);
+  }
   randomButton.disabled = busy;
   seedInput.disabled = busy;
   facesJsCodePenButton.disabled = busy;
