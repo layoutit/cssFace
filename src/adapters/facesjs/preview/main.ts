@@ -114,6 +114,24 @@ const sourceFace = requiredElement<HTMLDivElement>("#source-face");
 const faceConfigSummary = requiredElement<HTMLElement>("#face-config-summary");
 const facesJsCode = requiredElement<HTMLElement>("#facesjs-code");
 const polyCssCode = requiredElement<HTMLElement>("#polycss-code");
+const facesJsCodePenForm = requiredElement<HTMLFormElement>(
+  "#facesjs-codepen-form",
+);
+const polyCssCodePenForm = requiredElement<HTMLFormElement>(
+  "#polycss-codepen-form",
+);
+const facesJsCodePenData = requiredElement<HTMLInputElement>(
+  "#facesjs-codepen-data",
+);
+const polyCssCodePenData = requiredElement<HTMLInputElement>(
+  "#polycss-codepen-data",
+);
+const facesJsCodePenButton = requiredElement<HTMLButtonElement>(
+  "#facesjs-codepen-button",
+);
+const polyCssCodePenButton = requiredElement<HTMLButtonElement>(
+  "#polycss-codepen-button",
+);
 const randomButton = requiredElement<HTMLButtonElement>("#random-button");
 const seedInput = requiredElement<HTMLInputElement>("#seed-input");
 const shareButton = requiredElement<HTMLButtonElement>("#share-button");
@@ -161,58 +179,70 @@ function compactSourceValue(value: unknown): string {
   return JSON.stringify(value) ?? "undefined";
 }
 
-function compactFaceConfig(face: FaceConfig): Record<string, unknown> {
-  const compact: Record<string, unknown> = {};
-  for (const [key, value] of Object.entries(face)) {
-    if (!value || typeof value !== "object" || Array.isArray(value)) {
-      compact[key] = value;
-      continue;
-    }
-
-    const feature = value as Record<string, unknown>;
-    if (feature.id === "none" && key !== "accessories") continue;
-
-    compact[key] = Object.fromEntries(
-      Object.entries(feature).filter(
-        ([property, entry]) =>
-          !(
-            (property === "size" && entry === 1) ||
-            (property === "angle" && entry === 0) ||
-            (property === "flip" && entry === false)
-          ),
-      ),
-    );
-  }
-  return compact;
+function faceDeclaration(face: FaceConfig): string[] {
+  const properties = Object.entries(face).map(
+    ([key, value]) => `  ${key}: ${compactSourceValue(value)},`,
+  );
+  return ["const face = {", ...properties, "};"];
 }
 
 function facesJsSnippet(face: FaceConfig): string {
-  const properties = Object.entries(compactFaceConfig(face)).map(
-    ([key, value]) => `  ${key}: ${compactSourceValue(value)},`,
-  );
   return [
     'import { display } from "facesjs";',
     "",
-    "const face = {",
-    ...properties,
-    "};",
+    ...faceDeclaration(face),
     "",
     'display("face", face);',
   ].join("\n");
 }
 
-function polyCssSnippet(preset: FacePreset): string {
+function facesJsCodePenSnippet(face: FaceConfig): string {
+  return facesJsSnippet(face).replace(
+    'from "facesjs"',
+    'from "https://esm.sh/facesjs@5.0.3"',
+  );
+}
+
+function polyCssSnippet(
+  preset: FacePreset,
+  face: FaceConfig,
+): string {
+  const bodySize = face.body.size ?? 1;
+  const earSize = face.ear.size ?? 1;
+  const noseSize = face.nose.size ?? 1;
+  const browAngle = face.eyebrow.angle ?? 0;
   return [
-    'import { mountCssGraphics } from "./src/index.js";',
+    'import { createPolyOrthographicCamera } from "@layoutit/polycss";',
+    "import {",
+    "  createPolyMorphDeformationRuntime,",
+    "  loadPolyMorphPackage,",
+    "  mountPolyMorphModel,",
+    '} from "@layoutit/polycss-morph";',
     "",
-    'const host = document.querySelector("#face");',
-    'if (!host) throw new Error("Missing #face");',
+    'const host = document.querySelector("#face-3d");',
+    'if (!(host instanceof HTMLElement)) throw new Error("Missing #face-3d");',
     "",
-    "await mountCssGraphics(host, {",
-    '  baseUrl: "/cssgraphics/",',
+    'const { model, resources } = await loadPolyMorphPackage("/faces/", {',
     `  modelId: "${preset.modelId}",`,
-    "  experienceControls: false,",
     "});",
+    "",
+    "const mounted = mountPolyMorphModel(host, model, {",
+    "  camera: createPolyOrthographicCamera({ zoom: 49 }),",
+    "  resources,",
+    "});",
+    "const deformation = createPolyMorphDeformationRuntime(model);",
+    "const frame = deformation.sample({",
+    "  tick: 0,",
+    "  morphWeights: {",
+    `    fatness: ${face.fatness},`,
+    `    "body-size": (${bodySize} - 0.75) / 0.5,`,
+    `    "ear-size": (${earSize} - 0.5) / 1,`,
+    `    "nose-size": (${noseSize} - 0.5) / 0.75,`,
+    `    "brow-up": Math.max(0, -(${browAngle}) / 15),`,
+    `    "brow-down": Math.max(0, (${browAngle}) / 20),`,
+    "  },",
+    "});",
+    "mounted.apply({ leaves: frame.leafUpdates });",
   ].join("\n");
 }
 
@@ -276,7 +306,7 @@ function setHighlightedCode(
 
 function syncCodeSamples(face: FaceConfig): void {
   setHighlightedCode(facesJsCode, facesJsSnippet(face), true);
-  setHighlightedCode(polyCssCode, polyCssSnippet(currentPreset));
+  setHighlightedCode(polyCssCode, polyCssSnippet(currentPreset, face));
 }
 
 function syncSourceFace(): void {
@@ -328,10 +358,196 @@ function syncControls(): void {
   syncFaceSummary();
 }
 
+function codePenCss(): string {
+  return [
+    "html, body { width: 100%; min-height: 100%; margin: 0; }",
+    "body { display: grid; place-items: center; overflow: hidden; background: #1e1e1e; }",
+    "#face, #face-3d { position: relative; overflow: hidden; background: radial-gradient(circle at 50% 46%, #1a6b68 0 10%, #1d7774 50% 100%); }",
+    "#face { width: min(67vw, 400px); height: min(90vh, 600px); }",
+    "#face-3d { width: min(90vw, 700px); aspect-ratio: 1; }",
+    "#face > svg { width: 100%; height: 100%; }",
+  ].join("\n");
+}
+
+interface StaticImageSurface {
+  readonly context: CanvasRenderingContext2D;
+  readonly height: number;
+  readonly width: number;
+}
+
+function polyCssCodePenCss(): string {
+  const baseStyles = document.querySelector<HTMLStyleElement>("#polycss-styles")
+    ?.textContent?.trim();
+  if (!baseStyles) throw new Error("The PolyCSS base styles are not available.");
+  return [
+    baseStyles,
+    codePenCss(),
+    "#face-3d > .polycss-morph-camera { translate: 0 -8.16%; }",
+    "#face-3d .polycss-camera, #face-3d .polycss-scene, #face-3d .polycss-morph-model, #face-3d .polycss-morph-shape, #face-3d .polycss-morph-leaf { transform-style: preserve-3d; backface-visibility: visible; }",
+    "#face-3d .polycss-morph-leaf { transform-origin: 0 0; }",
+  ].join("\n\n");
+}
+
+function cssImageUrl(value: string): string | null {
+  const match = /^url\((?:"([^"]+)"|'([^']+)'|([^)]*))\)$/u.exec(value.trim());
+  return match?.[1] ?? match?.[2] ?? match?.[3]?.trim() ?? null;
+}
+
+function cssPixels(value: string, label: string, positive = false): number {
+  const pixels = Number.parseFloat(value);
+  if (!Number.isFinite(pixels) || (positive && pixels <= 0)) {
+    throw new Error(`The current PolyCSS ${label} is invalid.`);
+  }
+  return pixels;
+}
+
+async function loadStaticImageSurface(url: string): Promise<StaticImageSurface> {
+  const image = new Image();
+  image.decoding = "async";
+  image.src = url;
+  await image.decode();
+  const canvas = document.createElement("canvas");
+  canvas.width = image.naturalWidth;
+  canvas.height = image.naturalHeight;
+  const context = canvas.getContext("2d", { willReadFrequently: true });
+  if (!context || canvas.width === 0 || canvas.height === 0) {
+    throw new Error("The current PolyCSS lighting texture could not be sampled.");
+  }
+  context.drawImage(image, 0, 0);
+  return Object.freeze({
+    context,
+    width: canvas.width,
+    height: canvas.height,
+  });
+}
+
+function sampledColor(
+  source: HTMLElement,
+  surface: StaticImageSurface,
+): string {
+  const style = getComputedStyle(source);
+  const [backgroundWidthValue, backgroundHeightValue] =
+    style.backgroundSize.split(/\s+/u);
+  const backgroundWidth = cssPixels(
+    backgroundWidthValue ?? "",
+    "lighting width",
+    true,
+  );
+  const backgroundHeight = cssPixels(
+    backgroundHeightValue ?? "",
+    "lighting height",
+    true,
+  );
+  const elementWidth = cssPixels(style.width, "leaf width", true);
+  const elementHeight = cssPixels(style.height, "leaf height", true);
+  const positionX = cssPixels(style.backgroundPositionX, "lighting x position");
+  const positionY = cssPixels(style.backgroundPositionY, "lighting y position");
+  const x = Math.max(0, Math.min(
+    surface.width - 1,
+    Math.floor((-positionX + elementWidth / 2) * surface.width / backgroundWidth),
+  ));
+  const y = Math.max(0, Math.min(
+    surface.height - 1,
+    Math.floor((-positionY + elementHeight / 2) * surface.height / backgroundHeight),
+  ));
+  const color = surface.context.getImageData(x, y, 1, 1).data;
+  const alpha = color[3] ?? 255;
+  if (alpha === 255) return `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+  return `rgb(${color[0]} ${color[1]} ${color[2]} / ${Number(
+    (alpha / 255).toFixed(3),
+  )})`;
+}
+
+async function flattenStaticLeaf(
+  source: HTMLElement,
+  target: HTMLElement,
+  surfaces: Map<string, Promise<StaticImageSurface>>,
+): Promise<void> {
+  const url = cssImageUrl(source.style.backgroundImage);
+  if (!url) return;
+  let surface = surfaces.get(url);
+  if (!surface) {
+    surface = loadStaticImageSurface(url);
+    surfaces.set(url, surface);
+  }
+  const color = sampledColor(source, await surface);
+  target.style.removeProperty("background");
+  target.style.removeProperty("background-image");
+  target.style.removeProperty("background-position");
+  target.style.removeProperty("background-position-x");
+  target.style.removeProperty("background-position-y");
+  target.style.removeProperty("background-repeat");
+  target.style.removeProperty("background-size");
+  target.style.removeProperty("image-rendering");
+  target.style.setProperty("color", color);
+  target.style.setProperty("background-color", color, "important");
+}
+
+function formattedStaticMarkup(element: HTMLElement): string {
+  return element.outerHTML
+    .replace(/></gu, ">\n<")
+    .split("\n")
+    .map((line) => `  ${line}`)
+    .join("\n");
+}
+
+async function currentStaticPolyCssHtml(): Promise<string> {
+  const source = stage.querySelector<HTMLElement>(":scope > .polycss-morph-camera");
+  if (!source) throw new Error("The current PolyCSS scene is not available.");
+  const target = source.cloneNode(true) as HTMLElement;
+  const sourceLeaves = [
+    ...source.querySelectorAll<HTMLElement>(".polycss-morph-leaf"),
+  ];
+  const targetLeaves = [
+    ...target.querySelectorAll<HTMLElement>(".polycss-morph-leaf"),
+  ];
+  if (sourceLeaves.length === 0 || sourceLeaves.length !== targetLeaves.length) {
+    throw new Error("The current PolyCSS scene could not be cloned.");
+  }
+  const surfaces = new Map<string, Promise<StaticImageSurface>>();
+  await Promise.all(sourceLeaves.map((leaf, index) =>
+    flattenStaticLeaf(leaf, targetLeaves[index]!, surfaces)));
+  const markup = target.outerHTML;
+  if (/\b(?:blob|data):/u.test(markup)) {
+    throw new Error("The current PolyCSS scene still contains a non-static asset URL.");
+  }
+  return `<main id="face-3d">\n${formattedStaticMarkup(target)}\n</main>`;
+}
+
+function facesJsCodePenPayload(): string {
+  const face = currentFaceConfig();
+  return JSON.stringify({
+    title: `cssFace — ${currentPreset.name} FacesJS`,
+    description: `cssFace seed ${currentSeed}`,
+    layout: "left",
+    html: '<main id="face"></main>',
+    css: codePenCss(),
+    js: facesJsCodePenSnippet(face),
+  });
+}
+
+async function polyCssCodePenPayload(): Promise<string> {
+  return JSON.stringify({
+    title: `cssFace — ${currentPreset.name} PolyCSS`,
+    description: `cssFace seed ${currentSeed}`,
+    layout: "left",
+    html: await currentStaticPolyCssHtml(),
+    css: polyCssCodePenCss(),
+    js: "",
+  });
+}
+
+function syncCodePenButtonState(): void {
+  polyCssCodePenButton.disabled = switching;
+  polyCssCodePenButton.setAttribute("aria-busy", "false");
+}
+
 function setControlsBusy(busy: boolean): void {
   switching = busy;
   randomButton.disabled = busy;
   seedInput.disabled = busy;
+  facesJsCodePenButton.disabled = busy;
+  syncCodePenButtonState();
 }
 
 async function shareCurrentFace(): Promise<void> {
@@ -463,6 +679,39 @@ function installControls(): void {
   });
   randomButton.addEventListener("click", () => {
     void selectSeed(randomSeed());
+  });
+  facesJsCodePenForm.addEventListener("submit", () => {
+    facesJsCodePenData.value = facesJsCodePenPayload();
+    actionStatus.textContent = "Opened FacesJS in CodePen.";
+  });
+  polyCssCodePenForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const target = `cssface-polycss-${Date.now()}`;
+    const penWindow = globalThis.open("", target);
+    if (!penWindow) {
+      actionStatus.textContent = "Allow popups to open the PolyCSS Pen.";
+      return;
+    }
+    polyCssCodePenButton.disabled = true;
+    polyCssCodePenButton.setAttribute("aria-busy", "true");
+    actionStatus.textContent = "Capturing the static PolyCSS scene.";
+    void polyCssCodePenPayload().then((payload) => {
+      polyCssCodePenData.value = payload;
+      const previousTarget = polyCssCodePenForm.target;
+      const previousRel = polyCssCodePenForm.getAttribute("rel");
+      polyCssCodePenForm.target = target;
+      polyCssCodePenForm.removeAttribute("rel");
+      polyCssCodePenForm.submit();
+      polyCssCodePenForm.target = previousTarget;
+      if (previousRel === null) polyCssCodePenForm.removeAttribute("rel");
+      else polyCssCodePenForm.setAttribute("rel", previousRel);
+      penWindow.opener = null;
+      actionStatus.textContent = "Opened static PolyCSS HTML in CodePen.";
+    }).catch((error: unknown) => {
+      penWindow.close();
+      globalThis.console.error(error);
+      actionStatus.textContent = "Could not capture the current PolyCSS scene.";
+    }).finally(syncCodePenButtonState);
   });
   shareButton.addEventListener("click", () => {
     void shareCurrentFace().catch((error: unknown) => {

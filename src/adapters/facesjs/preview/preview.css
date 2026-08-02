@@ -171,6 +171,63 @@ h1 {
   padding-left: 6px;
 }
 
+.codepen-form {
+  align-self: flex-end;
+  margin: 0 16px 16px;
+}
+
+.codepen-button {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 9px 5px 9px 9px;
+  color: var(--ink);
+  background: var(--paper-raised);
+  box-shadow: 0 3px 0 #161616;
+  cursor: pointer;
+  font: 400 11px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  letter-spacing: 0.05em;
+  transition: color 150ms ease, background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+.codepen-button svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.codepen-button:hover,
+.codepen-button:focus-visible {
+  color: var(--paper);
+  background: var(--top-accent-hover);
+  box-shadow: 0 4px 0 var(--button-edge);
+  outline: 0;
+  transform: translateY(-1px);
+}
+
+.codepen-button:focus-visible {
+  outline: 2px solid var(--top-accent-hover);
+  outline-offset: 3px;
+}
+
+.codepen-button:active {
+  box-shadow: 0 1px 0 var(--button-edge);
+  transform: translateY(2px);
+}
+
+.codepen-button:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
 .code-token-comment {
   color: #6a9955;
 }
@@ -535,7 +592,8 @@ input[type="range"]:disabled {
 
 @media (prefers-reduced-motion: reduce) {
   .title-smile,
-  .control-action {
+  .control-action,
+  .codepen-button {
     transition: none;
   }
 }
@@ -690,6 +748,10 @@ input[type="range"]:disabled {
   .code-sample {
     padding: 10px 12px 16px;
     font-size: 13px;
+  }
+
+  .codepen-form {
+    margin-right: 12px;
   }
 
 }

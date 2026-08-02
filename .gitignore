@@ -8,3 +8,4 @@ output/
 *.log
 src/adapters/facesjs/assets/facelines.json
 public/cssgraphics/
+public/faces/

@@ -8,7 +8,7 @@ import {
   rm,
   writeFile,
 } from "node:fs/promises";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 
 import sharp from "sharp";
 import earcut from "earcut";
@@ -17,6 +17,8 @@ import {
   SOLID_QUAD_CANONICAL_SIZE,
 } from "@layoutit/polycss";
 import {
+  buildPolyMorphCatalog,
+  buildPolyMorphPackage,
   preparePolyMorphModel,
   validatePolyMorphModel,
 } from "@layoutit/polycss-morph/prepare";
@@ -90,6 +92,9 @@ const morphOutputRoot = resolve(localRoot, "prepared/poly-morph");
 const cssGraphicsRoot = resolve(repoRoot, "public/cssgraphics");
 const cssGraphicsModelsRoot = resolve(cssGraphicsRoot, "models");
 const outputRoot = resolve(cssGraphicsModelsRoot, MODEL_ID);
+const polyMorphRoot = resolve(repoRoot, "public/faces");
+const polyMorphModelsRoot = resolve(polyMorphRoot, "models");
+const polyMorphOutputRoot = resolve(polyMorphModelsRoot, MODEL_ID);
 const FACELINE_BY_HEAD_ID = Object.freeze({
   female1: 1,
   female2: 4,
@@ -3260,6 +3265,58 @@ async function writeCatalog() {
   return catalog;
 }
 
+async function writePolyMorphPackage(model, fallbackBytes) {
+  const built = await buildPolyMorphPackage(model, [{
+    path: TRIANGLE_FALLBACK_RESOURCE_PATH,
+    role: "image",
+    mediaType: "image/webp",
+    bytes: fallbackBytes,
+  }]);
+  await replaceGeneratedOutput({
+    target: polyMorphOutputRoot,
+    prefix: ".facesjs-poly-morph-package-",
+    build: async (stagingRoot) => {
+      for (const [path, bytes] of [...built.files].sort(([left], [right]) =>
+        left.localeCompare(right))) {
+        const target = resolve(stagingRoot, path);
+        await mkdir(dirname(target), { recursive: true });
+        await writeFile(target, bytes);
+      }
+      await writeFile(resolve(stagingRoot, "manifest.json"), built.manifestBytes);
+      return built;
+    },
+  });
+  return built;
+}
+
+async function writePolyMorphCatalog() {
+  const entries = await readdir(polyMorphModelsRoot, { withFileTypes: true });
+  const packages = [];
+  for (const entry of entries.filter((candidate) => candidate.isDirectory()).sort(
+    (left, right) => left.name.localeCompare(right.name),
+  )) {
+    const manifestPath = `models/${entry.name}/manifest.json`;
+    const manifestBytes = await readFile(resolve(polyMorphRoot, manifestPath));
+    packages.push({
+      manifest: JSON.parse(manifestBytes.toString("utf8")),
+      manifestPath,
+      manifestSha256: sha256(manifestBytes),
+    });
+  }
+  const defaultId = PRESETS[0]?.modelId;
+  if (!defaultId) throw new Error("FacesJS needs a default PolyCSS model.");
+  const catalog = await buildPolyMorphCatalog(defaultId, packages);
+  const target = resolve(polyMorphRoot, "catalog.json");
+  const staging = `${target}.next-${process.pid}`;
+  try {
+    await writeFile(staging, catalog.bytes);
+    await rename(staging, target);
+  } finally {
+    await rm(staging, { force: true });
+  }
+  return catalog;
+}
+
 async function main() {
   const { hairWeld, primitives, quadAuthoring } = buildFaceGeometry();
   const { gltf, polygonCount, quadPairs, vertexCount } = buildGltf(primitives);
@@ -3309,6 +3366,7 @@ async function main() {
   const fallbackWebp = await sharp(fallbackPng)
     .webp({ lossless: true, effort: 6 })
     .toBuffer();
+  const polyMorphPackage = await writePolyMorphPackage(model, fallbackWebp);
   const lighting = await buildRotationLighting(model);
   const source = Object.freeze({
     schema: "cssgraphics.facesjs-source@1",
@@ -3414,6 +3472,7 @@ async function main() {
     },
   });
   const catalog = await writeCatalog();
+  const polyMorphCatalog = await writePolyMorphCatalog();
   console.log(JSON.stringify({
     model: model.identity.id,
     profile: FACES_JS_PROFILE,
@@ -3444,6 +3503,11 @@ async function main() {
     catalog: {
       path: resolve(cssGraphicsRoot, "catalog.json"),
       models: catalog.catalog.models.length,
+    },
+    polyMorph: {
+      manifest: polyMorphPackage.manifestSha256,
+      catalog: resolve(polyMorphRoot, "catalog.json"),
+      models: polyMorphCatalog.catalog.packages.length,
     },
     outputRoot,
   }, null, 2));
