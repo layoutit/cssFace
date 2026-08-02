@@ -1,18 +1,20 @@
 # cssFace ☺
 
-[FacesJS](https://github.com/zengm-games/facesjs) face objects rendered side by
-side as their original SVG and real low-poly HTML/CSS 3D geometry through
-[PolyCSS](https://github.com/LayoutitStudio/polycss). cssFace keeps the face,
-hair, features, skin, body, and jersey colors aligned between both views without
-a WebGL or canvas renderer.
+A [FacesJS](https://github.com/zengm-games/facesjs) to
+[PolyCSS](https://github.com/LayoutitStudio/polycss) experiment that renders the
+same `FaceConfig` as the original SVG and as a low-poly 3D bust made from real
+HTML/CSS polygons. Both views share the same face, hair, features, skin, body,
+and jersey colors. The 3D side uses no WebGL or canvas renderer.
 
-The current prototype is a focused compatibility slice, not the complete
-FacesJS catalog. Its wiggly seed control and Randomize button create
-reproducible face configurations; the same seed drives the source SVG and its
-prepared 3D bust. The 3D face supports drag rotation, prepared lighting,
-sharing, and FaceConfig download.
+Try it: [cssface.com](https://cssface.com)
 
-## Run locally
+Use the wiggly seed control or Randomize to create a reproducible 2D/3D pair.
+Drag to rotate the PolyCSS face, share the seed, download the `FaceConfig`, or
+open either result in CodePen. cssFace currently supports a focused slice of
+FacesJS: `short`, `short2`, `afro`, and `bald` hair, two eye, nose, and mouth
+styles, plus shared face and body proportions.
+
+## Run Locally
 
 Use Node.js 22.12+ and pnpm 10.33. The Wii `RFL_Res.dat` used for the low-poly
 faceline is not included. Place a user-owned copy at
@@ -28,23 +30,21 @@ pnpm dev
 `pnpm prepare:model` again only when the source input, FacesJS presets, or
 preparation code changes.
 
-## How it works
+## How It Works
 
 FacesJS remains the source of each 2D face and its `FaceConfig`. During
-preparation, cssFace flattens and triangulates the selected FacesJS SVG paths,
-combines them with the locally extracted faceline, builds connected head and
-body geometry, merges eligible cells into PolyCSS quads, and bakes the triangle
-fallback and rotation-lighting assets.
+preparation, cssFace imports the selected SVG fragments, flattens and
+triangulates their real contours, combines them with the locally extracted
+faceline, builds connected head and body geometry, merges eligible cells into
+PolyCSS quads, and bakes the triangle fallback and 120-state yaw-lighting atlas.
 
 The browser loads those prepared packages through
 `@layoutit/polycss-morph` and mounts one retained DOM graph. Face controls patch
-the prepared model without parsing SVG or rebuilding topology at runtime. The
-generated facelines and browser packages stay ignored and local.
-
-The supported slice currently covers the `short`, `short2`, `afro`, and `bald`
-hair presets, a small selection of eyes, noses, and mouths, plus shared face and
-body proportions. See the [FacesJS adapter notes](src/adapters/facesjs/README.md)
-for the exact boundary.
+the prepared model without parsing SVG, rebuilding topology, or redrawing its
+prepared assets at runtime. Generated facelines and browser packages stay
+ignored by Git. See the
+[FacesJS adapter notes](src/adapters/facesjs/README.md) for the exact source,
+geometry, and compatibility boundary.
 
 ## License
 
