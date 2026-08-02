@@ -1,0 +1,36 @@
+{
+  "name": "cssface",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "type": "module",
+  "description": "FacesJS face objects rendered as prepared PolyCSS models.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "build:prepare": "tsc --project tsconfig.prepare.json",
+    "prepare:facelines": "node tools/extract-rfl-facelines.mjs .local/facesjs/RFL_Res.dat src/adapters/facesjs/assets/facelines.json",
+    "prepare:model": "pnpm prepare:facelines && pnpm build:prepare && node .build/prepare/src/adapters/facesjs/scripts/prepare.mjs",
+    "check": "pnpm typecheck && pnpm build"
+  },
+  "dependencies": {
+    "@layoutit/polycss": "0.2.10",
+    "@layoutit/polycss-morph": "0.2.10",
+    "facesjs": "5.0.3"
+  },
+  "devDependencies": {
+    "@fontsource/archivo-black": "5.3.0",
+    "@types/node": "^24.10.0",
+    "earcut": "3.0.2",
+    "sharp": "0.35.3",
+    "svgpath": "2.6.0",
+    "typescript": "5.9.3",
+    "vite": "7.3.1"
+  }
+}

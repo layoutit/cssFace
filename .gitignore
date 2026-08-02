@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.build/
+.local/
+output/
+.playwright-cli/
+.DS_Store
+*.log
+src/adapters/facesjs/assets/facelines.json
+public/cssgraphics/

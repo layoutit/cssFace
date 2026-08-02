@@ -1,0 +1,2 @@
+patchedDependencies:
+  '@layoutit/polycss-morph@0.2.10': patches/@layoutit__polycss-morph@0.2.10.patch
