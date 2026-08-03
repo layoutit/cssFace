@@ -6,7 +6,6 @@ output/
 .playwright-cli/
 .DS_Store
 *.log
-src/adapters/facesjs/assets/facelines.json
 public/cssgraphics/
 public/faces/
 

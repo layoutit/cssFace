@@ -10,6 +10,9 @@ Try it: [cssface.com](https://cssface.com)
 
 ## Run Locally
 
+Use Node.js 22.12+ and pnpm 10.33. The compact faceline preparation artifact is
+stored in Git; generated browser assets are not. Prepare those assets once:
+
 ```sh
 pnpm install --frozen-lockfile
 pnpm prepare:model
@@ -24,18 +27,19 @@ preparation code changes.
 
 FacesJS remains the source of each 2D face and its `FaceConfig`. During
 preparation, cssFace imports the selected SVG fragments, flattens and
-triangulates their real contours, combines them with the locally extracted
-faceline, builds connected head and body geometry, merges eligible cells into
+triangulates their real contours, combines them with the tracked faceline
+geometry, builds connected head and body geometry, merges eligible cells into
 PolyCSS quads, and bakes the triangle fallback and 120-state yaw-lighting atlas.
 
 The browser loads those prepared packages through
 `@layoutit/polycss-morph` and mounts one retained DOM graph. Face controls patch
 the prepared model without parsing SVG, rebuilding topology, or redrawing its
-prepared assets at runtime. Generated facelines and browser packages stay
-ignored by Git. See the
-[FacesJS adapter notes](src/adapters/facesjs/README.md) for the exact source,
+prepared assets at runtime. Generated browser packages stay ignored by Git. See
+the [FacesJS adapter notes](src/adapters/facesjs/README.md) for the exact source,
 geometry, and compatibility boundary.
 
 ## License
 
-cssFace code is [MIT licensed](LICENSE).
+cssFace code is [MIT licensed](LICENSE). FacesJS styles are referenced at
+revision `92c91d4b67893dbeef4053c25c04cc01fdd5419a` under Apache-2.0. The compact
+faceline preparation artifact is included; the original `RFL_Res.dat` is not.
