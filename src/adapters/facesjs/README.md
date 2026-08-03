@@ -25,10 +25,9 @@ retains the same DOM leaves; it does not parse SVG or rebuild topology. Random
 switches to a different prepared identity, then varies the four shared morph
 controls.
 
-The faceline source and all prepared browser packages are generated locally and
-ignored by Git. Place a user-owned `RFL_Res.dat` at
-`.local/facesjs/RFL_Res.dat`; `prepare:model` extracts the eight facelines before
-building the four supported packages.
+The compact eight-faceline preparation artifact is stored in Git. Prepared
+browser packages are generated locally and remain ignored. No local
+`RFL_Res.dat` is required to build the four supported packages.
 
 ```sh
 pnpm prepare:model
