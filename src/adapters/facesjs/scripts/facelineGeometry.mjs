@@ -1,6 +1,7 @@
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 
-const SCHEMA = "cssface.rfl-facelines@1";
+const SCHEMA = "cssface.facelines@1";
 
 function finite(value, path) {
   if (typeof value !== "number" || !Number.isFinite(value)) {
@@ -89,7 +90,8 @@ function validateFaceline(value, index) {
 }
 
 export async function loadBakedFaceline(path, index) {
-  const document = JSON.parse(await readFile(path, "utf8"));
+  const bytes = await readFile(path);
+  const document = JSON.parse(bytes.toString("utf8"));
   if (!document || typeof document !== "object" || Array.isArray(document)) {
     throw new TypeError("Baked faceline geometry must be an object.");
   }
@@ -104,14 +106,8 @@ export async function loadBakedFaceline(path, index) {
   if (facelineIndex < 0 || facelineIndex >= facelines.length) {
     throw new RangeError(`Faceline index ${facelineIndex} is outside 0..7.`);
   }
-  const source = document.source;
-  if (!source || typeof source !== "object" || Array.isArray(source)
-    || typeof source.sha256 !== "string" || !/^[a-f0-9]{64}$/u.test(source.sha256)) {
-    throw new TypeError("Baked faceline source metadata is invalid.");
-  }
   return Object.freeze({
-    sourceSha256: source.sha256,
-    sourceVersion: integer(source.version, "source.version"),
+    artifactSha256: createHash("sha256").update(bytes).digest("hex"),
     shape: facelines[facelineIndex],
   });
 }
@@ -171,8 +167,7 @@ export function normalizeBakedFaceline(
   if (!boundary) throw new TypeError(`Faceline ${faceline.shape.index} has no boundary.`);
   return Object.freeze({
     index: faceline.shape.index,
-    sourceSha256: faceline.sourceSha256,
-    sourceVersion: faceline.sourceVersion,
+    artifactSha256: faceline.artifactSha256,
     points: Object.freeze(points),
     triangles: Object.freeze(triangles),
     boundary,
