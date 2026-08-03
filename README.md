@@ -42,4 +42,4 @@ geometry, and compatibility boundary.
 
 cssFace code is [MIT licensed](LICENSE). FacesJS styles are referenced at
 revision `92c91d4b67893dbeef4053c25c04cc01fdd5419a` under Apache-2.0. The compact
-faceline preparation artifact is included; the original `RFL_Res.dat` is not.
+faceline preparation artifact is included in the repository.

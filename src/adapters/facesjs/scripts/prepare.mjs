@@ -2341,8 +2341,7 @@ function buildGltf(primitives) {
           faceConfig: FACE,
           faceline: {
             index: FACELINE.index,
-            sourceSha256: FACELINE.sourceSha256,
-            sourceVersion: FACELINE.sourceVersion,
+            artifactSha256: FACELINE.artifactSha256,
           },
         },
         primitives: gltfPrimitives,
@@ -2365,7 +2364,7 @@ function buildPrepareConfig(polygonCount, vertexCount) {
     profile: "morph-regions",
     source: {
       path: MODEL_SOURCE_FILENAME,
-      id: `facesjs-rfl-${PRESET.id}-${SOURCE_SVG_SHA256.slice(0, 8)}-${FACELINE.sourceSha256.slice(0, 8)}-${FACELINE.index}`,
+      id: `facesjs-faceline-${PRESET.id}-${SOURCE_SVG_SHA256.slice(0, 8)}-${FACELINE.artifactSha256.slice(0, 8)}-${FACELINE.index}`,
       kind: "generated",
       uri: "local:cssface-faceline-composite",
       license: "mixed",
@@ -3374,9 +3373,8 @@ async function main() {
     faceConfig: FACE,
     faceline: Object.freeze({
       index: FACELINE.index,
-      source: "RFL_Res.dat",
-      sourceSha256: FACELINE.sourceSha256,
-      sourceVersion: FACELINE.sourceVersion,
+      artifact: "facelines.json",
+      artifactSha256: FACELINE.artifactSha256,
       topology: Object.freeze({
         polygons: FACELINE.triangles.length,
         vertices: FACELINE.points.length,

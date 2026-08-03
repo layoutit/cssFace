@@ -26,8 +26,7 @@ switches to a different prepared identity, then varies the four shared morph
 controls.
 
 The compact eight-faceline preparation artifact is stored in Git. Prepared
-browser packages are generated locally and remain ignored. No local
-`RFL_Res.dat` is required to build the four supported packages.
+browser packages are generated locally and remain ignored.
 
 ```sh
 pnpm prepare:model
