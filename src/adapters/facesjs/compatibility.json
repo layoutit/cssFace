@@ -1,0 +1,4583 @@
+{
+  "schema": "cssface.facesjs-compatibility@1",
+  "facesJs": {
+    "version": "5.0.3",
+    "sourceRevision": "92c91d4b67893dbeef4053c25c04cc01fdd5419a",
+    "catalogTotal": 326
+  },
+  "baseline": {
+    "allowlistedIds": 35,
+    "presetSelectedIds": 35,
+    "presetExercisedIds": 20,
+    "presetIds": [
+      "classic",
+      "afro",
+      "bald",
+      "short2",
+      "bright",
+      "steady"
+    ],
+    "randomPresetIds": [
+      "classic",
+      "afro",
+      "short2"
+    ]
+  },
+  "display": {
+    "order": [
+      "hairBg",
+      "body",
+      "jersey",
+      "ear",
+      "head",
+      "eyeLine",
+      "smileLine",
+      "miscLine",
+      "facialHair",
+      "eye",
+      "eyebrow",
+      "mouth",
+      "nose",
+      "hair",
+      "glasses",
+      "accessories"
+    ],
+    "faceConfigProperties": [
+      "fatness",
+      "teamColors",
+      "hairBg.id",
+      "body.id",
+      "body.color",
+      "body.size",
+      "jersey.id",
+      "ear.id",
+      "ear.size",
+      "head.id",
+      "head.shave",
+      "eyeLine.id",
+      "smileLine.id",
+      "smileLine.size",
+      "miscLine.id",
+      "facialHair.id",
+      "eye.id",
+      "eye.angle",
+      "eyebrow.id",
+      "eyebrow.angle",
+      "hair.id",
+      "hair.color",
+      "hair.flip",
+      "mouth.id",
+      "mouth.flip",
+      "nose.id",
+      "nose.flip",
+      "nose.size",
+      "glasses.id",
+      "accessories.id"
+    ],
+    "hatRules": {
+      "hats": [
+        "hat",
+        "hat2",
+        "hat3",
+        "santa-hat"
+      ],
+      "replaceWithShort": [
+        "afro",
+        "afro2",
+        "curly",
+        "curly2",
+        "curly3",
+        "faux-hawk",
+        "hair",
+        "high",
+        "juice",
+        "messy-short",
+        "messy",
+        "middle-part",
+        "parted",
+        "shaggy1",
+        "shaggy2",
+        "short3",
+        "spike",
+        "spike2",
+        "spike3",
+        "spike4"
+      ],
+      "replaceWithShortFade": [
+        "blowoutFade",
+        "curlyFade1",
+        "curlyFade2",
+        "dreads",
+        "fauxhawk-fade",
+        "tall-fade"
+      ]
+    }
+  },
+  "families": {
+    "accessories": {
+      "count": 8,
+      "targetStrategy": "accessory-classification",
+      "ids": [
+        {
+          "id": "eye-black",
+          "sourceSha256": "94d2f985dcc3c0159e8d067cc0c44c0f6fefe55baa22aaf28607831868ada16f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "accessory-classification",
+          "evidence": [
+            "contract:cssface.facesjs-accessory-component@1",
+            "test:facesjs-accessories"
+          ]
+        },
+        {
+          "id": "hat",
+          "sourceSha256": "c3443b5f0170bd32890b61b1b12db54f4e91a8d2e6751bf6d7319cf544b1da63",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "accessory-classification",
+          "evidence": [
+            "contract:cssface.facesjs-accessory-component@1",
+            "test:facesjs-accessories"
+          ]
+        },
+        {
+          "id": "hat2",
+          "sourceSha256": "3f9772d571f093ed09d3cdfaa4a61e4c5e09c2a9ca860550486324e646bbab7a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "accessory-classification",
+          "evidence": [
+            "contract:cssface.facesjs-accessory-component@1",
+            "test:facesjs-accessories"
+          ]
+        },
+        {
+          "id": "hat3",
+          "sourceSha256": "d2fdf0096534ed5262a47ad1556566a3a3d5135ecda82076b81b14307c3ca96e",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "accessory-classification",
+          "evidence": [
+            "contract:cssface.facesjs-accessory-component@1",
+            "test:facesjs-accessories"
+          ]
+        },
+        {
+          "id": "headband",
+          "sourceSha256": "29671be01aa4e8b91514d153b2978f9d46d82c35529f4b769343ae85c549c7a1",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "accessory-classification",
+          "evidence": [
+            "contract:cssface.facesjs-accessory-component@1",
+            "test:facesjs-accessories"
+          ]
+        },
+        {
+          "id": "headband-high",
+          "sourceSha256": "17c37efce6a26c1d7bdf501e4093795de48c65cd3e32226d92f1795c8c9c116f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "accessory-classification",
+          "evidence": [
+            "contract:cssface.facesjs-accessory-component@1",
+            "test:facesjs-accessories"
+          ]
+        },
+        {
+          "id": "none",
+          "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sourceEmpty": true,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "afro",
+            "bald",
+            "bright",
+            "classic",
+            "short2",
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "accessory-classification",
+          "evidence": [
+            "contract:cssface.facesjs-accessory-component@1",
+            "test:facesjs-accessories"
+          ]
+        },
+        {
+          "id": "santa-hat",
+          "sourceSha256": "1e8bfc3c2276a20bde3bc09428c90b57cc507082ea08de5c865cc2cc6b03ae33",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "accessory-classification",
+          "evidence": [
+            "contract:cssface.facesjs-accessory-component@1",
+            "test:facesjs-accessories"
+          ]
+        }
+      ]
+    },
+    "body": {
+      "count": 5,
+      "targetStrategy": "connected-region",
+      "ids": [
+        {
+          "id": "body",
+          "sourceSha256": "29983ca648c037fec029fae5fe7539c1c7b30eb7999af54c1d7b78548b4638f2",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "afro",
+            "bald",
+            "bright",
+            "classic",
+            "short2",
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "body2",
+          "sourceSha256": "6a7d95cf237af3e51fc6297b6b4d5ca77a9ac4160a62310ae99e75fc34c1c44d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "body3",
+          "sourceSha256": "f0de467a5a2244162f9ea91f5d591e7b03fb0ab1e38e7476d86d6866a6db35b9",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "body4",
+          "sourceSha256": "1ab32ee326f8b3249ed4a91cf4ca1239be177f39a7ebc1ac2022f2fc592d88ca",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "body5",
+          "sourceSha256": "7613a01b3b88eb4150bbcc5a4b340bd004fb9c1745e4eaea8538009e8a67d486",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        }
+      ]
+    },
+    "ear": {
+      "count": 3,
+      "targetStrategy": "head-attached-shell",
+      "ids": [
+        {
+          "id": "ear1",
+          "sourceSha256": "f9aed8ee32290fd4c38182c5b4388c78ae769e142eb3a52e88c33c1d88715de1",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "afro",
+            "bald",
+            "bright",
+            "classic",
+            "short2",
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "head-attached-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "ear2",
+          "sourceSha256": "0947540e3e46efc43d0c964e2951761373a56e34c858f60db6c850289fde6694",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "head-attached-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "ear3",
+          "sourceSha256": "0df59d16c200f55cd624f3f68b0bd1df13480ddb9dbb1ee4319725cf77afccf1",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "head-attached-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        }
+      ]
+    },
+    "eye": {
+      "count": 35,
+      "targetStrategy": "projected-feature",
+      "ids": [
+        {
+          "id": "eye1",
+          "sourceSha256": "e7877cf405a1d15b31af20b650da7bb316209479804e693dde588143baf251a5",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "bald",
+            "classic"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye10",
+          "sourceSha256": "1c732c15bbdf2f9128ac908b24ae6d95cf7d1d8effb9e6dd56672c945b17d2dc",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye11",
+          "sourceSha256": "29e5f36f5ed5e6b29007942552a0020f7b3814db5480d46134a4e251695aab43",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye12",
+          "sourceSha256": "8fc82eb31ff506cf0d04427c12aea181307960718a38fc50f3442204a5ff3e17",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye13",
+          "sourceSha256": "6078bf1314a258558a12468480b736c973e9509b0f28dd453e4bbfc6753c4287",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye14",
+          "sourceSha256": "9a24d7b8fb79ec76c46e66ad731776108197277aa981dc34a141e2464c819645",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye15",
+          "sourceSha256": "f03694fb966903deabec5c507929b4063938cb478ad7e0f33f6cd0f68b747b0f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye16",
+          "sourceSha256": "a42c95540db41d9b8b3e9a602d73c842689fb2b5c758275c8d823a49bf45fb1f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye17",
+          "sourceSha256": "ecea873b62ce280053eaab9625ed589028a210ce862022721251e90824e5932a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye18",
+          "sourceSha256": "00f5aa38ccf3948aacd114d6b2282cf02713cecfc0ced42942c24d7eb5cfb753",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye19",
+          "sourceSha256": "1f8941512306898c0cd00b02394eb1b5a2ad836d003b343ef4511f3797a05c61",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye2",
+          "sourceSha256": "31d24dc0081247e6da1f59ad7308a607c6582249a22c3c93bc4d50943466731f",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "afro",
+            "short2"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye3",
+          "sourceSha256": "9e582188bd58f97addc8748a1d84835f0bf366aada959705ce8439a11f764d3b",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "bright"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye4",
+          "sourceSha256": "34a58eaf72cf515c38815f36c373e747fede491ba733c053ab75989069949c51",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye5",
+          "sourceSha256": "b037facc878cbd1f1d802005ee30209bc5f809783e22ae3a59be8e695aa9ddf3",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye6",
+          "sourceSha256": "1b77698b88302f14d953d1904b374a7c0fcc5dc3c1a765d35b9bbd42005dd40d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye7",
+          "sourceSha256": "21441fe141ca86cd870dfc7bad885029728d5d15d8dba762a53dd18b00d25a1d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye8",
+          "sourceSha256": "67921d9003708d5e213f6ddaabb7219f36ade254e7c03ac0c2210f57559f6d2c",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eye9",
+          "sourceSha256": "33dbdbaab9e71dda4a09613f2f15451519d0e4baea460fdbe9f16a863ac0bafc",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female1",
+          "sourceSha256": "693375dd255d38ad0652db63f88d13f898fc55c8770fd07e287f05213e3dec4c",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female10",
+          "sourceSha256": "4f813b86f08a078ea481681958475a4ed4cb93fc1447d5523c79cc8c86dd25d9",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female11",
+          "sourceSha256": "7f205c11e726ba4f9093717a939c48ed30f0d87b8c0fb24f4352c6088807caa6",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female12",
+          "sourceSha256": "3f9ab4bcece744528232f5b14a9f20f190fb865a50160a64dfa2a119767717d9",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female13",
+          "sourceSha256": "b0fc677977e5a566bb81097b0d243c9710624c4da49be151c4886edf5cf8401f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female14",
+          "sourceSha256": "2be016419d8baf201fe528e107a748b378026340fdeff6baff28878b2639604e",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female15",
+          "sourceSha256": "f047f307b2fc96a54b9db0d6ee7bb587daa410b0dd90b7e020aa8e84eb6ebcc8",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female16",
+          "sourceSha256": "373020112c8ad540b33b1ac4e8d17a2086ce947686cce8746c2fd3eaf7a4da42",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female2",
+          "sourceSha256": "2ebb44ba5d738c34e9777f851f4041ef37b47e96d69514b378b7fd2b70bdea22",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female3",
+          "sourceSha256": "967a8fe9f6d652496166585030e78a312f27017026c1c306a0080db2da73a67c",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female4",
+          "sourceSha256": "695d5469c446572be5255e3618e0cb9672d99d77f736f672c77dacc438cc48d9",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female5",
+          "sourceSha256": "f9d00769bc6780a6167e8e9b37fc392ace2ec2e199c710a579ed8703cbe351be",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female6",
+          "sourceSha256": "c1767c155ee656739e1934e8df388777edf32cb504183df4b52c3ac595f0d0c7",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female7",
+          "sourceSha256": "d03691d68a8f25d136eb30d81beb75a53e2473a8ceb7f998d8cff446eca41051",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female8",
+          "sourceSha256": "e2094600528f6b2d7acc7fa23f14108aa1853792e4230f1dcb88ccb9271d1372",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female9",
+          "sourceSha256": "ca3da75ce7c2c9939fec8258805b931ac66affa57e3ad2f64504d1d0908b05fe",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        }
+      ]
+    },
+    "eyeLine": {
+      "count": 7,
+      "targetStrategy": "surface-overlay",
+      "ids": [
+        {
+          "id": "line1",
+          "sourceSha256": "09b350c4d558723fec9be0da20540c770eb82b38e6193ec612ebf3f2aba75d30",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "line2",
+          "sourceSha256": "a399ecc39b7ec43315b0bd9efd7b9ec1c986144fd21ee3298cd8ecd1ca451678",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "line3",
+          "sourceSha256": "41112300e047b70ba9ec66a2ed52d99ff5b495ea95c70840fc3fb4f9d0dc7ad0",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "line4",
+          "sourceSha256": "15374b6c49c1fc9f9825b107ce4039a6d534b30fa25a0f6f1f77b81cc7d49f87",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "line5",
+          "sourceSha256": "e3d79579b767e530d0320f22f0d7a9b12a9ea0510fdd0ec7671004cd70ad1554",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "line6",
+          "sourceSha256": "9e08c9bc43d6cf641a02eac695a66f7d2a0e1e455aa34329bf48593a06442c63",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "none",
+          "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sourceEmpty": true,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "afro",
+            "bald",
+            "bright",
+            "classic",
+            "short2",
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        }
+      ]
+    },
+    "eyebrow": {
+      "count": 30,
+      "targetStrategy": "projected-feature",
+      "ids": [
+        {
+          "id": "eyebrow1",
+          "sourceSha256": "ffb3d7fbf3374b651e4b999fca32c6e55852a6c57f6f77110268eb3005b4e899",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "afro",
+            "bald",
+            "classic",
+            "short2"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow10",
+          "sourceSha256": "ee7654d2e28eca8a0b9cfe5286540598af17557465bfcbb8fc0aa109e79d4cd6",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow11",
+          "sourceSha256": "970ef48c0ce2276b79707aa02b47299138527a5c0d085f15eeaed962ded03fe3",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow12",
+          "sourceSha256": "c339e4e2a38ad56e17bb161c194379fd79d61dcd8673305f9fa5cdbb50a57ff9",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow13",
+          "sourceSha256": "3ced1883daf507bb14079ad4fc837bc83667f42e2a7aac17b0d87814c6989117",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow14",
+          "sourceSha256": "f9afcf9d57907e83fe331d0c1085f60124189629b76272c5a8dbdff9f65a9028",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow15",
+          "sourceSha256": "05dae2ea606c06074ab175f89e65d0c4bc6e279418ee8900b8237ecae6d68b5c",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow16",
+          "sourceSha256": "fbabf33d7f67524450a714f9b8b945e946a924ca7fbb93938461c4c237cc4a1f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow17",
+          "sourceSha256": "5fb830290390c5f756610d0ed18eba14bacfa321ae155d91ba04a0ab74d1c881",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow18",
+          "sourceSha256": "4b63a15d0bab2de1262e0dfe102f08c2d16308d9dcf70ec91e7024c17b7bdbbd",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow19",
+          "sourceSha256": "73826d34fe94540e4e436cb0798c9ccaca41bd893c9d7f1badedae0f88c389f8",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow2",
+          "sourceSha256": "e08ebfd78d5f23717bc41043419018088a5ea83d36ebc867a5f48272ef438115",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "bright"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow20",
+          "sourceSha256": "9eb9071385a9dbd08268694f9ee3155bd56688d31d5b09bf159b622454f1da04",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow3",
+          "sourceSha256": "738e7d8fe1697fb404a0ac782f330392cd99c47afc10c9040ad3347bf52044e5",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow4",
+          "sourceSha256": "c11d4c0f9c672b0195cf030be62e18ae2319f410ef3dbde1e6883e1c91c2cd10",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow5",
+          "sourceSha256": "aa2ccebc9450813207b92db49c8e26924ef7f170ff5b0c91c2cedd2d030fb23a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow6",
+          "sourceSha256": "8c33ddb865b8b2585ef0dc346bf112f95299f6ef819884aba8ecc839d00eaacd",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow7",
+          "sourceSha256": "79bce69e7fa67170e6780bd0ff1d44dd829f5ecd1df926bd4d7d54d68679ab2f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow8",
+          "sourceSha256": "69d784690cd099ffa20abd27273de9400f3ff3a9654061433450db52f64b9105",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "eyebrow9",
+          "sourceSha256": "73aad451a7e01803449c56655419344bf317bf45b7ba4891b1130b87a56cfd30",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female1",
+          "sourceSha256": "2deae6bb8de4ae9ceb08fbf606989e4bd8b7bb2ae2122b4722e066a8f04cf71f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female10",
+          "sourceSha256": "175e5b3a68f21d3781d3fa47a576a0877a617e6e608a0fdb2720211fd64c06c0",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female2",
+          "sourceSha256": "dd268da2192ef4634bb6868a29a1f413ae5a83dcb14657f1353317bd6800313c",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female3",
+          "sourceSha256": "600aeca7fc1fc6c49af095cbe18b4bed4199db6447e295ae76247668b6ba0e8e",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female4",
+          "sourceSha256": "d1b91e0b5a7659b89310fda161628ae87919d77892b65751f738b715151bf2f7",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female5",
+          "sourceSha256": "d558f8c38233ea5a2c9cb29e7b9c6f137382f22a85b999d39cb61767a0360f54",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female6",
+          "sourceSha256": "2f026b9858fb1655889fe54d902b81ac34acd28816f90c3f694b3840f0f33777",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female7",
+          "sourceSha256": "e4bd48d4de248349567e9ec073b179a4e2235080e33c100cfc23a9ea6fe1f606",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female8",
+          "sourceSha256": "a543b409e589f939930b642ab9fa868b1be65e5983edc8d5b0da99092bba127d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "female9",
+          "sourceSha256": "ceb49e57500fdbca0e9b11f3db990656255f31ca501f27865dcff192248e0cfd",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        }
+      ]
+    },
+    "facialHair": {
+      "count": 83,
+      "targetStrategy": "surface-overlay",
+      "ids": [
+        {
+          "id": "beard-point",
+          "sourceSha256": "d1aa04fca0902de911cfaba7f869994776f37df95fa7e733c29ffe8ca3f85253",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "beard1",
+          "sourceSha256": "b22751b48d9aaa6931e9c3e32851d8618118b4eb9224325146ab2943f616b18a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "beard2",
+          "sourceSha256": "58a0f8fd24a65e9a5250710f36ca7d4dbc6b1a8c06b92b80d14cffca4c1d123d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "beard3",
+          "sourceSha256": "0056ca505d02e41d20ff8b8f4594f6100184b9b00f8b352bfc78ab07bbfff664",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "beard4",
+          "sourceSha256": "d7be22dd7f5bb380ef59f4ce51f9ec0ebb70739995a09a1dfa65b7b850f98ab5",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "beard5",
+          "sourceSha256": "dff3a97b5b1863d2aa2c34c0a0fe9627d2e9852546233e5d1982211d1d2e97b7",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "beard6",
+          "sourceSha256": "bf48378f561fd6fd4f54d227478d3968b002523dfa9184eedbd59ee6538f5bc5",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "chin-strap",
+          "sourceSha256": "1765ac33c59b85f919e7ad35945bd291d1ed3e63b710fa61523ad71294218036",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "chin-strapStache",
+          "sourceSha256": "b7b4ada8c4a6604c005701de07e92cc5d548b4e8e4cd5db2ca568111df662634",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "fullgoatee",
+          "sourceSha256": "8831ff8162754db6535802d7bcfdbbb84d558b2370542cfe6ae6edec52bc9262",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "fullgoatee2",
+          "sourceSha256": "613f6e2da22349de02fff1a541c0aac57af4739a2c28abd06cf2e925d6b808c2",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "fullgoatee3",
+          "sourceSha256": "cb694a2d7bdd3843faf3f02f29df321c74c835c1059c29ac887330f4d7aa624d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "fullgoatee4",
+          "sourceSha256": "12e91df4264e175ab4bcc623b4725c043e08913bb71cd41f4bd2c2f7bc0f50ef",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "fullgoatee5",
+          "sourceSha256": "9d50655962b137fe948b1e951b646d421d5d799ee1bfe28ce34d16f30ae4fe7b",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "fullgoatee6",
+          "sourceSha256": "7cb9d3b46080bdada3e011e635c549d65d2d36e0026ff1863ccf1d7ef52400ec",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee-thin",
+          "sourceSha256": "9e8828134561476de47b0a25bc095300055dd6f4c202213dd7ea5235c960ecf7",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee-thin-stache",
+          "sourceSha256": "562a2d781860a178e23dd9e68ae952d2466d41328647e3eaf5c50a3f8b5b316a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee1",
+          "sourceSha256": "c232b33c6b159c4b6d0711d765e45f4a7b7b68a62fd269bad9559a82accc485a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee1-stache",
+          "sourceSha256": "de96fe449a2a83aa22b6f74b7da77b174530bfcdc5462b9d8314db91dbfdf4ff",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee10",
+          "sourceSha256": "269335aa90d8eeb1cabe9a845e7db8deb404a541c26d8036bb3238fbb8c46a02",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee11",
+          "sourceSha256": "f3948142390ad2a56a1612134e39c213d03b4168424b40028dc7857c8cc306f2",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee12",
+          "sourceSha256": "f4f518b5138f87e7ec54f69463113b5e397578e5d4bfd55248d54abf52ad84f9",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee15",
+          "sourceSha256": "6f006fa68a170b30f5f2638100b2690dbb9ccd865e23637614381cab23d57f51",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee16",
+          "sourceSha256": "e9daa6854861a15470088ee7cfbeabcff5ae168c01a15924b8e877fcb7e2f318",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee17",
+          "sourceSha256": "1615fb131b04ae484ef16d410dffc718c61292cbdc0f8921173180e2e115c849",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee18",
+          "sourceSha256": "a85d56056a7b919ad9612881fe72a70a6d741b0de93b41b053716dd1ca49bd0d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee19",
+          "sourceSha256": "bc4dd89246f0de35b2389b055926399a771e054375170925103980dbf34fe221",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee2",
+          "sourceSha256": "4745af1a2695beb8d5f11e11d834e971a7dd521d332205d2fdc87cd844bf7434",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee3",
+          "sourceSha256": "ff2dca999f6360b2a8f815b1e11e6774f6c978876c97f69f4df7debaf002f063",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee4",
+          "sourceSha256": "1cdb030c6a23aff95ba16d98e993ff918f4bcecd6c50f292cf352144c7f83337",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee4-stache",
+          "sourceSha256": "d125ad317d1d28f302b5d0a6a9433b912c7884a1193479d82520be08ec021c5f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee5",
+          "sourceSha256": "fb6a412c97b00e7f20d713f0b637245f0c5d2fe9d6d78e509c69c3ff798567dc",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee6",
+          "sourceSha256": "d6c133cb3cb452752800393fdb909ff3e74b866ff2c5ba106ae0e6b9bb95818d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee7",
+          "sourceSha256": "0652f5a44df01584e255fbacabf0539bd2f37e20c090b42cd96214038b2dfe10",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee8",
+          "sourceSha256": "5ea434c96b229ebf16fe17b389581be5013be69f82cecee0ea51fea008b65ff3",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "goatee9",
+          "sourceSha256": "0a6972051b12a467b78f0cff1f7d081c5a4f1d49eb88f842fc4f62e09df9d5a9",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "harley1",
+          "sourceSha256": "cf7c45a35667e7b671cf3e28bc0b0d3c646e4f7e07f98d7fe12727392eb80f32",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "harley1-sb-1",
+          "sourceSha256": "a9a309780d06cf9e697205fc3be1b9e93102160958ca9e8df0216c0a99704321",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "harley1-sb-2",
+          "sourceSha256": "7b5681aff13546160e087a78c728f795256ba1bab847cdd65b8250f555ef5b23",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "harley2",
+          "sourceSha256": "ef6a916002600075e70a6007aeb93e073b399e16c5f39638abb7f97eb7bbdacf",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "harley2-sb-1",
+          "sourceSha256": "362c19a704c9a668bc8f6ec40abe0f4492c82edb1db02e4db225de4503ae7ca8",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "harley2-sb-2",
+          "sourceSha256": "5c79e334e8c303c8a0ae5bbe5cb6a8f470f2d0f093c62a98817cf739da5d9dd8",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "harly3",
+          "sourceSha256": "81a65f92a43b4df114a9624ba52eb2c3d42f7bfc276253fe58c8e9b3f30bc7c2",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "harly3-sb-1",
+          "sourceSha256": "0d2d3a3ab15bd02eb50c8e59112da78f491de84b62d2d7488e49350810bf6ef4",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "harly3-sb-2",
+          "sourceSha256": "98f6d9e0657ec4e69c0550837109ea63960ce8c04c9e2ebd4ffda3e92813f73c",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "honest-abe",
+          "sourceSha256": "9d1973dcc49eceef0a6f79a13c3ec70048c7f6e30262f757dce60b45a0be33a8",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "honest-abe-stache",
+          "sourceSha256": "19889df9056513704db5a646ed75548cd341791ee9d4c17db7b678ba844f8f95",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "logan",
+          "sourceSha256": "67d8bcb3a85913b49530d5bb94d5c08c7b0b92129caa39a2a25f7ca76fb95cd3",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "loganGoatee2",
+          "sourceSha256": "55bfb8a45fef4612d3f3fcb7349a598caee80c51b6cf062a38d3696ab1a31430",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "loganGoatee2Stache",
+          "sourceSha256": "0c267274903a5ffaf284e74adb50d022306f5d42554998cd47c6c99ba4321e2f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "loganGoatee3",
+          "sourceSha256": "6be198e3bc290284b739c1cc3cf699963108c2a31a45498b79494cc6482f18a4",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "loganGoatee3soul",
+          "sourceSha256": "7c21d9503259ad3d70fcfa7c68eb45bd30e79df4fc3d1f522b7b2660c3f4f4d1",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "loganGoatee3soulStache",
+          "sourceSha256": "c8a3ac8494048728baf5e2035e0aa50f2475e078939d9bfc13a606ade837bf17",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "loganSoul",
+          "sourceSha256": "ecc08a26f3ad748bf000463dd29e27167b9607306965ba4acb80d38f2362a8e7",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "mustache-thin",
+          "sourceSha256": "2319d0e6fa20174382f324d680c35cdc0dde59c93c2eea8128c3b5d2b9e0a9bf",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "mustache1",
+          "sourceSha256": "08528003088c4f0d07fb4903db12c7cf296fe838fa9b40b39e7782e9ba239b1f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "mustache1SB1",
+          "sourceSha256": "e685992fd670046731d27dcf96e93080b1457c2ed84ad7a37fc9f112e1a3e859",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "mustache1SB2",
+          "sourceSha256": "55961dc6a2fa2e9e346d435e3c460504aeb76ddf9692e347cdd61679a9ef040a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "mutton",
+          "sourceSha256": "c657d33bc41840f26d2fb78a48e2ca1454dc6d97e9b2c64fd38a634143032e6b",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "muttonGoatee1",
+          "sourceSha256": "ad92ac9125f71fe1ba5dd277c9083cc543051b5629e9bf2c11df64e669b3940b",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "muttonGoatee1Stache",
+          "sourceSha256": "045a186679c04186cd582c6749373c2a5a81e2af54c1e209699eeff650be181a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "muttonGoatee2",
+          "sourceSha256": "c64ee88d92c8dcf1c2535083077ca45fd744aa38ec59d732ee2257a50eaa01c8",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "muttonGoatee2Stache",
+          "sourceSha256": "7f6cb9503901f1f5c3ff21b495e88ecbef519ab7e0787c10c62c43ce5ec253f7",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "muttonGoatee5",
+          "sourceSha256": "9651fa2e9bf800e7d558984a60ffb72f7c35bc792e2b818d089499158eb93148",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "muttonGoatee5Stache",
+          "sourceSha256": "75177b9ca798e180e0d61a085d12ccae9b3aaa6a65081f167c843e5e86f88371",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "muttonSoul",
+          "sourceSha256": "0f04aa948182b7805e4a167c970e9ca76c652e7a26121b3058ec5f6c2ce30a92",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "muttonStache",
+          "sourceSha256": "0f1e724f6cb3efe877604d3aa1df470aa96310f1de6c31e5babc4a1809bda2a3",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "muttonStacheSoul",
+          "sourceSha256": "d2b0ba8a15f5223f416520d7076139973580435c0e5f3fbd31065f5b0d086427",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "neckbeard",
+          "sourceSha256": "5eb87a94fcc82a228d62470d94bca7934c091ded3e6bb8dce7a9feab08ee3124",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "neckbeard2",
+          "sourceSha256": "bfc3bee93cd71ef256d7390b7db6c58ac1556276a936faa036dffabd5a8bd15b",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "neckbeard2SB1",
+          "sourceSha256": "f89d1e64123783d04a47cd89f0bf27ab0e99cdab325d849326440e602f47f936",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "neckbeard2SB2",
+          "sourceSha256": "bcab6c412859f3be16fd0564dcd9809fe2a28347def96b30b1a2ad96dacd950c",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "neckbeardSB1",
+          "sourceSha256": "c3fb60df4997eb34b158274e65ed5b04b956870b8f28a829199ec6d43387f4c1",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "neckbeardSB2",
+          "sourceSha256": "8c6bee648dab7531b6361472eda8ffc8750a8b31111ea5072fc5aaf1ee973039",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "none",
+          "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sourceEmpty": true,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "afro",
+            "bald",
+            "bright",
+            "classic",
+            "short2",
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "sideburns1",
+          "sourceSha256": "a42440a18cc6b35e6f83c1523fd7b2cce9caf590b32690ff796f7e19f6b71536",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "sideburns2",
+          "sourceSha256": "5345f67670a346d00f6105e8f378c695110d0881dba0bbda3d6756f52f950be7",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "sideburns3",
+          "sourceSha256": "2de77fa1ae2314712e4de3aba52817e807acb5eab85ddd8ae512a695ffb7249b",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "soul",
+          "sourceSha256": "14ef73ed40f99eb863b4a8430f98cd1b960372cfe57bee75986bdacd498087ab",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "soul-stache",
+          "sourceSha256": "03e75715b18f7ab3c084f443dfd1ea33d866f4efb82a5cd16e89083830c32a0d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "wilt",
+          "sourceSha256": "ea8a03973cda6bfbcf03b1463d5bf2e0a0c2b2f36f78beb8d4b60a265a8cb90a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "wilt-sideburns-long",
+          "sourceSha256": "c5e516b126493b60d54921e8d0cf7c120a0da70c3aebf42b34eb373ad6147870",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "wilt-sideburns-short",
+          "sourceSha256": "030051ef96c09d1610b407fc1db4d9b7d1713c5e2cf5e5a3c6781a39e111f389",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        }
+      ]
+    },
+    "glasses": {
+      "count": 7,
+      "targetStrategy": "raised-component",
+      "ids": [
+        {
+          "id": "facemask",
+          "sourceSha256": "af51711f2cb6c46552b38f04d12a2f73d909e31b87cef66fe962d90d09995209",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "raised-component",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-glasses"
+          ]
+        },
+        {
+          "id": "glasses1-primary",
+          "sourceSha256": "f6435808f9c5f32527accb5924ef62b1d504fb88a58453d41d04088b5894413a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "raised-component",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-glasses"
+          ]
+        },
+        {
+          "id": "glasses1-secondary",
+          "sourceSha256": "5d5e5b0908bd439805842fbbab07932a4e435bea95791cbd5c25a57f1ab800d6",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "raised-component",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-glasses"
+          ]
+        },
+        {
+          "id": "glasses2-black",
+          "sourceSha256": "9e12f08bcd2d91bee9e1964ee6996c1d1b38675053ab8bea936c84f0fe5b7d2e",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "raised-component",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-glasses"
+          ]
+        },
+        {
+          "id": "glasses2-primary",
+          "sourceSha256": "f8285b3559f9a72c14a35191bd0cd5183d55667a0c7dfca01eee44a11334112a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "raised-component",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-glasses"
+          ]
+        },
+        {
+          "id": "glasses2-secondary",
+          "sourceSha256": "b93b19efa9883cfb947bdf238ae2b0fa87c45defce00c98416a9cb3db7e0eb36",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "raised-component",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-glasses"
+          ]
+        },
+        {
+          "id": "none",
+          "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sourceEmpty": true,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "afro",
+            "bald",
+            "bright",
+            "classic",
+            "short2",
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "raised-component",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-glasses"
+          ]
+        }
+      ]
+    },
+    "hair": {
+      "count": 51,
+      "targetStrategy": "hair-classification",
+      "ids": [
+        {
+          "id": "afro",
+          "sourceSha256": "4f6978e35bb5d6bbd848bc8d936f661d9a2ccab7144ec7ff6a3a9cef43d38c37",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "afro"
+          ],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "afro2",
+          "sourceSha256": "01b5f207d5261ee670045ac432ba771406d868505eef3f0b3313e43d4bc8ab22",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "bald",
+          "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sourceEmpty": true,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "bald"
+          ],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "blowoutFade",
+          "sourceSha256": "7435ceab53bcbe2c454b3021e6fd9fe1187b28de3292d29ee992293f69f483b5",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "cornrows",
+          "sourceSha256": "05146f14f4bd595d4babb2c96eff238e332bb72a1d0d1730cf61cd073d0645bd",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "crop",
+          "sourceSha256": "4d5ed5b43a7efe740df4a2445d4d2e0e2fea991658bfd374582d8bf49148d513",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "crop-fade",
+          "sourceSha256": "e21706dbb1478044f8546969b20dda0f18c327fad4112e94821dee33b5dbc03d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "crop-fade2",
+          "sourceSha256": "fdce50f146605849236411887c810d3aab34914d1846cdbaa7f8b88ce9ff7e70",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "curly",
+          "sourceSha256": "b7b39f3758755b9ccac48edebeb2fdacefb6494b1aa73565fb19f6b922f780b9",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "curly2",
+          "sourceSha256": "d0870b75de5354340fe19107a90ba9c0aeb9a12e8fa67c2cf56902b9a0185137",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "curly3",
+          "sourceSha256": "85087bd5e14357c5e7be59025eca6a0ec41c42da53f84b71742a09a7fc8975f8",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "curlyFade1",
+          "sourceSha256": "4810150270518b7ac37be8b4e0e4e341a3b67786ac36e4d512fcafd346f3ec7c",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "curlyFade2",
+          "sourceSha256": "7fd717ae280f616c8ad6190b0257848bebed73796e7a7739cdd331c0414ba498",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "dreads",
+          "sourceSha256": "ef1b34b0b4c5a768a5341aac60cef558c664ba478f344e7d4f3cd629a65ab4b7",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "emo",
+          "sourceSha256": "3e780db74799845a914476ca8b192cd1ced9cca7cc5a2b092624d6fdf73e2597",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "faux-hawk",
+          "sourceSha256": "bd931452ffad30dd4eac15c3c880ebe41c3a7e3a87a5d36d186549877a4e70ad",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "fauxhawk-fade",
+          "sourceSha256": "b3108c921e6b683c4f304930068a0c1ee6e7f0661eed3eb019b6ed2cf9142d42",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female1",
+          "sourceSha256": "590fae451452858e28255cf2b77fd65019a8479366fd398649e7ba4bba7f9397",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female10",
+          "sourceSha256": "cb9ac2a16d36dde71909c7d2db8f435b6e6c72d7c78e02e001af2f7c2dd287a6",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female11",
+          "sourceSha256": "64f8c87c50b8cedac751d6a1bd72fe51459bf15da66f4f20983d2e947c7ff9e6",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female12",
+          "sourceSha256": "c2f148ef6c8c51d79e0361bfa8a096ad4a8d48ce6ec9b95dfab8550e0abfd1e0",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female2",
+          "sourceSha256": "e1d78bfee0a67ee6bd5ac1c7c1605613414f6dc11a3a4b09a1c48d4c1def2586",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female3",
+          "sourceSha256": "08b549def4ef9092fb20e680903691b1ede540088e392b395254beddd824c5cb",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female4",
+          "sourceSha256": "1057bd07d6ba3f5e0849e7d00142a4954d97876ebcbcbde5142496e179f0c433",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female5",
+          "sourceSha256": "64e6041518c02dbb2808f643af96884c256b58d378f7cbaac38d612ec4a971ae",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female6",
+          "sourceSha256": "79074d4cf471f28f02c4b2ab347d16f6307fed82185f0d9fbe5567d4414878ae",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female7",
+          "sourceSha256": "e6f1c7899f735bce1d86949a844545229629e0d0338564943611604a6347a605",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female8",
+          "sourceSha256": "3f37d10afb4306930cc3194739eb3c54579f7103d0f615598ac1bd96905c4f51",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female9",
+          "sourceSha256": "9b4d1154f692c774cb1c5d7f57e78ed3d86b210f6ada07f5f75407e83e19a364",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "hair",
+          "sourceSha256": "77b4029d4d67f9cda2965bfe8d1d7004b0a4fef07b39e66e40a7f2bdc23a1cbf",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "high",
+          "sourceSha256": "0f10a2414d3d4ba4114a049412b8f05d8ee20ee1354356955d0b38f2360bd011",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "juice",
+          "sourceSha256": "8a559243a26294dcd11c06228f13a9331fca76fbd396d37dfaac5a1a5ccf17a2",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "longHair",
+          "sourceSha256": "8b3533597b4d3e4cc8baabca0a69776fbccbe5f84f77a3df9b7f9cbaa33f27cc",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "messy",
+          "sourceSha256": "e0b9188f940ab190139777845b4806ae950c761a4989240ba7a24b608a820a65",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "messy-short",
+          "sourceSha256": "57c7bf924b00a8afb3393995f19cd02a533c1bbaf450b894ef560e1891b05efc",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "middle-part",
+          "sourceSha256": "3dd1c8d7bec7aa3a86c8a504fe03b76d8a1b8ddf1d125cfedf37af2050e8183e",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "parted",
+          "sourceSha256": "bacb0fdfb608ae4e62af17c0c9dcc4f1af20e6e1889f29711d9b04ca16b53d1a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "shaggy1",
+          "sourceSha256": "7c38ae995da7a24f71f29675593dd64d329d6e8c3c6f0746020d02f6aaa4a7e7",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "shaggy2",
+          "sourceSha256": "9420db25dc38f775345cbf2a379b6678d2da166c0883e3d9033c1fb6d7ac104c",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "short",
+          "sourceSha256": "e5431c1ba4eea1bdfc9a8e5000434738f0443a061090e60f657a95f4aa608e6d",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "bright",
+            "classic"
+          ],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "short-bald",
+          "sourceSha256": "6e0a6038d4730e4c41497834ed6f2f9c6b211c5f3e8958c81eacf40c39d0cd21",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "short-fade",
+          "sourceSha256": "37cf689592e088f893addc858b03304a227234463d21b67f9e6d69448945f61c",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "short-fade-2",
+          "sourceSha256": "c56befbbb2f8f572e0b778a9afabf317450221acff403a81ca276a810136c016",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "short2",
+          "sourceSha256": "38094f64b6fcc60c80055360bbabb5f0ae3fb2d65be44cc07900dec5633be011",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "short2",
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "short3",
+          "sourceSha256": "1357d98aa305ff920d5c3eb0650b9f90b9b9b6501a55ed9ffe99018e4609269b",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "shortBangs",
+          "sourceSha256": "e016e95eba861887f5155ce5c8d8f9d044324d6be7219efebe3cfd7a23d7aa74",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "spike",
+          "sourceSha256": "34633c2077754e7acf3785a67cd4edde5f9b9d767cb4463dbbcaee5157cd391f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "spike2",
+          "sourceSha256": "38517a02e191d26febfc4d7a04d66190843d6aee10152bf4e13aff10d8270a0b",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "spike3",
+          "sourceSha256": "366b6fb80ffae77e0e54b9fc6d4bbe357e7ec1f141598a00d9e6e28612c2eec7",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "spike4",
+          "sourceSha256": "d0938cafc03d8b16c115bd89e0c5c5881b9b97c1c807891775d24a3bae574f44",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "tall-fade",
+          "sourceSha256": "b860a5c82b091a760c66604202807b0db59c6368b87783ed2b850e4cea2bc629",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        }
+      ]
+    },
+    "hairBg": {
+      "count": 8,
+      "targetStrategy": "rear-hair-classification",
+      "ids": [
+        {
+          "id": "female1",
+          "sourceSha256": "2fbef2bc6e6242a8b3a753cf9469b310d7e5e1a7a6d17cccbe0dd90c564719b6",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "rear-hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female2",
+          "sourceSha256": "f01c78621a2a46fcc9c031b5ec82e1821c4d0f8645e9a1c172a376a5538c742c",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "rear-hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female3",
+          "sourceSha256": "ec8acbea6b9d9b9b9dc95f50315ece49b0a8f00ccc08067a80a3848935d95a20",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "rear-hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female4",
+          "sourceSha256": "035adc7aef86c0cfeeb75db568822fa35191b0ad46dc7ca6a259435be4763888",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "rear-hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "female5",
+          "sourceSha256": "0758f6fe5bdabfc546da59a69ef3ca466a34811ddcd312f873fd85b02a3c69c9",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "rear-hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "longHair",
+          "sourceSha256": "33d5acc9668665f59bdb55905c9351b7fc77407f645b9a8c398116a45ff11b08",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "rear-hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "none",
+          "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sourceEmpty": true,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "afro",
+            "bald",
+            "bright",
+            "classic",
+            "short2",
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "rear-hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        },
+        {
+          "id": "shaggy",
+          "sourceSha256": "ccc6016247bd88cb00285b6e2c1a53c290158734d23d0a813068428590b78757",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "rear-hair-classification",
+          "evidence": [
+            "contract:cssface.facesjs-hair-component@1",
+            "test:facesjs-hair-components"
+          ]
+        }
+      ]
+    },
+    "head": {
+      "count": 21,
+      "targetStrategy": "source-contour-shell",
+      "ids": [
+        {
+          "id": "female1",
+          "sourceSha256": "602482274af8180f84233c2b0967826931037faf2b308a63053dffe8d7dd7726",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "female2",
+          "sourceSha256": "45f159483f6d13ca1545f592f43d8397e3d056f840c6dccd54e5acb8af29c211",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "female3",
+          "sourceSha256": "b5ea3e8e9f7e346920106eea81520e351d731ba1cb35235465e9d44c59adea50",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head1",
+          "sourceSha256": "03c099c194415e76252e38d4fefdea53509793d980b86667d79bd8814784f212",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "classic"
+          ],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head10",
+          "sourceSha256": "f750fd799a37741b5b609e74a90d9ad6083e9b1291446e69f8d1b0bafdd6d819",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head11",
+          "sourceSha256": "d6d68cf7984fa160055ccbeabeb8a631d00e456943c00d24b87db477134dbb56",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head12",
+          "sourceSha256": "8140cfb196eec74a96831d5ad195152312d0c888acce97da6d42e6f037b423a9",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head13",
+          "sourceSha256": "0e483012930e6ae877ffe26e485ec46a94da9dfd81b53c4337cd23c3f0ab97b7",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head14",
+          "sourceSha256": "26dab3129542cfdf1aa7dbe3e6a67d84e86a28927b76cbafb7bf571d45312d28",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head15",
+          "sourceSha256": "8e2f69e1bb27f1aff30c838192b73d8d6893ab51327a4029e8200699d4ea8882",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head16",
+          "sourceSha256": "7cb638d90ee08f525b9f4bd31fbbfdafac492fcb5052673c7c549d43e3e931da",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head17",
+          "sourceSha256": "80f74bfc2029dd39b8ae1deaa69c4c583eb1957452695de343ef9f8d94dccabd",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head18",
+          "sourceSha256": "cbae8e0b0aa94db5b60c2f49433c8e097ebd9b8ae7a0b7dfec9b46894b486385",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head2",
+          "sourceSha256": "f61ef90ae13a613b602c9a2d91e25997b38502403bcf9ec7a8516cb298b670dd",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head3",
+          "sourceSha256": "51406452c39e357d80035d4668e8ce2ad06c49416f1a7ef50e971405531b20df",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "afro"
+          ],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head4",
+          "sourceSha256": "82dc579c82d0ce3c02243299e8418e5f7d7f562220dcb18c0948daf2e65167b6",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "bright"
+          ],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head5",
+          "sourceSha256": "1cf7620f8020a1dd46ec4207c0326b2567cfb33753540e56f9c8ebf8d26959a5",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head6",
+          "sourceSha256": "cfbe803f7a77bb637e989589c8befd8f33c8c4ef109bd757c7a549532aaa2b3a",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "bald"
+          ],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head7",
+          "sourceSha256": "791187af58ac6f56d87f6ad5953c34935ad527ca92c29c7b595ed24f09c3404a",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head8",
+          "sourceSha256": "30baebc1d1eef9e72dbf0db1f3496bfdc103cd89bd9b074acb1688c14a1ab616",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "short2"
+          ],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        },
+        {
+          "id": "head9",
+          "sourceSha256": "912dc421a6395b7b3074448d83ab348fa5786dbed1ae17d57ea8152c97c3747e",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "source-contour-shell",
+          "evidence": [
+            "contract:cssface.facesjs-shell-component@1",
+            "test:facesjs-shells"
+          ]
+        }
+      ]
+    },
+    "jersey": {
+      "count": 18,
+      "targetStrategy": "connected-region",
+      "ids": [
+        {
+          "id": "baseball",
+          "sourceSha256": "5be96a7c9256f4848672ea749ab35aa6d11f86fc69cef6247832ff4bea2fc539",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "baseball2",
+          "sourceSha256": "6c7bd6e07bf4be967714c3b01fd4de8fdd63a62875d3de3997f8691510f8e484",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "baseball3",
+          "sourceSha256": "7bc888ceddcacd42ceb26c59a22b8d4d55edf162c90eb12dce0b227188d68c59",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "baseball4",
+          "sourceSha256": "cf6f4e0b0ffc452378fe2ac888012cf8fb50581fa3520bf5258daaf76d891c60",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "football",
+          "sourceSha256": "6571e344ca7de146b56bff8adaf5b9239a796aec48c2b201973889b40847b4fb",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "football2",
+          "sourceSha256": "d03d850b3682a5189a901e4ae486d5b8f3d9c5b9fd3f2072cb36358f6429c45d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "football3",
+          "sourceSha256": "b3cf23a9d132d97d1e922ee0db54b5d603c96370ee05398460beef7c1b063bbe",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "football4",
+          "sourceSha256": "97c33e52972cf64a6a79b9fb6dfaff940ce3d02bd6b7102821d9055972c5dfb2",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "football5",
+          "sourceSha256": "b7f172015c99b06818bc6a8fb56e005647e32711734ce35527352d1b9a9a57bb",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "hockey",
+          "sourceSha256": "bedc54a7930954e5a0bfdb02b5903b5d36162f7b9d12c9358a7ba49fa7cdce93",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "hockey2",
+          "sourceSha256": "50e1e7543e7bc41438b0ec29ba92cae37e3ca2192ebbded90f24c7728562050b",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "hockey3",
+          "sourceSha256": "309c9971cbfea70224bf247dc5085b6bf3aadcd151df55c5c3cc1e9d1346d4df",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "hockey4",
+          "sourceSha256": "1ce8ecc896d2fa477e44d3b54c83a85f51d411ca9ba72b94d51b80814b390376",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "jersey",
+          "sourceSha256": "75c9b76cba57a1f511a02541a7655c899495dd6f28ea2630e36077d44e972774",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "afro",
+            "bald",
+            "bright",
+            "classic",
+            "short2",
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "jersey2",
+          "sourceSha256": "b7e13af8a66151e315b8a901b0db67dc2903e1021c69e020d7ba7240af825ac8",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "jersey3",
+          "sourceSha256": "c2397ceee54ab66d3484e49cce7ed5ea72bc0af7b589a3e57142f7de7ec80e8b",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "jersey4",
+          "sourceSha256": "31d977c304e7ac445d9385d59acca69862020aa0210fe7649ec3ffa665b0b000",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        },
+        {
+          "id": "jersey5",
+          "sourceSha256": "25600ec70b289a0b76e5d35eae40c412678f99c51ae39a676511d96c7ab11048",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "connected-region",
+          "evidence": [
+            "contract:cssface.facesjs-body-region@1",
+            "test:facesjs-body-regions"
+          ]
+        }
+      ]
+    },
+    "miscLine": {
+      "count": 11,
+      "targetStrategy": "surface-overlay",
+      "ids": [
+        {
+          "id": "blush",
+          "sourceSha256": "0a486e99e58d466cd605eba4e172c8fb42be032224c020d99c5a2b267262bc9d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "chin1",
+          "sourceSha256": "d72f54025a88ee7e2b1b8e6555b3787dd092655367f1cf07343d7258cbb7be52",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "chin2",
+          "sourceSha256": "70ddcb731ffaa0f1003de3db65d57b947fb36db9d7080246d3fd5e067b7cad7b",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "forehead1",
+          "sourceSha256": "3f48dc6aad4e8cf1d0dcb9753541425404e55fc78599ec0f20002a239557c2b3",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "forehead2",
+          "sourceSha256": "8bb8720b4399c43e11530563c60983de74b8bca1319780e85ab53ae83ed84705",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "forehead3",
+          "sourceSha256": "8ffa3be00a6cfbe757ef45ff506f1b7a4dc188d8dcce9464ea61e5f838fb1f05",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "forehead4",
+          "sourceSha256": "c7249decd747d5fb6ebe7bee1f503af52005a38715049c352957fd0c28c3f88f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "forehead5",
+          "sourceSha256": "239645d72d1ad42a93448429f0edbebf12e5786026c1a4dfa1fcb00c16a280c1",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "freckles1",
+          "sourceSha256": "ac592aa7551798e9df8eb5e2cd10d8edcbc6e4abdc991570d13355f9936925b9",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "freckles2",
+          "sourceSha256": "efd031532b4ce3dad8e45408c8b40595454486b25d2726627bf69e806fc9a5f1",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "none",
+          "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sourceEmpty": true,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "afro",
+            "bald",
+            "bright",
+            "classic",
+            "short2",
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        }
+      ]
+    },
+    "mouth": {
+      "count": 17,
+      "targetStrategy": "projected-feature",
+      "ids": [
+        {
+          "id": "angry",
+          "sourceSha256": "92eaf543294854ac16e1936078b5d553c824ac8ff423fee3fe0e365433fa38ae",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "closed",
+          "sourceSha256": "2b72224121d170a3f379ba37d45257b8372c88af11aece104bd83f1e3db06c05",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "bald"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "mouth",
+          "sourceSha256": "6e70636f2904ae0954fb69b37dbc6e635d0289c7c4550de11e1fd435e90a87a4",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "mouth2",
+          "sourceSha256": "275414e61bf0637ef50d7774b27859508fddaab2278a6fcb9df0cab11228a0a3",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "mouth3",
+          "sourceSha256": "6dd0e215055219c1d020c799b88b0844b86a40b0f8261b912335d65e64ea56fb",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "mouth4",
+          "sourceSha256": "3aa88264916d5d751103df0567d5dc2819208f3cd49dfb94a65c700a7a442686",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "mouth5",
+          "sourceSha256": "e223c5a6a39371e7d22e631e239e5beffb570591ee383b1ed02e0b8f2b04c7c2",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "mouth6",
+          "sourceSha256": "66f3ae8bbb564ca4f12ccc09542b919abbce5dcc56f70fc2a610c27ccbdcf57d",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "mouth7",
+          "sourceSha256": "8193c15016c3deb66748e3851a6a25ac9ac966d3b308635f08782ec41c015e73",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "mouth8",
+          "sourceSha256": "0e0c0c1a8ebe203ca28ebded961f52a79b71a372a9612699766ff97c7b8bed3f",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "side",
+          "sourceSha256": "643fa9241003ca0388d7dc59388fb53eae9b7775910986b8b66cb177e4a124ec",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "smile",
+          "sourceSha256": "e0e907abc2ff9e2a1059802c2a9411d5b5204cd2e4a8509d6462f7177c270ada",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "afro",
+            "classic",
+            "short2"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "smile-closed",
+          "sourceSha256": "82a83003df6933835070a8ff10ccd41ff618188fd6917673d43d4e74a53545f5",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "smile2",
+          "sourceSha256": "a257ac245888f2dee377d2e1fca95ffc1e39f34174b12e9cea981bed68d03e18",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "bright"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "smile3",
+          "sourceSha256": "b22d7b7a1bbf229658a9cfb6e24fca407062ef11de0b1c867a73b6e65c67fa4a",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "smile4",
+          "sourceSha256": "d6459167db9ef8701fe34bddb725f7b5fb547cfe1353a804c009a3cde54732cd",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "straight",
+          "sourceSha256": "bc0ad27531ceb1256b7c9ca24ebdbb592f49746214befbb0ec90a28bd58f3f3e",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        }
+      ]
+    },
+    "nose": {
+      "count": 17,
+      "targetStrategy": "projected-feature",
+      "ids": [
+        {
+          "id": "honker",
+          "sourceSha256": "5a63382368324e393c06cd65e188da2b3d809c3344d2e074e3923cb565d61d36",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose1",
+          "sourceSha256": "f2112eb2df8de64785eec9af5a2166ec06d8168fa21fd61db0fa435052f69117",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "afro",
+            "short2"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose10",
+          "sourceSha256": "11865db2238c22f1a53e2f756b877713f6a59b8beff8695b05c9583b63a9fe00",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose11",
+          "sourceSha256": "5e6e0ab056466ec1e23084834b123de3e2c9a2b99cc2f0b0a06215cc375f3217",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose12",
+          "sourceSha256": "f7281b05671cef3527471603218b6fa3480f340d7cf0374481b4a5c96edc9406",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose13",
+          "sourceSha256": "e3bf084617b22039ccab8df588d65c113d8e116c4aa3a67aaf208378a9efc6fc",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose14",
+          "sourceSha256": "4fd2e9bf1edd4a0bee60bcd8ed352773202aa9f831cb904fef06ff34ac058dda",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose2",
+          "sourceSha256": "69457a3993814c95c8f5c6b8c31ff9cf2bd61ed7cca16995b3ef30ce19ef7eaf",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "bright"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose3",
+          "sourceSha256": "181571f7f23f0d8daed238f3bd4fad5e7310efdc406886802dac055de3fbe35c",
+          "sourceEmpty": false,
+          "currentAllowlisted": true,
+          "currentPresetIds": [
+            "bald",
+            "classic"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose4",
+          "sourceSha256": "3aa9b72e1ba4b047abdb9caebaaaa7ab23747488f65bbbba520ebc88e1d09edf",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose5",
+          "sourceSha256": "367a7e0c417403b65cf6e2bf5478fef2a79464ac07672cfdf0400d70813a7890",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose6",
+          "sourceSha256": "483865771c23493ae39808a25edb1b4cd7dbc9c4fbf8e0dcfb2b021a0867fbbd",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose7",
+          "sourceSha256": "d75c3f5051d295a71fbe1d38848be8084ff9520a2719875ccf6931a5d8fe759e",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose8",
+          "sourceSha256": "0a1132304e9c74d9a712cbd9ae1a1f36dc5b7a28342510cfffe5ea04e981ef81",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "nose9",
+          "sourceSha256": "8df4ec23f284a5c499975f7eca5d8c5c7e3a6eb08698851758bc683de35ab5a3",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "pinocchio",
+          "sourceSha256": "a83a89680183d5a43ccfe5b402ade26e3015bf81b401bf10e6ac1ee573038507",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        },
+        {
+          "id": "small",
+          "sourceSha256": "ca58977ceb93d59a39ceeb76f2cfd153fb0ba2129ce320557294f4b8a09a35bd",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "projected-feature",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-projected-components"
+          ]
+        }
+      ]
+    },
+    "smileLine": {
+      "count": 5,
+      "targetStrategy": "surface-overlay",
+      "ids": [
+        {
+          "id": "line1",
+          "sourceSha256": "88b4b889960361f9a301c499fadf437782b49d0eeed873e50caf6b7a19627ca7",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "line2",
+          "sourceSha256": "685eec94635f2a0c8638e16f54acdaeea8d414541949173763183d3b430d1263",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "line3",
+          "sourceSha256": "80b0f44bf70eac1755365f26c1cae4077281d3fe141433c50ab57753d8b2bc86",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "line4",
+          "sourceSha256": "4d9c60460b1aeaa14a9bf6eaa09fa8093962742116b1ea174dfa8d7b00ba5844",
+          "sourceEmpty": false,
+          "currentAllowlisted": false,
+          "currentPresetIds": [],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        },
+        {
+          "id": "none",
+          "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sourceEmpty": true,
+          "currentAllowlisted": false,
+          "currentPresetIds": [
+            "afro",
+            "bald",
+            "bright",
+            "classic",
+            "short2",
+            "steady"
+          ],
+          "support": "supported",
+          "intendedStrategy": "surface-overlay",
+          "evidence": [
+            "contract:cssface.facesjs-projected-component@1",
+            "test:facesjs-overlays"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -23,6 +23,33 @@ const CSSFACE_RUNTIME_ADAPTERS: ReadonlyMap<string, CssGraphicsRuntimeAdapter> =
   new Map([[facesJsPlayerAdapter.profile, facesJsPlayerAdapter]]);
 
 export * from "./public-contract.js";
+export {
+  CSSFACE_GENERATOR_ID,
+  CSSFACE_MAXIMUM_SEED,
+  FacesJsFaceConfigResolutionError,
+  collectCssFaceCoverageSeeds,
+  createCssFaceShareUrl,
+  decodeCssFaceShareState,
+  encodeCssFaceShareState,
+  generateCssFaceConfig,
+  parseFacesJsFaceConfigJson,
+  readCssFaceShareUrl,
+  resolveFacesJsFaceConfig,
+  serializeFacesJsFaceConfig,
+} from "./adapters/facesjs/player/faceConfigResolver.js";
+export type {
+  FacesJsFaceConfig,
+} from "./adapters/facesjs/player/configTransforms.js";
+export {
+  resolveFacesJsMorphWeights,
+} from "./adapters/facesjs/player/configTransforms.js";
+export {
+  createFacesJsComponentRuntime,
+} from "./adapters/facesjs/player/componentRuntime.js";
+export type {
+  FacesJsComposedComponentProgram,
+  FacesJsComponentRuntime,
+} from "./adapters/facesjs/player/componentRuntime.js";
 
 export async function loadCssGraphicsCatalog(
   fetchImpl: typeof fetch = globalThis.fetch,
@@ -55,5 +82,6 @@ export async function mountCssGraphics(
     fetchImpl,
     baseUrl: base,
     experienceControls: options.experienceControls,
+    initialRuntimeInput: options.faceConfig,
   });
 }

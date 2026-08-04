@@ -1,0 +1,19 @@
+{
+  "schema": "cssface.facesjs-painted-oracle-contract@1",
+  "maximumPathLiveTransformDeltaSourcePx": 4,
+  "tolerances": {
+    "minimumSilhouetteIoU": 0.68,
+    "minimumForegroundRatio": 0.72,
+    "maximumForegroundRatio": 1.28,
+    "maximumBoundsDeltaPx": 32,
+    "maximumCentroidDeltaPx": 18,
+    "minimumSourceLightFeaturePixels": 80,
+    "minimumLightFeatureRatio": 0.12,
+    "maximumLightFeatureRatio": 4,
+    "maximumDarkFeatureRegistrationPx": 4,
+    "maximumDarkSkinOcclusionRatio": 0.18
+  },
+  "views": {
+    "yawDegrees": [0, 55, 90, 180]
+  }
+}

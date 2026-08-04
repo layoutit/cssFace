@@ -23,12 +23,34 @@
           <svg class="topbar-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
           </svg>
-          <span>Randomize</span>
+          <span>Random</span>
         </button>
+        <form
+          id="codepen-form"
+          class="topbar-form"
+          action="https://codepen.io/pen/define"
+          method="post"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <input id="codepen-data" type="hidden" name="data" />
+          <button
+            id="codepen-button"
+            class="control-action control-action-with-icon"
+            type="submit"
+            title="Create a new Classic Pen with both faces"
+          >
+            <span>CodePen</span>
+            <svg class="topbar-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M7 17 17 7M9 7h8v8" />
+            </svg>
+          </button>
+        </form>
         <button
           id="share-button"
-          class="control-action control-action-with-icon"
+          class="control-action control-action-with-icon icon-only-action"
           type="button"
+          aria-label="Share face"
           title="Share face"
         >
           <svg class="topbar-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -37,18 +59,17 @@
             <circle cx="18" cy="19" r="2.5" />
             <path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5" />
           </svg>
-          <span>Share</span>
         </button>
         <button
           id="download-button"
-          class="control-action control-action-with-icon"
+          class="control-action control-action-with-icon icon-only-action"
           type="button"
-          title="Download face config"
+          aria-label="Download FacesJS and PolyCSS images"
+          title="Download FacesJS and PolyCSS images"
         >
           <svg class="topbar-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M12 3v12m-4-4 4 4 4-4M5 20h14" />
           </svg>
-          <span>Download</span>
         </button>
         <span id="action-status" class="visually-hidden" aria-live="polite"></span>
       </header>
@@ -69,33 +90,12 @@
             ></div>
             <div id="source-face" role="img" aria-label="FacesJS face"></div>
           </div>
-
           <pre class="code-sample" tabindex="0" aria-label="FacesJS rendering code"><code id="facesjs-code"></code></pre>
-          <form
-            id="facesjs-codepen-form"
-            class="codepen-form"
-            action="https://codepen.io/pen/define"
-            method="post"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <input id="facesjs-codepen-data" type="hidden" name="data" />
-            <button
-              id="facesjs-codepen-button"
-              class="codepen-button"
-              type="submit"
-              title="Open the FacesJS example in CodePen"
-            >
-              <span>CodePen</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M7 17 17 7M9 7h8v8" />
-              </svg>
-            </button>
-          </form>
         </section>
 
         <section class="panel output-panel" aria-label="PolyCSS">
-          <div id="stage" class="stage" aria-label="Interactive low-poly face" aria-busy="true">
+          <div class="stage" aria-label="Interactive low-poly face" aria-busy="true">
+            <div id="stage" class="stage-host"></div>
             <div
               id="polycss-loading-spinner"
               class="face-spinner"
@@ -108,29 +108,7 @@
               <b id="topology-state">—</b>
             </div>
           </div>
-
           <pre class="code-sample" tabindex="0" aria-label="PolyCSS rendering code"><code id="polycss-code"></code></pre>
-          <form
-            id="polycss-codepen-form"
-            class="codepen-form"
-            action="https://codepen.io/pen/define"
-            method="post"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <input id="polycss-codepen-data" type="hidden" name="data" />
-            <button
-              id="polycss-codepen-button"
-              class="codepen-button"
-              type="submit"
-              title="Open the current PolyCSS scene as static HTML in CodePen"
-            >
-              <span>CodePen</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M7 17 17 7M9 7h8v8" />
-              </svg>
-            </button>
-          </form>
         </section>
       </main>
       <code id="face-config-summary" hidden></code>

@@ -171,63 +171,6 @@ h1 {
   padding-left: 6px;
 }
 
-.codepen-form {
-  align-self: flex-end;
-  margin: 0 16px 16px;
-}
-
-.codepen-button {
-  display: inline-flex;
-  min-height: 34px;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  padding: 0 12px;
-  border: 0;
-  border-radius: 9px 5px 9px 9px;
-  color: var(--ink);
-  background: var(--paper-raised);
-  box-shadow: 0 3px 0 #161616;
-  cursor: pointer;
-  font: 400 11px/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  letter-spacing: 0.05em;
-  transition: color 150ms ease, background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
-}
-
-.codepen-button svg {
-  width: 15px;
-  height: 15px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.8;
-}
-
-.codepen-button:hover,
-.codepen-button:focus-visible {
-  color: var(--paper);
-  background: var(--top-accent-hover);
-  box-shadow: 0 4px 0 var(--button-edge);
-  outline: 0;
-  transform: translateY(-1px);
-}
-
-.codepen-button:focus-visible {
-  outline: 2px solid var(--top-accent-hover);
-  outline-offset: 3px;
-}
-
-.codepen-button:active {
-  box-shadow: 0 1px 0 var(--button-edge);
-  transform: translateY(2px);
-}
-
-.codepen-button:disabled {
-  cursor: wait;
-  opacity: 0.58;
-}
-
 .code-token-comment {
   color: #6a9955;
 }
@@ -315,6 +258,11 @@ h1 {
   display: none;
 }
 
+.source-canvas[aria-busy="true"] #source-face,
+.stage[aria-busy="true"] .stage-host {
+  visibility: hidden;
+}
+
 @keyframes face-spinner {
   to {
     transform: rotate(1turn);
@@ -359,23 +307,14 @@ h1 {
   cursor: grabbing;
 }
 
-.stage > .polycss-morph-camera {
-  position: relative;
+.stage-host {
+  position: absolute;
+  inset: 0;
   display: block;
-  flex: 0 0 100%;
   width: 100%;
   height: 100%;
-  translate: 0 -8.16%;
-}
-
-.stage .polycss-camera,
-.stage .polycss-scene,
-.stage .polycss-morph-scene,
-.stage .polycss-morph-model,
-.stage .polycss-morph-shape,
-.stage .polycss-morph-leaf {
-  transform-style: preserve-3d;
-  backface-visibility: visible;
+  overflow: hidden;
+  touch-action: none;
 }
 
 .seed-control {
@@ -550,6 +489,10 @@ input[type="range"]::-moz-range-thumb {
     transform 150ms ease;
 }
 
+.topbar-form {
+  display: contents;
+}
+
 .control-action-with-icon {
   display: inline-flex;
   height: 44px;
@@ -561,12 +504,9 @@ input[type="range"]::-moz-range-thumb {
   padding-inline: 14px;
 }
 
-#random-button {
-  width: 152px;
-  height: 48px;
-  font-size: 13px;
-  letter-spacing: 0.11em;
-  text-align: center;
+.icon-only-action {
+  width: 44px;
+  padding-inline: 0;
 }
 
 .control-action:hover,
@@ -619,8 +559,7 @@ input[type="range"]:disabled {
 
 @media (prefers-reduced-motion: reduce) {
   .title-smile,
-  .control-action,
-  .codepen-button {
+  .control-action {
     transition: none;
   }
 
@@ -711,6 +650,15 @@ input[type="range"]:disabled {
     display: none;
   }
 
+  .lab .panel.download-capture-panel {
+    position: absolute;
+    top: 0;
+    left: -200vw;
+    display: flex !important;
+    width: 100%;
+    pointer-events: none;
+  }
+
   .topbar .control-action-with-icon {
     min-height: 44px;
   }
@@ -741,29 +689,11 @@ input[type="range"]:disabled {
     font-size: 18px;
   }
 
-  #random-button {
-    width: 74px;
-    min-width: 74px;
-    height: 38px;
-    min-height: 38px;
-    padding-inline: 4px;
-    font-size: 9px;
-    letter-spacing: 0.04em;
-  }
-
   .topbar .control-action-with-icon {
     gap: 3px;
     padding-inline: 5px;
     font-size: 8px;
     letter-spacing: 0.02em;
-  }
-
-  #share-button {
-    width: 50px;
-  }
-
-  #download-button {
-    width: 64px;
   }
 
   .topbar .topbar-icon {
@@ -779,10 +709,6 @@ input[type="range"]:disabled {
   .code-sample {
     padding: 10px 12px 16px;
     font-size: 13px;
-  }
-
-  .codepen-form {
-    margin-right: 12px;
   }
 
 }

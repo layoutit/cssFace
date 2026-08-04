@@ -7,7 +7,10 @@ output/
 .DS_Store
 *.log
 public/cssgraphics/
+public/facesjs-components/
 public/faces/
+public/f/
+public/.facesjs-*/
 
 # Local Netlify folder
 .netlify

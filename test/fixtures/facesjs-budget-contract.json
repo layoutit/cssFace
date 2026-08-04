@@ -1,0 +1,29 @@
+{
+  "schema": "cssface.facesjs-budget-contract@1",
+  "baseline": {
+    "path": "test/fixtures/facesjs-baseline.json",
+    "sha256": "0c4b3db6c74e460ddb50e98eeb70e25360d67ebbc9a5e5558741624cd81d3016",
+    "coldTransferBytes": 554904,
+    "p95FrameMs": 58.4,
+    "styleWrites": 10433
+  },
+  "quality": {
+    "supportedComponentIds": 326,
+    "differentialCorpusCases": 157
+  },
+  "ceilings": {
+    "catalogOutputBytes": 145000000,
+    "largestSelectedRuntimeBytes": 8000000,
+    "coldTransferBytes": 5250000,
+    "domLeaves": 6500,
+    "p95FrameMs": 140,
+    "styleWrites": 55000,
+    "maximumStyleWriteBatch": 1600
+  },
+  "replacement": {
+    "reviewStatus": "burnlist-approved",
+    "qualityGain": "326 source-bound reusable component ids",
+    "baselineScope": "four fixed prepared faces",
+    "replacementScope": "the complete FacesJS component catalog selected one reusable id per family"
+  }
+}

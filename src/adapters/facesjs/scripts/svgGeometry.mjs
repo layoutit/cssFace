@@ -1,7 +1,7 @@
 import earcut from "earcut";
 import svgpath from "svgpath";
 
-const PATH_TAG = /<path\b([^>]*)\/?\s*>/giu;
+const SVG_TOKEN = /<\/g\s*>|<g\b([^>]*)>|<(path|circle|ellipse)\b([^>]*)\/?\s*>/giu;
 const ATTRIBUTE = /([A-Za-z_:][\w:.-]*)\s*=\s*(?:"([^"]*)"|'([^']*)')/gu;
 const POINT_EPSILON = 1e-7;
 
@@ -35,7 +35,7 @@ function curveSteps(points) {
   for (let index = 0; index < points.length - 1; index += 1) {
     length += distance(points[index], points[index + 1]);
   }
-  return Math.max(3, Math.min(48, Math.ceil(length / 5)));
+  return Math.max(3, Math.min(24, Math.ceil(length / 10)));
 }
 
 function appendPoint(points, point) {
@@ -138,18 +138,120 @@ function styleProperties(source = "") {
   }));
 }
 
+function finiteAttribute(row, name, fallback) {
+  const value = row[name] ?? fallback;
+  const parsed = Number.parseFloat(value);
+  if (!Number.isFinite(parsed)) {
+    throw new TypeError(`FacesJS SVG ${name} must be finite.`);
+  }
+  return parsed;
+}
+
+function unitAttribute(row, name, fallback) {
+  const value = finiteAttribute(row, name, fallback);
+  if (value < 0 || value > 1) {
+    throw new TypeError(`FacesJS SVG ${name} must be between 0 and 1.`);
+  }
+  return value;
+}
+
+function ellipsePath(row, circle) {
+  const cx = finiteAttribute(row, "cx", "0");
+  const cy = finiteAttribute(row, "cy", "0");
+  const radiusX = finiteAttribute(row, circle ? "r" : "rx");
+  const radiusY = finiteAttribute(row, circle ? "r" : "ry");
+  if (radiusX <= 0 || radiusY <= 0) {
+    throw new TypeError("FacesJS SVG ellipse radii must be positive.");
+  }
+  return [
+    `M${cx - radiusX} ${cy}`,
+    `A${radiusX} ${radiusY} 0 1 0 ${cx + radiusX} ${cy}`,
+    `A${radiusX} ${radiusY} 0 1 0 ${cx - radiusX} ${cy}`,
+    "Z",
+  ].join(" ");
+}
+
+function transformedPathData(data, transform) {
+  if (!transform) return data;
+  const transformed = svgpath(data).transform(transform);
+  if (transformed.err) {
+    throw new TypeError(`FacesJS SVG transform is invalid: ${transformed.err}`);
+  }
+  return transformed.toString();
+}
+
 export function parseSvgFragment(fragment) {
   const paths = [];
-  for (const match of fragment.matchAll(PATH_TAG)) {
-    const row = attributes(match[1]);
+  const groups = [];
+  for (const match of fragment.matchAll(SVG_TOKEN)) {
+    if (match[0].startsWith("</")) {
+      groups.pop();
+      continue;
+    }
+    if (match[1] !== undefined) {
+      const row = attributes(match[1]);
+      const style = styleProperties(row.style);
+      const parent = groups.at(-1) ?? {};
+      const localOpacity = unitAttribute(
+        { opacity: row.opacity ?? style.opacity },
+        "opacity",
+        "1",
+      );
+      groups.push({
+        fill: row.fill ?? style.fill ?? parent.fill,
+        fillRule: row["fill-rule"] ?? style["fill-rule"] ?? parent.fillRule,
+        opacity: (parent.opacity ?? 1) * localOpacity,
+        mixBlendMode: style["mix-blend-mode"] ?? parent.mixBlendMode,
+        stroke: row.stroke ?? style.stroke ?? parent.stroke,
+        strokeWidth: row["stroke-width"] ?? style["stroke-width"] ?? parent.strokeWidth,
+        strokeLinecap:
+          row["stroke-linecap"] ?? style["stroke-linecap"] ?? parent.strokeLinecap,
+        strokeLinejoin:
+          row["stroke-linejoin"] ?? style["stroke-linejoin"] ?? parent.strokeLinejoin,
+        transform: [parent.transform, row.transform].filter(Boolean).join(" ") || undefined,
+      });
+      continue;
+    }
+    const element = match[2].toLowerCase();
+    const row = attributes(match[3]);
     const style = styleProperties(row.style);
-    if (!row.d) throw new TypeError("FacesJS SVG path has no d attribute.");
+    const inherited = groups.at(-1) ?? {};
+    const sourceData = element === "path"
+      ? row.d
+      : ellipsePath(row, element === "circle");
+    if (!sourceData) throw new TypeError("FacesJS SVG path has no d attribute.");
+    const data = transformedPathData(
+      sourceData,
+      [inherited.transform, row.transform].filter(Boolean).join(" ") || undefined,
+    );
+    const rawStrokeWidth = row["stroke-width"]
+      ?? style["stroke-width"]
+      ?? inherited.strokeWidth
+      ?? "1";
+    const strokeWidth = rawStrokeWidth === "none" ? 0 : Number.parseFloat(rawStrokeWidth);
+    if (!Number.isFinite(strokeWidth) || strokeWidth < 0) {
+      throw new TypeError("FacesJS SVG stroke-width must be a non-negative number or none.");
+    }
     paths.push(Object.freeze({
-      data: row.d,
-      fill: row.fill ?? style.fill ?? "#000",
-      stroke: row.stroke ?? style.stroke ?? "none",
-      strokeWidth: Number.parseFloat(row["stroke-width"] ?? style["stroke-width"] ?? "1"),
-      subpaths: flattenPathData(row.d),
+      data,
+      element,
+      fill: row.fill ?? style.fill ?? inherited.fill ?? "#000",
+      fillRule:
+        row["fill-rule"] ?? style["fill-rule"] ?? inherited.fillRule ?? "nonzero",
+      opacity: (inherited.opacity ?? 1) * unitAttribute(
+        { opacity: row.opacity ?? style.opacity },
+        "opacity",
+        "1",
+      ),
+      mixBlendMode:
+        style["mix-blend-mode"] ?? inherited.mixBlendMode ?? "normal",
+      stroke: row.stroke ?? style.stroke ?? inherited.stroke ?? "none",
+      strokeWidth,
+      strokeLinecap:
+        row["stroke-linecap"] ?? style["stroke-linecap"] ?? inherited.strokeLinecap ?? "butt",
+      strokeLinejoin:
+        row["stroke-linejoin"] ?? style["stroke-linejoin"] ?? inherited.strokeLinejoin ?? "miter",
+      subpaths: flattenPathData(data),
     }));
   }
   if (!paths.length && fragment.trim()) {

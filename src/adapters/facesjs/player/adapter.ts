@@ -12,6 +12,7 @@ import type {
 import {
   decodeFacesJsProgram,
   FACES_JS_PROFILE,
+  type FacesJsFaceConfig,
 } from "./model.js";
 import {
   mountFacesJsScene,
@@ -32,7 +33,7 @@ function bindFacesJs(
   return Object.freeze({
     modelId: loaded.manifest.id,
     profile: FACES_JS_PROFILE,
-    start(host: HTMLElement) {
+    async start(host: HTMLElement, runtimeInput?: unknown) {
       if (discarded) throw new Error("The loaded FacesJS model was discarded.");
       if (started) throw new Error("The loaded FacesJS model was already started.");
       started = true;
@@ -57,7 +58,14 @@ function bindFacesJs(
         }
       };
       try {
-        const mounted = mountFacesJsScene(host, program);
+        const mounted = await mountFacesJsScene(
+          host,
+          program,
+          program.scene.faceConfig,
+        );
+        if (runtimeInput !== undefined) {
+          await mounted.controller.setFaceConfig(runtimeInput as FacesJsFaceConfig);
+        }
         return wrapCssGraphicsClient({
           modelId: loaded.manifest.id,
           kind: "prepared-playback",

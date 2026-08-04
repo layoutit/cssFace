@@ -1,0 +1,1936 @@
+{
+  "schema": "cssface.facesjs-hair-strategies@1",
+  "facesJsVersion": "5.0.3",
+  "sourceRevision": "92c91d4b67893dbeef4053c25c04cc01fdd5419a",
+  "hatAccessories": [
+    "hat",
+    "hat2",
+    "hat3",
+    "santa-hat"
+  ],
+  "geometryContracts": [
+    {
+      "id": "hair-background-coupled-v1",
+      "strategy": "background-coupled",
+      "families": [
+        "hair",
+        "hairBg"
+      ],
+      "representativeSources": [
+        {
+          "family": "hair",
+          "sourceId": "female1"
+        },
+        {
+          "family": "hair",
+          "sourceId": "longHair"
+        },
+        {
+          "family": "hairBg",
+          "sourceId": "female1"
+        },
+        {
+          "family": "hairBg",
+          "sourceId": "shaggy"
+        }
+      ],
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance"
+    },
+    {
+      "id": "hair-cap-v1",
+      "strategy": "cap",
+      "families": [
+        "hair"
+      ],
+      "representativeSources": [
+        {
+          "family": "hair",
+          "sourceId": "short"
+        },
+        {
+          "family": "hair",
+          "sourceId": "crop"
+        }
+      ],
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head"
+    },
+    {
+      "id": "hair-empty-v1",
+      "strategy": "empty-bald",
+      "families": [
+        "hair",
+        "hairBg"
+      ],
+      "representativeSources": [
+        {
+          "family": "hair",
+          "sourceId": "bald"
+        },
+        {
+          "family": "hairBg",
+          "sourceId": "none"
+        }
+      ],
+      "frontContour": "empty-source",
+      "rearClosure": "none",
+      "headWeldBoundary": "none"
+    },
+    {
+      "id": "hair-fade-v1",
+      "strategy": "fade",
+      "families": [
+        "hair"
+      ],
+      "representativeSources": [
+        {
+          "family": "hair",
+          "sourceId": "short-fade"
+        },
+        {
+          "family": "hair",
+          "sourceId": "curlyFade1"
+        }
+      ],
+      "frontContour": "source-fill-contours-and-gradient-stops",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell-with-opacity-bands",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head"
+    },
+    {
+      "id": "hair-raised-mass-v1",
+      "strategy": "raised-mass",
+      "families": [
+        "hair"
+      ],
+      "representativeSources": [
+        {
+          "family": "hair",
+          "sourceId": "afro"
+        },
+        {
+          "family": "hair",
+          "sourceId": "faux-hawk"
+        }
+      ],
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head"
+    },
+    {
+      "id": "hair-rear-long-v1",
+      "strategy": "rear-long",
+      "families": [
+        "hair"
+      ],
+      "representativeSources": [
+        {
+          "family": "hair",
+          "sourceId": "female7"
+        },
+        {
+          "family": "hair",
+          "sourceId": "female10"
+        }
+      ],
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-rear-shell",
+      "headWeldBoundary": "source-head-intersection-with-explicit-shoulder-clearance"
+    }
+  ],
+  "entries": [
+    {
+      "family": "hair",
+      "sourceId": "afro",
+      "sourceSha256": "4f6978e35bb5d6bbd848bc8d936f661d9a2ccab7144ec7ff6a3a9cef43d38c37",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 10,
+          "maximumX": 390,
+          "minimumY": 70,
+          "maximumY": 310
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "afro2",
+      "sourceSha256": "01b5f207d5261ee670045ac432ba771406d868505eef3f0b3313e43d4bc8ab22",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": -8.01,
+          "maximumX": 408.25,
+          "minimumY": 55.02,
+          "maximumY": 327.86
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "bald",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceEmpty": true,
+      "strategy": "empty-bald",
+      "geometryContract": "hair-empty-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the upstream SVG fragment is explicitly empty",
+      "frontContour": "empty-source",
+      "rearClosure": "none",
+      "headWeldBoundary": "none",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 0,
+        "sourceBounds": null,
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "blowoutFade",
+      "sourceSha256": "7435ceab53bcbe2c454b3021e6fd9fe1187b28de3292d29ee992293f69f483b5",
+      "sourceEmpty": false,
+      "strategy": "fade",
+      "geometryContract": "hair-fade-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source includes a linear-gradient fade plus its opaque contour",
+      "frontContour": "source-fill-contours-and-gradient-stops",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell-with-opacity-bands",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short-fade"
+      },
+      "sourceAnalysis": {
+        "pathCount": 2,
+        "sourceBounds": {
+          "minimumX": 18.3563,
+          "maximumX": 381.79,
+          "minimumY": 63,
+          "maximumY": 310
+        },
+        "hasGradient": true
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "cornrows",
+      "sourceSha256": "05146f14f4bd595d4babb2c96eff238e332bb72a1d0d1730cf61cd073d0645bd",
+      "sourceEmpty": false,
+      "strategy": "fade",
+      "geometryContract": "hair-fade-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source includes a linear-gradient fade plus its opaque contour",
+      "frontContour": "source-fill-contours-and-gradient-stops",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell-with-opacity-bands",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 2,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 100,
+          "maximumY": 310
+        },
+        "hasGradient": true
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "crop",
+      "sourceSha256": "4d5ed5b43a7efe740df4a2445d4d2e0e2fea991658bfd374582d8bf49148d513",
+      "sourceEmpty": false,
+      "strategy": "cap",
+      "geometryContract": "hair-cap-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source remains within a head-conforming front-cap envelope",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 60,
+          "maximumX": 340,
+          "minimumY": 95,
+          "maximumY": 212.1866
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "crop-fade",
+      "sourceSha256": "e21706dbb1478044f8546969b20dda0f18c327fad4112e94821dee33b5dbc03d",
+      "sourceEmpty": false,
+      "strategy": "fade",
+      "geometryContract": "hair-fade-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source includes a linear-gradient fade plus its opaque contour",
+      "frontContour": "source-fill-contours-and-gradient-stops",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell-with-opacity-bands",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 2,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 95,
+          "maximumY": 310
+        },
+        "hasGradient": true
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "crop-fade2",
+      "sourceSha256": "fdce50f146605849236411887c810d3aab34914d1846cdbaa7f8b88ce9ff7e70",
+      "sourceEmpty": false,
+      "strategy": "fade",
+      "geometryContract": "hair-fade-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source includes a linear-gradient fade plus its opaque contour",
+      "frontContour": "source-fill-contours-and-gradient-stops",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell-with-opacity-bands",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 2,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 95,
+          "maximumY": 310
+        },
+        "hasGradient": true
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "curly",
+      "sourceSha256": "b7b39f3758755b9ccac48edebeb2fdacefb6494b1aa73565fb19f6b922f780b9",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 41.96,
+          "maximumX": 354.04,
+          "minimumY": 67,
+          "maximumY": 299.2937
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "curly2",
+      "sourceSha256": "d0870b75de5354340fe19107a90ba9c0aeb9a12e8fa67c2cf56902b9a0185137",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 18.3563,
+          "maximumX": 381.79,
+          "minimumY": 63,
+          "maximumY": 319.01
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "curly3",
+      "sourceSha256": "85087bd5e14357c5e7be59025eca6a0ec41c42da53f84b71742a09a7fc8975f8",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 19.7167,
+          "maximumX": 380.9619,
+          "minimumY": 64,
+          "maximumY": 310
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "curlyFade1",
+      "sourceSha256": "4810150270518b7ac37be8b4e0e4e341a3b67786ac36e4d512fcafd346f3ec7c",
+      "sourceEmpty": false,
+      "strategy": "fade",
+      "geometryContract": "hair-fade-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source includes a linear-gradient fade plus its opaque contour",
+      "frontContour": "source-fill-contours-and-gradient-stops",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell-with-opacity-bands",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short-fade"
+      },
+      "sourceAnalysis": {
+        "pathCount": 2,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 83.71,
+          "maximumY": 310
+        },
+        "hasGradient": true
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "curlyFade2",
+      "sourceSha256": "7fd717ae280f616c8ad6190b0257848bebed73796e7a7739cdd331c0414ba498",
+      "sourceEmpty": false,
+      "strategy": "fade",
+      "geometryContract": "hair-fade-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source includes a linear-gradient fade plus its opaque contour",
+      "frontContour": "source-fill-contours-and-gradient-stops",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell-with-opacity-bands",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short-fade"
+      },
+      "sourceAnalysis": {
+        "pathCount": 2,
+        "sourceBounds": {
+          "minimumX": 46.97,
+          "maximumX": 354.03,
+          "minimumY": 74.03,
+          "maximumY": 310
+        },
+        "hasGradient": true
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "dreads",
+      "sourceSha256": "ef1b34b0b4c5a768a5341aac60cef558c664ba478f344e7d4f3cd629a65ab4b7",
+      "sourceEmpty": false,
+      "strategy": "fade",
+      "geometryContract": "hair-fade-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source includes a linear-gradient fade plus its opaque contour",
+      "frontContour": "source-fill-contours-and-gradient-stops",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell-with-opacity-bands",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short-fade"
+      },
+      "sourceAnalysis": {
+        "pathCount": 3,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 2.2207,
+          "maximumY": 300
+        },
+        "hasGradient": true
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "emo",
+      "sourceSha256": "3e780db74799845a914476ca8b192cd1ced9cca7cc5a2b092624d6fdf73e2597",
+      "sourceEmpty": false,
+      "strategy": "cap",
+      "geometryContract": "hair-cap-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source remains within a head-conforming front-cap envelope",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 100,
+          "maximumY": 310
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "faux-hawk",
+      "sourceSha256": "bd931452ffad30dd4eac15c3c880ebe41c3a7e3a87a5d36d186549877a4e70ad",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 44.84,
+          "maximumX": 354.64,
+          "minimumY": 42.53,
+          "maximumY": 300.62
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "fauxhawk-fade",
+      "sourceSha256": "b3108c921e6b683c4f304930068a0c1ee6e7f0661eed3eb019b6ed2cf9142d42",
+      "sourceEmpty": false,
+      "strategy": "fade",
+      "geometryContract": "hair-fade-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source includes a linear-gradient fade plus its opaque contour",
+      "frontContour": "source-fill-contours-and-gradient-stops",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell-with-opacity-bands",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short-fade"
+      },
+      "sourceAnalysis": {
+        "pathCount": 2,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 59.461,
+          "maximumY": 310
+        },
+        "hasGradient": true
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "female1",
+      "sourceSha256": "590fae451452858e28255cf2b77fd65019a8479366fd398649e7ba4bba7f9397",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source id has an explicit catalog counterpart in hairBg",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [
+        "female1"
+      ],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 5,
+        "sourceBounds": {
+          "minimumX": 13.1035,
+          "maximumX": 388.2219,
+          "minimumY": 82.4805,
+          "maximumY": 433.6
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "female10",
+      "sourceSha256": "cb9ac2a16d36dde71909c7d2db8f435b6e6c72d7c78e02e001af2f7c2dd287a6",
+      "sourceEmpty": false,
+      "strategy": "rear-long",
+      "geometryContract": "hair-rear-long-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source foreground extends below the nominal head hairline without a hairBg counterpart",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-rear-shell",
+      "headWeldBoundary": "source-head-intersection-with-explicit-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 5,
+        "sourceBounds": {
+          "minimumX": -18.1051,
+          "maximumX": 406.2971,
+          "minimumY": 86.9709,
+          "maximumY": 610.3065
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "female11",
+      "sourceSha256": "64f8c87c50b8cedac751d6a1bd72fe51459bf15da66f4f20983d2e947c7ff9e6",
+      "sourceEmpty": false,
+      "strategy": "rear-long",
+      "geometryContract": "hair-rear-long-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source foreground extends below the nominal head hairline without a hairBg counterpart",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-rear-shell",
+      "headWeldBoundary": "source-head-intersection-with-explicit-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 7,
+        "sourceBounds": {
+          "minimumX": 27.57,
+          "maximumX": 371.1188,
+          "minimumY": 56.7408,
+          "maximumY": 383
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "female12",
+      "sourceSha256": "c2f148ef6c8c51d79e0361bfa8a096ad4a8d48ce6ec9b95dfab8550e0abfd1e0",
+      "sourceEmpty": false,
+      "strategy": "rear-long",
+      "geometryContract": "hair-rear-long-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source foreground extends below the nominal head hairline without a hairBg counterpart",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-rear-shell",
+      "headWeldBoundary": "source-head-intersection-with-explicit-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 4,
+        "sourceBounds": {
+          "minimumX": 9.3,
+          "maximumX": 386.7729,
+          "minimumY": 71.7,
+          "maximumY": 401.7889
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "female2",
+      "sourceSha256": "e1d78bfee0a67ee6bd5ac1c7c1605613414f6dc11a3a4b09a1c48d4c1def2586",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source id has an explicit catalog counterpart in hairBg",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [
+        "female2"
+      ],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 8,
+        "sourceBounds": {
+          "minimumX": -10.1528,
+          "maximumX": 410.3,
+          "minimumY": 95.6156,
+          "maximumY": 462.5
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "female3",
+      "sourceSha256": "08b549def4ef9092fb20e680903691b1ede540088e392b395254beddd824c5cb",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source id has an explicit catalog counterpart in hairBg",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [
+        "female3"
+      ],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 5,
+        "sourceBounds": {
+          "minimumX": 38.0364,
+          "maximumX": 363.6806,
+          "minimumY": 42.4,
+          "maximumY": 505.6
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "female4",
+      "sourceSha256": "1057bd07d6ba3f5e0849e7d00142a4954d97876ebcbcbde5142496e179f0c433",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source id has an explicit catalog counterpart in hairBg",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [
+        "female4"
+      ],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 3,
+        "sourceBounds": {
+          "minimumX": 24.7656,
+          "maximumX": 375.1072,
+          "minimumY": 65.7667,
+          "maximumY": 436.6
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "female5",
+      "sourceSha256": "64e6041518c02dbb2808f643af96884c256b58d378f7cbaac38d612ec4a971ae",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source id has an explicit catalog counterpart in hairBg",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [
+        "female5"
+      ],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 3,
+        "sourceBounds": {
+          "minimumX": 18.7,
+          "maximumX": 382.3376,
+          "minimumY": 89.0177,
+          "maximumY": 443.5
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "female6",
+      "sourceSha256": "79074d4cf471f28f02c4b2ab347d16f6307fed82185f0d9fbe5567d4414878ae",
+      "sourceEmpty": false,
+      "strategy": "rear-long",
+      "geometryContract": "hair-rear-long-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source foreground extends below the nominal head hairline without a hairBg counterpart",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-rear-shell",
+      "headWeldBoundary": "source-head-intersection-with-explicit-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 3,
+        "sourceBounds": {
+          "minimumX": 4.4799,
+          "maximumX": 395.5,
+          "minimumY": 98.8046,
+          "maximumY": 451.3
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "female7",
+      "sourceSha256": "e6f1c7899f735bce1d86949a844545229629e0d0338564943611604a6347a605",
+      "sourceEmpty": false,
+      "strategy": "rear-long",
+      "geometryContract": "hair-rear-long-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source foreground extends below the nominal head hairline without a hairBg counterpart",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-rear-shell",
+      "headWeldBoundary": "source-head-intersection-with-explicit-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 5,
+        "sourceBounds": {
+          "minimumX": 41.6074,
+          "maximumX": 358.099,
+          "minimumY": 60,
+          "maximumY": 540
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "female8",
+      "sourceSha256": "3f37d10afb4306930cc3194739eb3c54579f7103d0f615598ac1bd96905c4f51",
+      "sourceEmpty": false,
+      "strategy": "rear-long",
+      "geometryContract": "hair-rear-long-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source foreground extends below the nominal head hairline without a hairBg counterpart",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-rear-shell",
+      "headWeldBoundary": "source-head-intersection-with-explicit-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 4,
+        "sourceBounds": {
+          "minimumX": 36.3,
+          "maximumX": 360.8174,
+          "minimumY": 4.7,
+          "maximumY": 426.9
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "female9",
+      "sourceSha256": "9b4d1154f692c774cb1c5d7f57e78ed3d86b210f6ada07f5f75407e83e19a364",
+      "sourceEmpty": false,
+      "strategy": "rear-long",
+      "geometryContract": "hair-rear-long-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source foreground extends below the nominal head hairline without a hairBg counterpart",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-rear-shell",
+      "headWeldBoundary": "source-head-intersection-with-explicit-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 5,
+        "sourceBounds": {
+          "minimumX": 41.0074,
+          "maximumX": 358.7944,
+          "minimumY": 66.7,
+          "maximumY": 557
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "hair",
+      "sourceSha256": "77b4029d4d67f9cda2965bfe8d1d7004b0a4fef07b39e66e40a7f2bdc23a1cbf",
+      "sourceEmpty": false,
+      "strategy": "cap",
+      "geometryContract": "hair-cap-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source remains within a head-conforming front-cap envelope",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 34.2248,
+          "maximumX": 367,
+          "minimumY": 75.07,
+          "maximumY": 307.9481
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "high",
+      "sourceSha256": "0f10a2414d3d4ba4114a049412b8f05d8ee20ee1354356955d0b38f2360bd011",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 47.5033,
+          "maximumX": 352.4967,
+          "minimumY": 90,
+          "maximumY": 310
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "juice",
+      "sourceSha256": "8a559243a26294dcd11c06228f13a9331fca76fbd396d37dfaac5a1a5ccf17a2",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 46.4844,
+          "maximumX": 352.9053,
+          "minimumY": 67.7146,
+          "maximumY": 310
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "longHair",
+      "sourceSha256": "8b3533597b4d3e4cc8baabca0a69776fbccbe5f84f77a3df9b7f9cbaa33f27cc",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source id has an explicit catalog counterpart in hairBg",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [
+        "longHair"
+      ],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 3,
+        "sourceBounds": {
+          "minimumX": 20,
+          "maximumX": 380,
+          "minimumY": 91.8,
+          "maximumY": 381.0851
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "messy",
+      "sourceSha256": "e0b9188f940ab190139777845b4806ae950c761a4989240ba7a24b608a820a65",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 40.1852,
+          "maximumX": 360.957,
+          "minimumY": 71.52,
+          "maximumY": 300.51
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "messy-short",
+      "sourceSha256": "57c7bf924b00a8afb3393995f19cd02a533c1bbaf450b894ef560e1891b05efc",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 40,
+          "maximumX": 360,
+          "minimumY": 70,
+          "maximumY": 310
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "middle-part",
+      "sourceSha256": "3dd1c8d7bec7aa3a86c8a504fe03b76d8a1b8ddf1d125cfedf37af2050e8183e",
+      "sourceEmpty": false,
+      "strategy": "cap",
+      "geometryContract": "hair-cap-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source remains within a head-conforming front-cap envelope",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 38,
+          "maximumX": 362.3287,
+          "minimumY": 76.44,
+          "maximumY": 306.39
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "parted",
+      "sourceSha256": "bacb0fdfb608ae4e62af17c0c9dcc4f1af20e6e1889f29711d9b04ca16b53d1a",
+      "sourceEmpty": false,
+      "strategy": "cap",
+      "geometryContract": "hair-cap-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source remains within a head-conforming front-cap envelope",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 40.92,
+          "maximumX": 359.5395,
+          "minimumY": 80.89,
+          "maximumY": 301.3
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "shaggy1",
+      "sourceSha256": "7c38ae995da7a24f71f29675593dd64d329d6e8c3c6f0746020d02f6aaa4a7e7",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source id has an explicit catalog counterpart in hairBg",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [
+        "shaggy"
+      ],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 2,
+        "sourceBounds": {
+          "minimumX": 24.83,
+          "maximumX": 366.12,
+          "minimumY": 68.3,
+          "maximumY": 341.8
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "shaggy2",
+      "sourceSha256": "9420db25dc38f775345cbf2a379b6678d2da166c0883e3d9033c1fb6d7ac104c",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source id has an explicit catalog counterpart in hairBg",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [
+        "shaggy"
+      ],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 3,
+        "sourceBounds": {
+          "minimumX": 24.83,
+          "maximumX": 366.12,
+          "minimumY": 68.3,
+          "maximumY": 341.8
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "short",
+      "sourceSha256": "e5431c1ba4eea1bdfc9a8e5000434738f0443a061090e60f657a95f4aa608e6d",
+      "sourceEmpty": false,
+      "strategy": "cap",
+      "geometryContract": "hair-cap-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source remains within a head-conforming front-cap envelope",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 100,
+          "maximumY": 310
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "short-bald",
+      "sourceSha256": "6e0a6038d4730e4c41497834ed6f2f9c6b211c5f3e8958c81eacf40c39d0cd21",
+      "sourceEmpty": false,
+      "strategy": "cap",
+      "geometryContract": "hair-cap-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source remains within a head-conforming front-cap envelope",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 100,
+          "maximumY": 310
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "short-fade",
+      "sourceSha256": "37cf689592e088f893addc858b03304a227234463d21b67f9e6d69448945f61c",
+      "sourceEmpty": false,
+      "strategy": "fade",
+      "geometryContract": "hair-fade-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source includes a linear-gradient fade plus its opaque contour",
+      "frontContour": "source-fill-contours-and-gradient-stops",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell-with-opacity-bands",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 100,
+          "maximumY": 310
+        },
+        "hasGradient": true
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "short-fade-2",
+      "sourceSha256": "c56befbbb2f8f572e0b778a9afabf317450221acff403a81ca276a810136c016",
+      "sourceEmpty": false,
+      "strategy": "fade",
+      "geometryContract": "hair-fade-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source includes a linear-gradient fade plus its opaque contour",
+      "frontContour": "source-fill-contours-and-gradient-stops",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell-with-opacity-bands",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 100,
+          "maximumY": 310
+        },
+        "hasGradient": true
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "short2",
+      "sourceSha256": "38094f64b6fcc60c80055360bbabb5f0ae3fb2d65be44cc07900dec5633be011",
+      "sourceEmpty": false,
+      "strategy": "cap",
+      "geometryContract": "hair-cap-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source remains within a head-conforming front-cap envelope",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 100,
+          "maximumY": 310
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "short3",
+      "sourceSha256": "1357d98aa305ff920d5c3eb0650b9f90b9b9b6501a55ed9ffe99018e4609269b",
+      "sourceEmpty": false,
+      "strategy": "cap",
+      "geometryContract": "hair-cap-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source remains within a head-conforming front-cap envelope",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 40.38,
+          "maximumX": 358.77,
+          "minimumY": 84.22,
+          "maximumY": 304.02
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "shortBangs",
+      "sourceSha256": "e016e95eba861887f5155ce5c8d8f9d044324d6be7219efebe3cfd7a23d7aa74",
+      "sourceEmpty": false,
+      "strategy": "cap",
+      "geometryContract": "hair-cap-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source remains within a head-conforming front-cap envelope",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "hide",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 3,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 100,
+          "maximumY": 340.3
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "spike",
+      "sourceSha256": "34633c2077754e7acf3785a67cd4edde5f9b9d767cb4463dbbcaee5157cd391f",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 45,
+          "maximumX": 355,
+          "minimumY": 75,
+          "maximumY": 310
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "spike2",
+      "sourceSha256": "38517a02e191d26febfc4d7a04d66190843d6aee10152bf4e13aff10d8270a0b",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 48,
+          "maximumX": 352,
+          "minimumY": 76,
+          "maximumY": 310
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "spike3",
+      "sourceSha256": "366b6fb80ffae77e0e54b9fc6d4bbe357e7ec1f141598a00d9e6e28612c2eec7",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 17.93,
+          "maximumX": 381.35,
+          "minimumY": 64.55,
+          "maximumY": 309.99
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "spike4",
+      "sourceSha256": "d0938cafc03d8b16c115bd89e0c5c5881b9b97c1c807891775d24a3bae574f44",
+      "sourceEmpty": false,
+      "strategy": "raised-mass",
+      "geometryContract": "hair-raised-mass-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source outer contour requires visible offset volume above the selected head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-offset-volume-and-rear-shell",
+      "headWeldBoundary": "source-lower-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short"
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 42.71,
+          "maximumX": 356.75,
+          "minimumY": 78.14,
+          "maximumY": 310
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hair",
+      "sourceId": "tall-fade",
+      "sourceSha256": "b860a5c82b091a760c66604202807b0db59c6368b87783ed2b850e4cea2bc629",
+      "sourceEmpty": false,
+      "strategy": "fade",
+      "geometryContract": "hair-fade-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the source includes a linear-gradient fade plus its opaque contour",
+      "frontContour": "source-fill-contours-and-gradient-stops",
+      "rearClosure": "adapter-authored-head-conforming-side-and-rear-shell-with-opacity-bands",
+      "headWeldBoundary": "source-contour-intersection-with-selected-head",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "substitute",
+        "replacementSourceId": "short-fade"
+      },
+      "sourceAnalysis": {
+        "pathCount": 2,
+        "sourceBounds": {
+          "minimumX": 50,
+          "maximumX": 350,
+          "minimumY": 80.1935,
+          "maximumY": 310
+        },
+        "hasGradient": true
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hairBg",
+      "sourceId": "female1",
+      "sourceSha256": "2fbef2bc6e6242a8b3a753cf9469b310d7e5e1a7a6d17cccbe0dd90c564719b6",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the upstream family is painted behind the body and head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [
+        "female1"
+      ],
+      "accessorySubstitution": {
+        "action": "unaffected",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 11.4,
+          "maximumX": 389.8,
+          "minimumY": 155,
+          "maximumY": 593.3
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hairBg",
+      "sourceId": "female2",
+      "sourceSha256": "f01c78621a2a46fcc9c031b5ec82e1821c4d0f8645e9a1c172a376a5538c742c",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the upstream family is painted behind the body and head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [
+        "female2"
+      ],
+      "accessorySubstitution": {
+        "action": "unaffected",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 6,
+        "sourceBounds": {
+          "minimumX": 18.75,
+          "maximumX": 401.2,
+          "minimumY": 229.4432,
+          "maximumY": 550.2
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hairBg",
+      "sourceId": "female3",
+      "sourceSha256": "ec8acbea6b9d9b9b9dc95f50315ece49b0a8f00ccc08067a80a3848935d95a20",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the upstream family is painted behind the body and head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [
+        "female3"
+      ],
+      "accessorySubstitution": {
+        "action": "unaffected",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 48.1472,
+          "maximumX": 354.1,
+          "minimumY": 298.3391,
+          "maximumY": 563.4
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hairBg",
+      "sourceId": "female4",
+      "sourceSha256": "035adc7aef86c0cfeeb75db568822fa35191b0ad46dc7ca6a259435be4763888",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the upstream family is painted behind the body and head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [
+        "female4"
+      ],
+      "accessorySubstitution": {
+        "action": "unaffected",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 4,
+        "sourceBounds": {
+          "minimumX": 19.3817,
+          "maximumX": 379.2692,
+          "minimumY": 107.263,
+          "maximumY": 539.5216
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hairBg",
+      "sourceId": "female5",
+      "sourceSha256": "0758f6fe5bdabfc546da59a69ef3ca466a34811ddcd312f873fd85b02a3c69c9",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the upstream family is painted behind the body and head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [
+        "female5"
+      ],
+      "accessorySubstitution": {
+        "action": "unaffected",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 2,
+        "sourceBounds": {
+          "minimumX": 10.7768,
+          "maximumX": 384,
+          "minimumY": 163.6392,
+          "maximumY": 573.132
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hairBg",
+      "sourceId": "longHair",
+      "sourceSha256": "33d5acc9668665f59bdb55905c9351b7fc77407f645b9a8c398116a45ff11b08",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the upstream family is painted behind the body and head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [
+        "longHair"
+      ],
+      "accessorySubstitution": {
+        "action": "unaffected",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 2,
+        "sourceBounds": {
+          "minimumX": 32.8865,
+          "maximumX": 362.9752,
+          "minimumY": 243,
+          "maximumY": 495.32
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hairBg",
+      "sourceId": "none",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceEmpty": true,
+      "strategy": "empty-bald",
+      "geometryContract": "hair-empty-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the upstream SVG fragment is explicitly empty",
+      "frontContour": "empty-source",
+      "rearClosure": "none",
+      "headWeldBoundary": "none",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [],
+      "accessorySubstitution": {
+        "action": "unaffected",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 0,
+        "sourceBounds": null,
+        "hasGradient": false
+      },
+      "unsupported": null
+    },
+    {
+      "family": "hairBg",
+      "sourceId": "shaggy",
+      "sourceSha256": "ccc6016247bd88cb00285b6e2c1a53c290158734d23d0a813068428590b78757",
+      "sourceEmpty": false,
+      "strategy": "background-coupled",
+      "geometryContract": "hair-background-coupled-v1",
+      "outcome": "planned-supported",
+      "strategyReason": "the upstream family is painted behind the body and head",
+      "frontContour": "source-fill-contours",
+      "rearClosure": "adapter-authored-separated-front-and-behind-head-shells",
+      "headWeldBoundary": "source-front-intersection-with-selected-head-plus-rear-shoulder-clearance",
+      "compatibleBackgroundSourceIds": [],
+      "compatibleFrontSourceIds": [
+        "shaggy1",
+        "shaggy2"
+      ],
+      "accessorySubstitution": {
+        "action": "unaffected",
+        "replacementSourceId": null
+      },
+      "sourceAnalysis": {
+        "pathCount": 1,
+        "sourceBounds": {
+          "minimumX": 53.7606,
+          "maximumX": 347.2394,
+          "minimumY": 313.8,
+          "maximumY": 487.65
+        },
+        "hasGradient": false
+      },
+      "unsupported": null
+    }
+  ]
+}

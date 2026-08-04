@@ -4,29 +4,42 @@
   "private": true,
   "packageManager": "pnpm@10.33.0",
   "type": "module",
-  "description": "FacesJS face objects rendered as prepared PolyCSS models.",
+  "description": "FacesJS faces rendered directly with PolyCSS.",
   "license": "MIT",
   "engines": {
     "node": ">=22.12.0"
   },
   "scripts": {
+    "baseline:facesjs": "node src/adapters/facesjs/scripts/baseline.mjs",
+    "budget:facesjs": "pnpm build:prepare && node src/adapters/facesjs/scripts/budget.mjs",
+    "build:facesjs-components": "pnpm build:prepare && node src/adapters/facesjs/scripts/prepareProjectedComponents.mjs --write --check",
+    "check:facesjs-catalog": "pnpm build:prepare && node src/adapters/facesjs/scripts/checkCatalog.mjs --check && node src/adapters/facesjs/scripts/prepareProjectedComponents.mjs --check && node src/adapters/facesjs/scripts/buildComponentCatalog.mjs --check",
+    "check:facesjs-hair": "node src/adapters/facesjs/scripts/checkHairStrategies.mjs --check",
+    "capture:facesjs-hair": "node src/adapters/facesjs/scripts/captureHairComponents.mjs",
+    "capture:facesjs-rear-hair": "node src/adapters/facesjs/scripts/captureRearHairComponents.mjs",
+    "capture:facesjs-accessories": "node src/adapters/facesjs/scripts/captureAccessories.mjs",
+    "corpus:facesjs": "pnpm build:prepare && node src/adapters/facesjs/scripts/buildCorpus.mjs",
+    "oracle:facesjs": "pnpm build:prepare && node src/adapters/facesjs/scripts/oracle.mjs",
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "build:prepare": "tsc --project tsconfig.prepare.json",
     "prepare:model": "pnpm build:prepare && node .build/prepare/src/adapters/facesjs/scripts/prepare.mjs",
+    "test:facesjs": "pnpm build:prepare && node --test test/facesjs-*.test.mjs",
     "check": "pnpm typecheck && pnpm build"
   },
   "dependencies": {
     "@layoutit/polycss": "0.2.10",
     "@layoutit/polycss-morph": "0.2.10",
-    "facesjs": "5.0.3"
+    "facesjs": "5.0.3",
+    "html-to-image": "1.11.13"
   },
   "devDependencies": {
     "@fontsource/archivo-black": "5.3.0",
     "@types/node": "^24.10.0",
     "earcut": "3.0.2",
+    "playwright": "1.58.2",
     "sharp": "0.35.3",
     "svgpath": "2.6.0",
     "typescript": "5.9.3",

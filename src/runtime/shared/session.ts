@@ -24,13 +24,16 @@ type HistoryMode = "push" | "none";
 export interface LoadedCssGraphicsModelBinding {
   readonly modelId: string;
   readonly profile: string;
-  start(host: HTMLElement): CssGraphicsDriver;
+  start(host: HTMLElement, runtimeInput?: unknown): Promise<CssGraphicsDriver>;
   discard(): void;
 }
 
 export interface CssGraphicsRuntimeAdapter {
   readonly profile: string;
-  bind(loaded: LoadedCssGraphicsModel): LoadedCssGraphicsModelBinding;
+  bind(
+    loaded: LoadedCssGraphicsModel,
+    fetchImpl: typeof fetch,
+  ): LoadedCssGraphicsModelBinding;
 }
 
 export interface CssGraphicsSessionStats {
@@ -62,6 +65,7 @@ export interface StartCssGraphicsSessionOptions {
   readonly fetchImpl?: typeof fetch;
   readonly baseUrl?: string;
   readonly experienceControls?: boolean;
+  readonly initialRuntimeInput?: unknown;
 }
 
 function runtimeAdapter(
@@ -81,10 +85,14 @@ function runtimeAdapter(
 function bindLoadedCssGraphicsModel(
   adapters: ReadonlyMap<string, CssGraphicsRuntimeAdapter>,
   loaded: LoadedCssGraphicsModel,
+  fetchImpl: typeof fetch,
 ): LoadedCssGraphicsModelBinding {
   let binding: LoadedCssGraphicsModelBinding;
   try {
-    binding = runtimeAdapter(adapters, loaded.manifest.profile).bind(loaded);
+    binding = runtimeAdapter(adapters, loaded.manifest.profile).bind(
+      loaded,
+      fetchImpl,
+    );
   } catch (error) {
     loaded.assetOwner.destroy();
     throw error;
@@ -141,14 +149,15 @@ export async function startCssGraphicsSession(
       loaded.assetOwner.destroy();
       throw new Error("The cssGraphics session was destroyed during loading.");
     }
-    return bindLoadedCssGraphicsModel(options.adapters, loaded);
+    return bindLoadedCssGraphicsModel(options.adapters, loaded, fetchImpl);
   };
 
-  const mountBinding = (
+  const mountBinding = async (
     binding: LoadedCssGraphicsModelBinding,
-  ): CssGraphicsDriver => {
+    runtimeInput?: unknown,
+  ): Promise<CssGraphicsDriver> => {
     try {
-      const driver = binding.start(modelHost);
+      const driver = await binding.start(modelHost, runtimeInput);
       mounts += 1;
       liveDrivers += 1;
       maxConcurrentDrivers = Math.max(maxConcurrentDrivers, liveDrivers);
@@ -160,7 +169,10 @@ export async function startCssGraphicsSession(
   };
 
   try {
-    currentDriver = mountBinding(await loadBinding(currentModelId));
+    currentDriver = await mountBinding(
+      await loadBinding(currentModelId),
+      options.initialRuntimeInput,
+    );
     if (options.experienceControls !== false) {
       experienceModePicker = mountCssGraphicsExperienceModePicker({
         host: root,
@@ -215,7 +227,7 @@ export async function startCssGraphicsSession(
       liveDrivers -= 1;
     }
     try {
-      currentDriver = mountBinding(binding);
+      currentDriver = await mountBinding(binding);
       currentModelId = modelId;
       switches += 1;
       experienceModePicker?.sync();

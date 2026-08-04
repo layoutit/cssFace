@@ -51,4 +51,8 @@ export interface CssGraphicsMountOptions {
   readonly modelId?: string;
   readonly fetchImpl?: typeof fetch;
   readonly experienceControls?: boolean;
+  readonly faceConfig?: FacesJsFaceConfig;
 }
+import type {
+  FacesJsFaceConfig,
+} from "./adapters/facesjs/player/configTransforms.js";

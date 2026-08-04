@@ -16,5 +16,14 @@
     "rootDir": ".",
     "outDir": ".build/prepare"
   },
-  "files": ["src/adapters/facesjs/scripts/prepare.mjs"]
+  "files": [
+    "src/adapters/facesjs/model-package/componentCatalog.ts",
+    "src/adapters/facesjs/model-package/componentPackage.ts",
+    "src/adapters/facesjs/player/componentRuntime.ts",
+    "src/adapters/facesjs/player/configTransforms.ts",
+    "src/adapters/facesjs/player/faceConfigResolver.ts",
+    "src/adapters/facesjs/player/materialColors.ts",
+    "src/adapters/facesjs/preview/facesJsSnippet.ts",
+    "src/adapters/facesjs/scripts/prepare.mjs"
+  ]
 }

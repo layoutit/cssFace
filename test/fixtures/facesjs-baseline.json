@@ -1,0 +1,371 @@
+{
+  "schema": "cssface.facesjs-baseline@1",
+  "capturedAt": "2026-08-02T23:50:17.491Z",
+  "packages": {
+    "morph": {
+      "totalBytes": 7009325,
+      "models": [
+        {
+          "modelId": "facesjs-lowpoly-head",
+          "bytes": 1976439,
+          "files": [
+            {
+              "path": "assets/triangle-fallback.webp",
+              "bytes": 62208
+            },
+            {
+              "path": "manifest.json",
+              "bytes": 522
+            },
+            {
+              "path": "model.json",
+              "bytes": 1913709
+            }
+          ]
+        },
+        {
+          "modelId": "facesjs-lowpoly-head-afro",
+          "bytes": 1729869,
+          "files": [
+            {
+              "path": "assets/triangle-fallback.webp",
+              "bytes": 69264
+            },
+            {
+              "path": "manifest.json",
+              "bytes": 524
+            },
+            {
+              "path": "model.json",
+              "bytes": 1660081
+            }
+          ]
+        },
+        {
+          "modelId": "facesjs-lowpoly-head-bald",
+          "bytes": 1590681,
+          "files": [
+            {
+              "path": "assets/triangle-fallback.webp",
+              "bytes": 37496
+            },
+            {
+              "path": "manifest.json",
+              "bytes": 524
+            },
+            {
+              "path": "model.json",
+              "bytes": 1552661
+            }
+          ]
+        },
+        {
+          "modelId": "facesjs-lowpoly-head-short2",
+          "bytes": 1712336,
+          "files": [
+            {
+              "path": "assets/triangle-fallback.webp",
+              "bytes": 59666
+            },
+            {
+              "path": "manifest.json",
+              "bytes": 529
+            },
+            {
+              "path": "model.json",
+              "bytes": 1652141
+            }
+          ]
+        }
+      ]
+    },
+    "runtime": {
+      "totalBytes": 1981991,
+      "models": [
+        {
+          "modelId": "facesjs-lowpoly-head",
+          "bytes": 551826,
+          "files": [
+            {
+              "path": "assets/rotation-texels.webp",
+              "bytes": 86812
+            },
+            {
+              "path": "assets/triangle-fallback.webp",
+              "bytes": 62208
+            },
+            {
+              "path": "manifest.json",
+              "bytes": 2103
+            },
+            {
+              "path": "model.css",
+              "bytes": 269
+            },
+            {
+              "path": "model.json",
+              "bytes": 400434
+            }
+          ]
+        },
+        {
+          "modelId": "facesjs-lowpoly-head-afro",
+          "bytes": 490936,
+          "files": [
+            {
+              "path": "assets/rotation-texels.webp",
+              "bytes": 75218
+            },
+            {
+              "path": "assets/triangle-fallback.webp",
+              "bytes": 69264
+            },
+            {
+              "path": "manifest.json",
+              "bytes": 2105
+            },
+            {
+              "path": "model.css",
+              "bytes": 279
+            },
+            {
+              "path": "model.json",
+              "bytes": 344070
+            }
+          ]
+        },
+        {
+          "modelId": "facesjs-lowpoly-head-bald",
+          "bytes": 434107,
+          "files": [
+            {
+              "path": "assets/rotation-texels.webp",
+              "bytes": 67150
+            },
+            {
+              "path": "assets/triangle-fallback.webp",
+              "bytes": 37496
+            },
+            {
+              "path": "manifest.json",
+              "bytes": 2105
+            },
+            {
+              "path": "model.css",
+              "bytes": 279
+            },
+            {
+              "path": "model.json",
+              "bytes": 327077
+            }
+          ]
+        },
+        {
+          "modelId": "facesjs-lowpoly-head-short2",
+          "bytes": 505122,
+          "files": [
+            {
+              "path": "assets/rotation-texels.webp",
+              "bytes": 90358
+            },
+            {
+              "path": "assets/triangle-fallback.webp",
+              "bytes": 59666
+            },
+            {
+              "path": "manifest.json",
+              "bytes": 2110
+            },
+            {
+              "path": "model.css",
+              "bytes": 283
+            },
+            {
+              "path": "model.json",
+              "bytes": 352705
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "browser": {
+    "page": {
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "urlPath": "/",
+      "readySelector": "html[data-prototype-ready=true] #stage[data-faces-js-ready=true]"
+    },
+    "action": {
+      "type": "real-pointer-drag",
+      "selector": "#stage",
+      "steps": 90,
+      "settleMs": 220
+    },
+    "network": {
+      "selectedModelId": "facesjs-lowpoly-head",
+      "transferBytes": 554904,
+      "resources": [
+        {
+          "path": "/cssgraphics/catalog.json",
+          "transferSize": 1578,
+          "encodedBodySize": 1278
+        },
+        {
+          "path": "/cssgraphics/models/facesjs-lowpoly-head/manifest.json",
+          "transferSize": 2403,
+          "encodedBodySize": 2103
+        },
+        {
+          "path": "/cssgraphics/models/facesjs-lowpoly-head/model.json",
+          "transferSize": 400734,
+          "encodedBodySize": 400434
+        },
+        {
+          "path": "/cssgraphics/models/facesjs-lowpoly-head/model.css",
+          "transferSize": 569,
+          "encodedBodySize": 269
+        },
+        {
+          "path": "/cssgraphics/models/facesjs-lowpoly-head/assets/rotation-texels.webp",
+          "transferSize": 87112,
+          "encodedBodySize": 86812
+        },
+        {
+          "path": "/cssgraphics/models/facesjs-lowpoly-head/assets/triangle-fallback.webp",
+          "transferSize": 62508,
+          "encodedBodySize": 62208
+        }
+      ]
+    },
+    "runtime": {
+      "before": {
+        "ready": true,
+        "modelId": "facesjs-lowpoly-head",
+        "profile": "facesjs-face",
+        "generationHash": "51ae1b89317e9f54771322554ef666c9ac297a6e18bcc9cc0ffdd640e35b2594",
+        "leaves": 1883,
+        "canvases": 0,
+        "solidQuads": 173,
+        "solidTriangles": 1710,
+        "topologyConstructions": 1,
+        "applyCount": 6,
+        "rotationLightingState": 0,
+        "rotationLightingWrites": 0,
+        "rotationLightingPublications": 0,
+        "rotationLightingMaximumBatch": 0,
+        "rotationLightingTexels": 1883,
+        "weights": {
+          "fatness": 0.55,
+          "body-size": 0.5,
+          "ear-size": 0.30000000000000004,
+          "nose-size": 0.5333333333333333,
+          "brow-up": 0,
+          "brow-down": 0.25
+        }
+      },
+      "after": {
+        "ready": true,
+        "modelId": "facesjs-lowpoly-head",
+        "profile": "facesjs-face",
+        "generationHash": "51ae1b89317e9f54771322554ef666c9ac297a6e18bcc9cc0ffdd640e35b2594",
+        "leaves": 1883,
+        "canvases": 0,
+        "solidQuads": 173,
+        "solidTriangles": 1710,
+        "topologyConstructions": 1,
+        "applyCount": 96,
+        "rotationLightingState": 37,
+        "rotationLightingWrites": 10433,
+        "rotationLightingPublications": 37,
+        "rotationLightingMaximumBatch": 477,
+        "rotationLightingTexels": 1883,
+        "weights": {
+          "fatness": 0.55,
+          "body-size": 0.5,
+          "ear-size": 0.30000000000000004,
+          "nose-size": 0.5333333333333333,
+          "brow-up": 0,
+          "brow-down": 0.25
+        }
+      },
+      "rotationLightingWrites": 10433,
+      "rotationLightingPublications": 37
+    },
+    "frames": {
+      "sampleCount": 234,
+      "p50Ms": 8.4,
+      "p95Ms": 58.4,
+      "p99Ms": 91.7,
+      "maximumMs": 108.4,
+      "slowFramesOver20Ms": 82
+    },
+    "trace": {
+      "actionDurationMs": 5737.704,
+      "traceEventCount": 1760927,
+      "actionCompleteEventCount": 1476014,
+      "groupsMs": {
+        "compositor": 15504.427,
+        "layout": 0.095,
+        "paint": 333.398,
+        "raster": 470.777,
+        "scripting": 53.702,
+        "style": 15.926
+      },
+      "topEvents": [
+        {
+          "name": "ThreadControllerImpl::RunTask",
+          "durationMs": 6093.003
+        },
+        {
+          "name": "Graphics.Pipeline",
+          "durationMs": 5081.755
+        },
+        {
+          "name": "DisplayScheduler::OnBeginFrameDeadline",
+          "durationMs": 4674.55
+        },
+        {
+          "name": "DisplayScheduler::DrawAndSwap",
+          "durationMs": 4674.384
+        },
+        {
+          "name": "Display::DrawAndSwap",
+          "durationMs": 4674.302
+        },
+        {
+          "name": "DirectRenderer::DrawFrame",
+          "durationMs": 4626.718
+        },
+        {
+          "name": "DirectRenderer::DrawRenderPass",
+          "durationMs": 4624.578
+        },
+        {
+          "name": "SoftwareRenderer::DoDrawQuad",
+          "durationMs": 2957.792
+        },
+        {
+          "name": "ExternalBeginFrameSource::OnBeginFrame",
+          "durationMs": 932.921
+        },
+        {
+          "name": "ExternalBeginFrameSourceMac::OnDisplayLinkCallback",
+          "durationMs": 926.666
+        },
+        {
+          "name": "DisplayScheduler::BeginFrame",
+          "durationMs": 922.098
+        },
+        {
+          "name": "ProxyMain::BeginMainFrame",
+          "durationMs": 411.176
+        }
+      ]
+    },
+    "rawTracePath": "output/facesjs-baseline.trace.json"
+  }
+}

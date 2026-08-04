@@ -1,9 +1,3 @@
-import {
-  validatePolyMorphModel,
-  type PolyMorphLoadedResource,
-  type PolyMorphModel,
-} from "@layoutit/polycss-morph";
-
 import type {
   CssGraphicsModelManifest,
 } from "../../../model-package/modelPackage.mjs";
@@ -11,87 +5,47 @@ import type {
   LoadedCssGraphicsModel,
   LoadedModelAsset,
 } from "../../../runtime/shared/loader.js";
+import {
+  validateFacesJsFaceConfig,
+  type FacesJsFaceConfig,
+} from "./configTransforms.js";
+import type {
+  FacesJsComponentRotationLightingContract,
+} from "./componentRuntime.js";
+
+export type { FacesJsFaceConfig } from "./configTransforms.js";
 
 export const FACES_JS_PROFILE = "facesjs-face";
-const FACES_JS_SCENE_SCHEMA = "cssgraphics.facesjs-scene@1";
-const ROTATION_LIGHTING_SCHEMA = "cssgraphics.facesjs-rotation-lighting@3";
+export const FACES_JS_PREPARED_SCENE_SCHEMA =
+  "cssface.facesjs-prepared-scene@2";
+const FACES_JS_MODEL_REVISION = "1.0.0";
+const ROTATION_DIFFUSE_ROLE = "rotation-diffuse";
+const ROTATION_SPECULAR_ROLE = "rotation-specular";
 
 type JsonRecord = Record<string, unknown>;
+type Vec3 = readonly [number, number, number];
 
-export interface FacesJsFaceConfig {
-  readonly fatness: number;
-  readonly body: Readonly<{ color: string; size: number }>;
-  readonly hair: Readonly<{ color: string }>;
-  readonly ear: Readonly<{ size: number }>;
-  readonly eyebrow: Readonly<{ angle: number }>;
-  readonly nose: Readonly<{ size: number }>;
+export interface FacesJsPreparedPolygon {
+  readonly vertices: readonly Vec3[];
+  readonly color: string;
+  readonly doubleSided?: boolean;
 }
 
-export interface FacesJsMetrics {
-  readonly sourceTriangles: number;
-  readonly sourceQuadCells: number;
-  readonly quadCandidates: number;
-  readonly mergedQuads: number;
-  readonly retainedTriangles: number;
-  readonly preparedLeaves: number;
-  readonly leafReduction: number;
-  readonly rejectedPlanarity: number;
-  readonly rejectedContract: number;
-  readonly maximumAcceptedPlanarityErrorCssPx: number;
-  readonly maximumPlanarityRepairCssPx: number;
-  readonly maximumPlanarityRepairResidualCssPx: number;
-  readonly repairedPlanarityVertices: number;
-  readonly maximumProfileDepthAdjustmentCssPx: number;
-}
-
-export interface FacesJsRotationLightingContract {
-  readonly schema: typeof ROTATION_LIGHTING_SCHEMA;
-  readonly technique: "prepared-yaw-space-texel-atlas-sparse-transitions";
-  readonly runtimeColorWrites: 0;
-  readonly runtimeLightingMath: 0;
-  readonly runtimeStyleWritesMaximum: number;
-  readonly modelId: string;
-  readonly modelRevision: string;
-  readonly leafIds: readonly string[];
-  readonly state: Readonly<{
-    spinSteps: number;
-    fieldSourcePx: number;
-    temporalMaximumRgbDelta: 4;
-    initialRowsBase64: string;
-  }>;
-  readonly transitions: Readonly<{
-    encoding:
-      "csr-uint32le-offsets-parallel-uint16le-face-uint8-row-indices-base64";
-    stepCount: number;
-    offsetCount: number;
-    changeCount: number;
-    offsetsBase64: string;
-    faceIndicesBase64: string;
-    forwardRowsBase64: string;
-    backwardRowsBase64: string;
-    meanChangedFaces: number;
-    p50ChangedFaces: number;
-    p95ChangedFaces: number;
-    maximumChangedFaces: number;
-  }>;
-  readonly atlas: Readonly<{
-    layout: "source-order-face-columns-by-yaw-state-rows";
-    asset: "rotation-texels";
-    width: number;
-    height: number;
-  }>;
+export interface FacesJsPreparedScene {
+  readonly id: string;
+  readonly artifactMode: "polycss-polygons";
+  readonly fixtureId: string;
+  readonly faceConfig: FacesJsFaceConfig;
+  readonly polygons: readonly FacesJsPreparedPolygon[];
+  readonly rotationLighting: FacesJsComponentRotationLightingContract;
+  readonly selectedKeys: readonly string[];
 }
 
 export interface FacesJsProgram {
   readonly manifest: CssGraphicsModelManifest;
-  readonly scene: Readonly<{
-    id: string;
-    faceConfig: FacesJsFaceConfig;
-    metrics: FacesJsMetrics;
-    model: PolyMorphModel;
-    rotationLighting: FacesJsRotationLightingContract;
-    rotationAtlas: LoadedModelAsset;
-    morphResources: ReadonlyMap<string, PolyMorphLoadedResource>;
+  readonly scene: FacesJsPreparedScene & Readonly<{
+    rotationDiffuse: LoadedModelAsset;
+    rotationSpecular: LoadedModelAsset;
   }>;
 }
 
@@ -102,257 +56,142 @@ function record(value: unknown, label: string): JsonRecord {
   return value as JsonRecord;
 }
 
-function finite(value: unknown, label: string): number {
-  if (typeof value !== "number" || !Number.isFinite(value)) {
-    throw new TypeError(`${label} must be finite.`);
+function exactKeys(value: JsonRecord, expected: readonly string[], label: string): void {
+  const actual = Object.keys(value).sort();
+  const wanted = [...expected].sort();
+  if (actual.length !== wanted.length
+    || actual.some((key, index) => key !== wanted[index])) {
+    throw new TypeError(`${label} has missing or unsupported fields.`);
+  }
+}
+
+function normalizedId(value: unknown, label: string): string {
+  if (typeof value !== "string" || !/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/u.test(value)) {
+    throw new TypeError(`${label} must be a normalized id.`);
   }
   return value;
 }
 
-function integer(value: unknown, label: string): number {
-  const parsed = finite(value, label);
-  if (!Number.isSafeInteger(parsed) || parsed < 0) {
-    throw new TypeError(`${label} must be a non-negative integer.`);
+function stringArray(value: unknown, label: string): readonly string[] {
+  if (!Array.isArray(value) || value.some((entry) => typeof entry !== "string")) {
+    throw new TypeError(`${label} must be a string array.`);
   }
-  return parsed;
-}
-
-function base64Bytes(value: unknown, label: string): Uint8Array {
-  if (typeof value !== "string") throw new TypeError(`${label} must be base64.`);
-  try {
-    const decoded = globalThis.atob(value);
-    return Uint8Array.from(decoded, (character) => character.charCodeAt(0));
-  } catch {
-    throw new TypeError(`${label} must be base64.`);
+  if (new Set(value).size !== value.length) {
+    throw new TypeError(`${label} must not contain duplicates.`);
   }
+  return Object.freeze([...value]);
 }
 
-function color(value: unknown, label: string): string {
-  if (typeof value !== "string" || !/^#[0-9a-f]{6}$/iu.test(value)) {
-    throw new TypeError(`${label} must be a six-digit hex color.`);
+function finiteVector(value: unknown, label: string): Vec3 {
+  if (!Array.isArray(value) || value.length !== 3
+    || value.some((entry) => typeof entry !== "number" || !Number.isFinite(entry))) {
+    throw new TypeError(`${label} must contain three finite numbers.`);
   }
-  return value;
+  return Object.freeze([...value]) as Vec3;
 }
 
-function faceConfig(value: unknown): FacesJsFaceConfig {
-  const input = record(value, "FacesJS FaceConfig");
-  const body = record(input.body, "FacesJS FaceConfig.body");
-  const hair = record(input.hair, "FacesJS FaceConfig.hair");
-  const ear = record(input.ear, "FacesJS FaceConfig.ear");
-  const eyebrow = record(input.eyebrow, "FacesJS FaceConfig.eyebrow");
-  const nose = record(input.nose, "FacesJS FaceConfig.nose");
-  return Object.freeze({
-    fatness: finite(input.fatness, "FacesJS FaceConfig.fatness"),
-    body: Object.freeze({
-      color: color(body.color, "FacesJS FaceConfig.body.color"),
-      size: finite(body.size, "FacesJS FaceConfig.body.size"),
-    }),
-    hair: Object.freeze({ color: color(hair.color, "FacesJS FaceConfig.hair.color") }),
-    ear: Object.freeze({ size: finite(ear.size, "FacesJS FaceConfig.ear.size") }),
-    eyebrow: Object.freeze({
-      angle: finite(eyebrow.angle, "FacesJS FaceConfig.eyebrow.angle"),
-    }),
-    nose: Object.freeze({ size: finite(nose.size, "FacesJS FaceConfig.nose.size") }),
-  });
-}
-
-function metrics(value: unknown): FacesJsMetrics {
-  const input = record(value, "FacesJS metrics");
-  return Object.freeze({
-    sourceTriangles: integer(input.sourceTriangles, "FacesJS metrics.sourceTriangles"),
-    sourceQuadCells: integer(input.sourceQuadCells, "FacesJS metrics.sourceQuadCells"),
-    quadCandidates: integer(input.quadCandidates, "FacesJS metrics.quadCandidates"),
-    mergedQuads: integer(input.mergedQuads, "FacesJS metrics.mergedQuads"),
-    retainedTriangles: integer(input.retainedTriangles, "FacesJS metrics.retainedTriangles"),
-    preparedLeaves: integer(input.preparedLeaves, "FacesJS metrics.preparedLeaves"),
-    leafReduction: integer(input.leafReduction, "FacesJS metrics.leafReduction"),
-    rejectedPlanarity: integer(
-      input.rejectedPlanarity,
-      "FacesJS metrics.rejectedPlanarity",
-    ),
-    rejectedContract: integer(
-      input.rejectedContract,
-      "FacesJS metrics.rejectedContract",
-    ),
-    maximumAcceptedPlanarityErrorCssPx: finite(
-      input.maximumAcceptedPlanarityErrorCssPx,
-      "FacesJS metrics.maximumAcceptedPlanarityErrorCssPx",
-    ),
-    maximumPlanarityRepairCssPx: finite(
-      input.maximumPlanarityRepairCssPx,
-      "FacesJS metrics.maximumPlanarityRepairCssPx",
-    ),
-    maximumPlanarityRepairResidualCssPx: finite(
-      input.maximumPlanarityRepairResidualCssPx,
-      "FacesJS metrics.maximumPlanarityRepairResidualCssPx",
-    ),
-    repairedPlanarityVertices: integer(
-      input.repairedPlanarityVertices,
-      "FacesJS metrics.repairedPlanarityVertices",
-    ),
-    maximumProfileDepthAdjustmentCssPx: finite(
-      input.maximumProfileDepthAdjustmentCssPx,
-      "FacesJS metrics.maximumProfileDepthAdjustmentCssPx",
-    ),
-  });
+function positiveInteger(value: unknown, label: string): number {
+  if (!Number.isSafeInteger(value) || (value as number) < 1) {
+    throw new TypeError(`${label} must be a positive integer.`);
+  }
+  return value as number;
 }
 
 function rotationLighting(
   value: unknown,
-  model: PolyMorphModel,
-  asset: LoadedModelAsset,
-): FacesJsRotationLightingContract {
+  modelId: string,
+  polygonCount: number,
+  diffuse: LoadedModelAsset,
+  specular: LoadedModelAsset,
+): FacesJsComponentRotationLightingContract {
   const input = record(value, "FacesJS rotation lighting");
   const state = record(input.state, "FacesJS rotation lighting.state");
-  const transitions = record(
-    input.transitions,
-    "FacesJS rotation lighting.transitions",
-  );
-  const atlas = record(input.atlas, "FacesJS rotation lighting.atlas");
-  const leafIds = input.leafIds;
-  const spinSteps = integer(state.spinSteps, "FacesJS rotation lighting.state.spinSteps");
-  const fieldSourcePx = integer(
+  const materials = record(input.materials, "FacesJS rotation lighting.materials");
+  const visibility = record(input.visibility, "FacesJS rotation lighting.visibility");
+  const atlases = record(input.atlases, "FacesJS rotation lighting.atlases");
+  const diffuseAtlas = record(atlases.diffuse, "FacesJS rotation lighting.diffuse");
+  const specularAtlas = record(atlases.specular, "FacesJS rotation lighting.specular");
+  const runtime = record(input.runtime, "FacesJS rotation lighting.runtime");
+  const leafIds = stringArray(input.leafIds, "FacesJS rotation lighting.leafIds");
+  const roleIds = stringArray(materials.roleIds, "FacesJS rotation lighting.roleIds");
+  let roleIndices: Uint8Array;
+  try {
+    if (typeof materials.leafRoleIndicesBase64 !== "string") throw new Error();
+    const binary = globalThis.atob(materials.leafRoleIndicesBase64);
+    roleIndices = Uint8Array.from(binary, (character) => character.charCodeAt(0));
+  } catch {
+    throw new TypeError("FacesJS rotation lighting material indices must be base64.");
+  }
+  const spinSteps = positiveInteger(state.spinSteps, "FacesJS rotation lighting.spinSteps");
+  const fieldSourcePx = positiveInteger(
     state.fieldSourcePx,
-    "FacesJS rotation lighting.state.fieldSourcePx",
+    "FacesJS rotation lighting.fieldSourcePx",
   );
-  const runtimeStyleWritesMaximum = integer(
-    input.runtimeStyleWritesMaximum,
-    "FacesJS rotation lighting.runtimeStyleWritesMaximum",
-  );
-  const stepCount = integer(
-    transitions.stepCount,
-    "FacesJS rotation lighting.transitions.stepCount",
-  );
-  const offsetCount = integer(
-    transitions.offsetCount,
-    "FacesJS rotation lighting.transitions.offsetCount",
-  );
-  const changeCount = integer(
-    transitions.changeCount,
-    "FacesJS rotation lighting.transitions.changeCount",
-  );
-  const p50ChangedFaces = integer(
-    transitions.p50ChangedFaces,
-    "FacesJS rotation lighting.transitions.p50ChangedFaces",
-  );
-  const p95ChangedFaces = integer(
-    transitions.p95ChangedFaces,
-    "FacesJS rotation lighting.transitions.p95ChangedFaces",
-  );
-  const maximumChangedFaces = integer(
-    transitions.maximumChangedFaces,
-    "FacesJS rotation lighting.transitions.maximumChangedFaces",
-  );
-  const meanChangedFaces = finite(
-    transitions.meanChangedFaces,
-    "FacesJS rotation lighting.transitions.meanChangedFaces",
-  );
-  const initialRows = base64Bytes(
-    state.initialRowsBase64,
-    "FacesJS rotation lighting.state.initialRowsBase64",
-  );
-  const offsetBytes = base64Bytes(
-    transitions.offsetsBase64,
-    "FacesJS rotation lighting.transitions.offsetsBase64",
-  );
-  const faceBytes = base64Bytes(
-    transitions.faceIndicesBase64,
-    "FacesJS rotation lighting.transitions.faceIndicesBase64",
-  );
-  const forwardRows = base64Bytes(
-    transitions.forwardRowsBase64,
-    "FacesJS rotation lighting.transitions.forwardRowsBase64",
-  );
-  const backwardRows = base64Bytes(
-    transitions.backwardRowsBase64,
-    "FacesJS rotation lighting.transitions.backwardRowsBase64",
-  );
-  const width = integer(atlas.width, "FacesJS rotation lighting.atlas.width");
-  const height = integer(atlas.height, "FacesJS rotation lighting.atlas.height");
-  if (
-    input.schema !== ROTATION_LIGHTING_SCHEMA
-    || input.technique !== "prepared-yaw-space-texel-atlas-sparse-transitions"
+  const width = positiveInteger(diffuseAtlas.width, "FacesJS diffuse atlas width");
+  const height = positiveInteger(diffuseAtlas.height, "FacesJS diffuse atlas height");
+  if (input.schema !== "cssface.facesjs-component-rotation-lighting@3"
+    || input.technique !== "prepared-yaw-space-time-neutral-texel-matrix"
+    || input.modelId !== modelId
+    || input.modelRevision !== FACES_JS_MODEL_REVISION
     || input.runtimeColorWrites !== 0
     || input.runtimeLightingMath !== 0
-    || runtimeStyleWritesMaximum !== maximumChangedFaces
-    || input.modelId !== model.identity.id
-    || input.modelRevision !== model.identity.revision
-    || !Array.isArray(leafIds)
-    || leafIds.length !== model.render.leaves.length
-    || leafIds.some((id, index) => id !== model.render.leaves[index]?.id)
-    || spinSteps < 2
-    || fieldSourcePx < 1
-    || state.temporalMaximumRgbDelta !== 4
-    || initialRows.length !== leafIds.length
-    || initialRows.some((row) => row >= spinSteps)
-    || transitions.encoding
-      !== "csr-uint32le-offsets-parallel-uint16le-face-uint8-row-indices-base64"
-    || stepCount !== spinSteps
-    || offsetCount !== spinSteps + 1
-    || offsetBytes.length !== offsetCount * 4
-    || faceBytes.length !== changeCount * 2
-    || forwardRows.length !== changeCount
-    || backwardRows.length !== changeCount
-    || p50ChangedFaces > p95ChangedFaces
-    || p95ChangedFaces > maximumChangedFaces
-    || meanChangedFaces < 0
-    || meanChangedFaces > maximumChangedFaces
-    || atlas.layout !== "source-order-face-columns-by-yaw-state-rows"
-    || atlas.asset !== "rotation-texels"
-    || width !== leafIds.length * fieldSourcePx
-    || height !== spinSteps * fieldSourcePx
-    || asset.width !== width
-    || asset.height !== height
-  ) {
-    throw new TypeError("The FacesJS rotation-lighting contract is incompatible.");
+    || input.runtimeStyleWritesMaximum !== 1
+    || leafIds.length !== polygonCount
+    || leafIds.some((leafId, index) =>
+      leafId !== `polygon-${String(index).padStart(6, "0")}`)
+    || roleIds.length < 1
+    || roleIndices.length !== polygonCount
+    || roleIndices.some((index) => index >= roleIds.length)
+    || visibility.encoding !== "prepared-space-time-alpha-mask"
+    || visibility.managedLeafCount !== 0
+    || visibility.radialLeafCount !== 0
+    || visibility.frontLeafCount !== 0
+    || atlases.layout !== "paged-source-order-face-columns-by-yaw-state-rows"
+    || diffuseAtlas.asset !== ROTATION_DIFFUSE_ROLE
+    || diffuseAtlas.encoding !== "srgb-multiplier-grayscale"
+    || specularAtlas.asset !== ROTATION_SPECULAR_ROLE
+    || specularAtlas.encoding !== "screen-amplitude-grayscale"
+    || specularAtlas.alphaEncoding !== "frontface-visibility"
+    || specularAtlas.width !== width
+    || specularAtlas.height !== height
+    || width !== Math.min(polygonCount, 8192) * fieldSourcePx
+    || height !== Math.ceil(polygonCount / (width / fieldSourcePx))
+      * spinSteps * fieldSourcePx
+    || diffuse.width !== width
+    || diffuse.height !== height
+    || specular.width !== width
+    || specular.height !== height
+    || runtime.rootStateWritesMaximum !== 1
+    || runtime.leafStateWrites !== 0
+    || runtime.faceStateScans !== 0
+    || runtime.operation !== "one inherited space-time row offset") {
+    throw new TypeError("The FacesJS prepared rotation-lighting field is incompatible.");
   }
-  const offsets = new DataView(
-    offsetBytes.buffer,
-    offsetBytes.byteOffset,
-    offsetBytes.byteLength,
-  );
-  let previousOffset = 0;
-  let observedMaximum = 0;
-  for (let stateIndex = 0; stateIndex < offsetCount; stateIndex += 1) {
-    const nextOffset = offsets.getUint32(stateIndex * 4, true);
-    if (nextOffset < previousOffset || nextOffset > changeCount) {
-      throw new TypeError("The FacesJS rotation-lighting offsets are invalid.");
-    }
-    if (stateIndex > 0) {
-      observedMaximum = Math.max(observedMaximum, nextOffset - previousOffset);
-    }
-    previousOffset = nextOffset;
-  }
-  if (previousOffset !== changeCount || observedMaximum !== maximumChangedFaces) {
-    throw new TypeError("The FacesJS rotation-lighting transition totals are stale.");
-  }
-  const faceView = new DataView(
-    faceBytes.buffer,
-    faceBytes.byteOffset,
-    faceBytes.byteLength,
-  );
-  for (let changeIndex = 0; changeIndex < changeCount; changeIndex += 1) {
-    if (
-      faceView.getUint16(changeIndex * 2, true) >= leafIds.length
-      || forwardRows[changeIndex]! >= spinSteps
-      || backwardRows[changeIndex]! >= spinSteps
-    ) {
-      throw new TypeError("The FacesJS rotation-lighting transition is invalid.");
-    }
-  }
-  return input as unknown as FacesJsRotationLightingContract;
+  return input as unknown as FacesJsComponentRotationLightingContract;
 }
 
-function morphResource(asset: LoadedModelAsset): PolyMorphLoadedResource {
+function polygon(value: unknown, index: number): FacesJsPreparedPolygon {
+  const label = `FacesJS polygons[${index}]`;
+  const input = record(value, label);
+  const keys = Object.keys(input);
+  if (!keys.includes("vertices") || !keys.includes("color")
+    || keys.some((key) => !["vertices", "color", "doubleSided"].includes(key))) {
+    throw new TypeError(`${label} has missing or unsupported fields.`);
+  }
+  if (!Array.isArray(input.vertices) || input.vertices.length < 3) {
+    throw new TypeError(`${label}.vertices must contain at least three points.`);
+  }
+  if (typeof input.color !== "string" || input.color.length === 0) {
+    throw new TypeError(`${label}.color must be a non-empty CSS color.`);
+  }
+  if (input.doubleSided !== undefined && typeof input.doubleSided !== "boolean") {
+    throw new TypeError(`${label}.doubleSided must be boolean.`);
+  }
   return Object.freeze({
-    descriptor: Object.freeze({
-      path: asset.path,
-      role: "image" as const,
-      mediaType: asset.mediaType,
-      bytes: asset.bytes,
-      sha256: asset.sha256,
-    }),
-    bytes: asset.sourceBytes,
+    vertices: Object.freeze(input.vertices.map((vertex, vertexIndex) =>
+      finiteVector(vertex, `${label}.vertices[${vertexIndex}]`))),
+    color: input.color,
+    ...(input.doubleSided === true ? { doubleSided: true } : {}),
   });
 }
 
@@ -362,71 +201,54 @@ export function decodeFacesJsProgram(
   if (loaded.manifest.profile !== FACES_JS_PROFILE) {
     throw new TypeError("The loaded package is not a FacesJS face.");
   }
-  const input = record(loaded.model.sections.scene, "FacesJS scene");
-  if (
-    input.schema !== FACES_JS_SCENE_SCHEMA
-    || input.artifactMode !== "prepared-polycss-morph"
-    || input.id !== loaded.manifest.id
-  ) {
-    throw new TypeError("The FacesJS scene contract is incompatible.");
+  const input = record(loaded.model.sections.scene, "FacesJS prepared scene");
+  exactKeys(input, [
+    "schema",
+    "id",
+    "artifactMode",
+    "fixtureId",
+    "faceConfig",
+    "polygons",
+    "rotationLighting",
+    "selectedKeys",
+  ], "FacesJS prepared scene");
+  if (input.schema !== FACES_JS_PREPARED_SCENE_SCHEMA
+    || input.artifactMode !== "polycss-polygons"
+    || input.id !== loaded.manifest.id) {
+    throw new TypeError("The FacesJS prepared scene contract is incompatible.");
   }
-  const model = validatePolyMorphModel(input.model);
-  if (model.identity.id !== loaded.manifest.id || model.profile !== "morph-regions") {
-    throw new TypeError("The FacesJS Morph model does not match its cssGraphics package.");
+  if (!Array.isArray(input.polygons) || input.polygons.length === 0) {
+    throw new TypeError("The FacesJS prepared scene has no polygons.");
   }
-  const parsedMetrics = metrics(input.metrics);
-  const quadLeaves = model.render.leaves.filter(
-    ({ strategy }) => strategy === "solid-quad",
-  ).length;
-  const triangleLeaves = model.render.leaves.filter(
-    ({ strategy }) => strategy === "solid-triangle",
-  ).length;
-  if (
-    parsedMetrics.mergedQuads !== quadLeaves
-    || parsedMetrics.retainedTriangles !== triangleLeaves
-    || parsedMetrics.preparedLeaves !== model.render.leaves.length
-    || parsedMetrics.sourceQuadCells < parsedMetrics.quadCandidates
-    || parsedMetrics.quadCandidates !== parsedMetrics.mergedQuads
-      + parsedMetrics.rejectedPlanarity
-      + parsedMetrics.rejectedContract
-    || parsedMetrics.leafReduction !== parsedMetrics.mergedQuads
-    || parsedMetrics.maximumAcceptedPlanarityErrorCssPx < 0
-    || parsedMetrics.maximumAcceptedPlanarityErrorCssPx > 1e-6
-    || parsedMetrics.maximumPlanarityRepairCssPx < 0
-    || parsedMetrics.maximumPlanarityRepairCssPx > 0.01
-    || parsedMetrics.maximumPlanarityRepairResidualCssPx < 0
-    || parsedMetrics.maximumPlanarityRepairResidualCssPx > 2e-7
-    || parsedMetrics.maximumProfileDepthAdjustmentCssPx < 0
-    || parsedMetrics.maximumProfileDepthAdjustmentCssPx > 3
-    || parsedMetrics.sourceTriangles - parsedMetrics.leafReduction
-      !== parsedMetrics.preparedLeaves
-  ) {
-    throw new TypeError("The FacesJS preparation metrics are stale.");
+  const assetRoles = Object.keys(loaded.manifest.resources.assets).sort();
+  if (assetRoles.length !== 2
+    || assetRoles[0] !== ROTATION_DIFFUSE_ROLE
+    || assetRoles[1] !== ROTATION_SPECULAR_ROLE) {
+    throw new TypeError("The FacesJS prepared lighting assets are incomplete.");
   }
-  const rotationAtlas = loaded.assetOwner.get("rotation-texels");
-  const triangleFallback = loaded.assetOwner.get("triangle-fallback");
-  const expectedFallbackPath = model.render.leaves.find(
-    ({ fallback }) => fallback !== null,
-  )?.fallback?.atlas.resourcePath;
-  if (expectedFallbackPath !== triangleFallback.path) {
-    throw new TypeError("The FacesJS triangle fallback binding is stale.");
-  }
+  const parsedPolygons = Object.freeze(input.polygons.map(polygon));
+  const rotationDiffuse = loaded.assetOwner.get(ROTATION_DIFFUSE_ROLE);
+  const rotationSpecular = loaded.assetOwner.get(ROTATION_SPECULAR_ROLE);
+  const parsedRotationLighting = rotationLighting(
+    input.rotationLighting,
+    loaded.manifest.id,
+    parsedPolygons.length,
+    rotationDiffuse,
+    rotationSpecular,
+  );
+
   return Object.freeze({
     manifest: loaded.manifest,
     scene: Object.freeze({
-      id: model.identity.id,
-      faceConfig: faceConfig(input.faceConfig),
-      metrics: parsedMetrics,
-      model,
-      rotationLighting: rotationLighting(
-        input.rotationLighting,
-        model,
-        rotationAtlas,
-      ),
-      rotationAtlas,
-      morphResources: new Map([
-        [triangleFallback.path, morphResource(triangleFallback)],
-      ]),
+      id: loaded.manifest.id,
+      artifactMode: "polycss-polygons" as const,
+      fixtureId: normalizedId(input.fixtureId, "FacesJS fixtureId"),
+      faceConfig: validateFacesJsFaceConfig(input.faceConfig),
+      polygons: parsedPolygons,
+      rotationLighting: parsedRotationLighting,
+      rotationDiffuse,
+      rotationSpecular,
+      selectedKeys: stringArray(input.selectedKeys, "FacesJS selected components"),
     }),
   });
 }

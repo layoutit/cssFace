@@ -1,27 +1,28 @@
 import {
+  collectPolyRenderStats,
   createPolyOrthographicCamera,
+  createPolyScene,
+  queryPolyLeaves,
+  type ParseResult,
+  type PolyMeshHandle,
+  type PolySceneHandle,
 } from "@layoutit/polycss";
-import {
-  createPolyMorphDeformationRuntime,
-  mountPolyMorphModel,
-  type PolyMorphMat4,
-  type PolyMorphMountedModel,
-} from "@layoutit/polycss-morph";
 
 import type {
+  FacesJsFaceConfig,
   FacesJsProgram,
 } from "./model.js";
-
-export type FacesJsMorphId =
-  | "fatness"
-  | "body-size"
-  | "ear-size"
-  | "nose-size"
-  | "brow";
+import {
+  resolveFacesJsMorphWeights,
+  validateFacesJsFaceConfig,
+} from "./configTransforms.js";
 
 export interface FacesJsPrototypeSnapshot {
   readonly ready: boolean;
+  readonly renderer: "dom-css";
+  readonly faceConfig: FacesJsFaceConfig;
   readonly modelId: string;
+  readonly fixtureId: string;
   readonly profile: string;
   readonly generationHash: string;
   readonly leaves: number;
@@ -35,13 +36,24 @@ export interface FacesJsPrototypeSnapshot {
   readonly rotationLightingPublications: number;
   readonly rotationLightingMaximumBatch: number;
   readonly rotationLightingTexels: number;
+  readonly materialVariableWrites: number;
+  readonly leafIdentity: string;
+  readonly selectedComponents: readonly string[];
   readonly weights: Readonly<Record<string, number>>;
 }
 
 export interface FacesJsPrototypeController {
-  setMorph(id: FacesJsMorphId, value: number): void;
-  setOrbit(yawDegrees: number, pitchDegrees?: number): void;
+  setFaceConfig(config: FacesJsFaceConfig): Promise<void>;
+  setOrbit(yawDegrees: number): void;
   snapshot(): FacesJsPrototypeSnapshot;
+}
+
+export interface FacesJsMountedScene {
+  readonly scene: PolySceneHandle;
+  readonly mesh: PolyMeshHandle;
+  readonly controller: FacesJsPrototypeController;
+  stop(): void;
+  destroy(): void;
 }
 
 interface RotationLightingRuntime {
@@ -56,97 +68,102 @@ interface RotationLightingRuntime {
   destroy(): void;
 }
 
-interface FacesJsModelFraming {
-  readonly translationY: number;
-  readonly scaleY: number;
-}
-
-const MODEL_FRAMING_BY_ID: Readonly<Record<string, FacesJsModelFraming>> =
-  Object.freeze({
-    "facesjs-lowpoly-head": Object.freeze({ translationY: 34.5, scaleY: 0.98 }),
-    "facesjs-lowpoly-head-afro": Object.freeze({ translationY: 24.5, scaleY: 0.974 }),
-    "facesjs-lowpoly-head-bald": Object.freeze({ translationY: 34.5, scaleY: 0.98 }),
-    "facesjs-lowpoly-head-short2": Object.freeze({ translationY: 34.5, scaleY: 0.98 }),
-  });
-
-export interface FacesJsMountedScene {
-  readonly mounted: PolyMorphMountedModel;
-  readonly controller: FacesJsPrototypeController;
-  stop(): void;
-  destroy(): void;
-}
-
 type DebugGlobal = typeof globalThis & {
   __facesJsPrototype?: FacesJsPrototypeController;
 };
 
-function clamp(value: number, minimum: number, maximum: number): number {
-  return Math.max(minimum, Math.min(maximum, value));
+const ROTATION_ROW_VARIABLE = "--cssface-rotation-row";
+
+interface VerticalPixelBounds {
+  readonly top: number;
+  readonly bottom: number;
 }
 
-function translationY(value: number): PolyMorphMat4 {
-  return [
-    1, 0, 0, 0,
-    0, 1, 0, 0,
-    0, 0, 1, 0,
-    0, value, 0, 1,
-  ];
+interface VerticalFramingReference {
+  readonly centerWorldX: number;
+  readonly heightWorld: number;
 }
 
-function scaleY(value: number): PolyMorphMat4 {
-  return [
-    1, 0, 0, 0,
-    0, value, 0, 0,
-    0, 0, 1, 0,
-    0, 0, 0, 1,
-  ];
-}
-
-function multiply(left: PolyMorphMat4, right: PolyMorphMat4): PolyMorphMat4 {
-  const output = new Array<number>(16).fill(0);
-  for (let column = 0; column < 4; column += 1) {
-    for (let row = 0; row < 4; row += 1) {
-      for (let axis = 0; axis < 4; axis += 1) {
-        output[(column * 4) + row] +=
-          left[(axis * 4) + row]! * right[(column * 4) + axis]!;
-      }
-    }
+function verticalBounds(elements: readonly Element[]): VerticalPixelBounds | undefined {
+  let top = Infinity;
+  let bottom = -Infinity;
+  for (const element of elements) {
+    const bounds = element.getBoundingClientRect();
+    if ((!bounds.width && !bounds.height)
+      || !Number.isFinite(bounds.top)
+      || !Number.isFinite(bounds.bottom)) continue;
+    top = Math.min(top, bounds.top);
+    bottom = Math.max(bottom, bounds.bottom);
   }
-  return output as unknown as PolyMorphMat4;
+  return Number.isFinite(top) && Number.isFinite(bottom) && bottom > top
+    ? Object.freeze({ top, bottom })
+    : undefined;
 }
 
-function rotationX(degrees: number): PolyMorphMat4 {
-  const radians = degrees * Math.PI / 180;
-  const cosine = Math.cos(radians);
-  const sine = Math.sin(radians);
-  return [
-    1, 0, 0, 0,
-    0, cosine, sine, 0,
-    0, -sine, cosine, 0,
-    0, 0, 0, 1,
-  ];
+function sourcePaintFrame(host: HTMLElement): VerticalPixelBounds | undefined {
+  const sourceFace = host.ownerDocument.querySelector<HTMLElement>("#source-face");
+  const sourceCanvas = sourceFace?.closest<HTMLElement>(".source-canvas");
+  const svg = sourceFace?.querySelector<SVGSVGElement>("svg");
+  if (!sourceCanvas || !svg) return undefined;
+  const canvasBounds = sourceCanvas.getBoundingClientRect();
+  if (canvasBounds.height <= 0) return undefined;
+  const paintedBounds = verticalBounds([...svg.querySelectorAll<SVGGraphicsElement>(
+    "path,circle,ellipse,rect,polygon,polyline,line",
+  )]);
+  if (!paintedBounds) return undefined;
+  return Object.freeze({
+    top: (paintedBounds.top - canvasBounds.top) / canvasBounds.height,
+    bottom: (paintedBounds.bottom - canvasBounds.top) / canvasBounds.height,
+  });
 }
 
-function rotationY(degrees: number): PolyMorphMat4 {
-  const radians = degrees * Math.PI / 180;
-  const cosine = Math.cos(radians);
-  const sine = Math.sin(radians);
-  return [
-    cosine, 0, -sine, 0,
-    0, 1, 0, 0,
-    sine, 0, cosine, 0,
-    0, 0, 0, 1,
-  ];
+function captureVerticalFraming(
+  host: HTMLElement,
+  polygonCount: number,
+  zoom: number,
+  targetWorldX: number,
+): VerticalFramingReference | undefined {
+  if (!(zoom > 0)) return undefined;
+  const hostBounds = host.getBoundingClientRect();
+  if (hostBounds.height <= 0) return undefined;
+  const leafBounds = verticalBounds(
+    queryPolyLeaves(host, polygonCount).map(({ element }) => element),
+  );
+  if (!leafBounds) return undefined;
+  const centerPx = (leafBounds.top + leafBounds.bottom) / 2;
+  return Object.freeze({
+    centerWorldX: targetWorldX
+      + ((centerPx - (hostBounds.top + hostBounds.height / 2)) / zoom),
+    heightWorld: (leafBounds.bottom - leafBounds.top) / zoom,
+  });
+}
+
+function alignedCameraFrame(
+  host: HTMLElement,
+  reference: VerticalFramingReference,
+): Readonly<{ zoom: number; targetWorldX: number }> | undefined {
+  const sourceFrame = sourcePaintFrame(host);
+  const hostBounds = host.getBoundingClientRect();
+  if (!sourceFrame || hostBounds.height <= 0 || !(reference.heightWorld > 0)) {
+    return undefined;
+  }
+  const paintedHeight = (sourceFrame.bottom - sourceFrame.top) * hostBounds.height;
+  const zoom = paintedHeight / reference.heightWorld;
+  if (!(zoom > 0) || !Number.isFinite(zoom)) return undefined;
+  const paintedCenterOffset = (
+    ((sourceFrame.top + sourceFrame.bottom) / 2) - 0.5
+  ) * hostBounds.height;
+  return Object.freeze({
+    zoom,
+    targetWorldX: reference.centerWorldX - (paintedCenterOffset / zoom),
+  });
 }
 
 function resolveZoom(host: HTMLElement): number {
   const sourceFace = host.ownerDocument.querySelector<HTMLElement>("#source-face");
   if (sourceFace) {
     const sourceBounds = sourceFace.getBoundingClientRect();
-    const sourceWidth = Math.min(
-      sourceBounds.width,
-      sourceBounds.height * 2 / 3,
-    );
+    const sourceWidth = Math.min(sourceBounds.width, sourceBounds.height * 2 / 3);
     if (sourceWidth > 0) return sourceWidth * 0.172;
   }
   const width = host.clientWidth || globalThis.innerWidth * 0.55;
@@ -159,90 +176,139 @@ function resolveZoom(host: HTMLElement): number {
   return Math.max(minimum, Math.min(maximum, width * 0.135, height * 0.135));
 }
 
-function base64Bytes(value: string): Uint8Array {
-  const binary = globalThis.atob(value);
-  return Uint8Array.from(binary, (character) => character.charCodeAt(0));
+function parseResult(program: FacesJsProgram): ParseResult {
+  return {
+    polygons: program.scene.polygons.map((polygon) => ({
+      vertices: polygon.vertices.map((vertex) => [...vertex]),
+      color: polygon.color,
+      doubleSided: polygon.doubleSided,
+    })),
+    objectUrls: [],
+    warnings: [],
+    dispose: () => {},
+  };
 }
 
-function uint16(value: string): Uint16Array {
-  const bytes = base64Bytes(value);
-  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
-  return Uint16Array.from(
-    { length: bytes.byteLength / 2 },
-    (_, index) => view.getUint16(index * 2, true),
-  );
-}
-
-function uint32(value: string): Uint32Array {
-  const bytes = base64Bytes(value);
-  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
-  return Uint32Array.from(
-    { length: bytes.byteLength / 4 },
-    (_, index) => view.getUint32(index * 4, true),
-  );
-}
-
-function backgroundOffset(row: number, height: number): string {
-  const offset = -row * height;
-  return `${Object.is(offset, -0) ? 0 : offset}px`;
-}
-
-function createRotationLightingRuntime(
-  target: PolyMorphMountedModel,
-  program: FacesJsProgram,
-): RotationLightingRuntime {
-  const contract = program.scene.rotationLighting;
-  const imageUrl = program.scene.rotationAtlas.url;
-  const transitions = contract.transitions;
-  const initialRows = base64Bytes(contract.state.initialRowsBase64);
-  const offsets = uint32(transitions.offsetsBase64);
-  const faceIndices = uint16(transitions.faceIndicesBase64);
-  const forwardRows = base64Bytes(transitions.forwardRowsBase64);
-  const backwardRows = base64Bytes(transitions.backwardRowsBase64);
-  const elements = new Array<HTMLElement>(contract.leafIds.length);
-  const heights = new Float64Array(contract.leafIds.length);
-  for (const [index, leafId] of contract.leafIds.entries()) {
-    const handle = target.leafHandles.get(leafId);
-    if (!handle) throw new TypeError(`FacesJS rotation lighting has no leaf ${leafId}.`);
-    const width = handle.plan.width;
-    const height = handle.plan.height;
-    const style = handle.element.style;
-    style.setProperty("background-image", `url("${imageUrl}")`, "important");
-    style.setProperty("background-color", "transparent", "important");
-    style.backgroundPositionX = `${-index * width}px`;
-    style.backgroundPositionY = backgroundOffset(initialRows[index]!, height);
-    style.backgroundRepeat = "no-repeat";
-    style.backgroundSize =
-      `${contract.leafIds.length * width}px ${contract.state.spinSteps * height}px`;
-    style.imageRendering = "pixelated";
-    elements[index] = handle.element;
-    heights[index] = height;
+function identity(root: ParentNode, polygonCount: number): string {
+  let hash = 2166136261;
+  const leaves = queryPolyLeaves(root, polygonCount);
+  for (const [index, leaf] of leaves.entries()) {
+    const value = `${index}:${leaf.element.tagName}:${leaf.strategy}`;
+    for (let offset = 0; offset < value.length; offset += 1) {
+      hash ^= value.charCodeAt(offset);
+      hash = Math.imul(hash, 16777619);
+    }
   }
-  const dirtyFlags = new Uint8Array(contract.leafIds.length);
-  const dirtyRows = new Uint8Array(contract.leafIds.length);
-  const dirtyFaces = new Uint16Array(contract.leafIds.length);
+  return `${leaves.length}:${(hash >>> 0).toString(16).padStart(8, "0")}`;
+}
+
+function sameFaceConfig(left: FacesJsFaceConfig, right: FacesJsFaceConfig): boolean {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function imageReady(document: Document, url: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const image = document.createElement("img");
+    image.decoding = "async";
+    image.onload = () => resolve();
+    image.onerror = () => reject(new Error("FacesJS prepared lighting atlas failed to load."));
+    image.src = url;
+  });
+}
+
+function leafPrimitiveSize(
+  element: HTMLElement,
+  strategy: "quad" | "clippedSolid" | "atlas" | "stableTriangle",
+): readonly [number, number] {
+  const view = element.ownerDocument.defaultView;
+  const computed = view?.getComputedStyle(element);
+  const width = Number.parseFloat(computed?.width ?? "");
+  const height = Number.parseFloat(computed?.height ?? "");
+  const fallback = strategy === "quad"
+    ? 64
+    : strategy === "clippedSolid"
+      ? 16
+      : strategy === "stableTriangle"
+        ? 32
+        : 128;
+  return Object.freeze([
+    Number.isFinite(width) && width > 0 ? width : fallback,
+    Number.isFinite(height) && height > 0 ? height : fallback,
+  ]);
+}
+
+async function createRotationLightingRuntime(
+  mesh: PolyMeshHandle,
+  program: FacesJsProgram,
+): Promise<RotationLightingRuntime> {
+  const contract = program.scene.rotationLighting;
+  const diffuse = program.scene.rotationDiffuse;
+  const specular = program.scene.rotationSpecular;
+  await Promise.all([
+    mesh.whenTexturesReady(),
+    imageReady(mesh.element.ownerDocument, diffuse.url),
+    imageReady(mesh.element.ownerDocument, specular.url),
+  ]);
+  const queried = queryPolyLeaves(mesh.element, contract.leafIds.length);
+  const leaves = new Array<(typeof queried)[number] | null>(
+    contract.leafIds.length,
+  ).fill(null);
+  for (const leaf of queried) {
+    if (leaf.polygonIndex === undefined
+      || leaf.polygonIndex < 0
+      || leaf.polygonIndex >= leaves.length
+      || leaves[leaf.polygonIndex]) {
+      throw new TypeError("FacesJS prepared lighting lost PolyCSS polygon identity.");
+    }
+    leaves[leaf.polygonIndex] = leaf;
+  }
+  if (leaves.some((leaf) => leaf === null)) {
+    throw new TypeError("FacesJS prepared lighting has an incomplete PolyCSS leaf set.");
+  }
+  const fieldSourcePx = contract.state.fieldSourcePx;
+  const columns = contract.atlases.diffuse.width / fieldSourcePx;
+  for (const [index, leaf] of leaves.entries()) {
+    if (!leaf) throw new TypeError("FacesJS prepared lighting lost a PolyCSS leaf.");
+    const [width, height] = leafPrimitiveSize(leaf.element, leaf.strategy);
+    const column = index % columns;
+    const page = Math.floor(index / columns);
+    const x = -column * width;
+    const baseY = -page * contract.state.spinSteps * height;
+    const backgroundPosition = [
+      `${x}px calc(${baseY}px + var(${ROTATION_ROW_VARIABLE}) * ${-height}px)`,
+      `${x}px calc(${baseY}px + var(${ROTATION_ROW_VARIABLE}) * ${-height}px)`,
+      "0 0",
+    ].join(", ");
+    const atlasWidth = contract.atlases.diffuse.width / fieldSourcePx * width;
+    const atlasHeight = contract.atlases.diffuse.height / fieldSourcePx * height;
+    const backgroundSize = [
+      `${atlasWidth}px ${atlasHeight}px`,
+      `${atlasWidth}px ${atlasHeight}px`,
+      "auto",
+    ].join(", ");
+    const style = leaf.element.style;
+    style.setProperty("color", program.scene.polygons[index]!.color, "important");
+    style.setProperty(
+      "background-image",
+      `url("${specular.url}"), url("${diffuse.url}"), linear-gradient(currentcolor, currentcolor)`,
+      "important",
+    );
+    style.setProperty("background-color", "transparent", "important");
+    style.setProperty("background-position", backgroundPosition, "important");
+    style.setProperty("background-size", backgroundSize, "important");
+    style.setProperty("background-repeat", "no-repeat, no-repeat, no-repeat", "important");
+    style.setProperty("background-blend-mode", "screen, multiply, normal", "important");
+    style.setProperty("image-rendering", "pixelated", "important");
+    if (leaf.strategy === "clippedSolid") {
+      style.setProperty("background-clip", "border-area", "important");
+    }
+  }
+  mesh.element.style.setProperty(ROTATION_ROW_VARIABLE, "0");
   let currentState = 0;
   let stateWrites = 0;
   let statePublications = 0;
   let maximumBatch = 0;
   let destroyed = false;
-  const collect = (
-    edge: number,
-    rows: Uint8Array,
-    initialDirtyCount: number,
-  ): number => {
-    let dirtyCount = initialDirtyCount;
-    for (let cursor = offsets[edge]!; cursor < offsets[edge + 1]!; cursor += 1) {
-      const face = faceIndices[cursor]!;
-      if (dirtyFlags[face] === 0) {
-        dirtyFlags[face] = 1;
-        dirtyFaces[dirtyCount] = face;
-        dirtyCount += 1;
-      }
-      dirtyRows[face] = rows[cursor]!;
-    }
-    return dirtyCount;
-  };
   return Object.freeze({
     get stats() {
       return Object.freeze({
@@ -254,162 +320,143 @@ function createRotationLightingRuntime(
       });
     },
     apply(yawDegrees: number): void {
-      if (destroyed) throw new Error("FacesJS rotation lighting is destroyed.");
+      if (destroyed) throw new Error("FacesJS prepared lighting is destroyed.");
       const normalized = ((yawDegrees % 360) + 360) % 360;
       const nextState = Math.round(
         normalized * contract.state.spinSteps / 360,
       ) % contract.state.spinSteps;
       if (nextState === currentState) return;
-      const forwardDistance = (
-        nextState - currentState + contract.state.spinSteps
-      ) % contract.state.spinSteps;
-      const backwardDistance = (
-        currentState - nextState + contract.state.spinSteps
-      ) % contract.state.spinSteps;
-      let dirtyCount = 0;
-      let state = currentState;
-      if (forwardDistance <= backwardDistance) {
-        for (let step = 0; step < forwardDistance; step += 1) {
-          state = (state + 1) % contract.state.spinSteps;
-          dirtyCount = collect(state, forwardRows, dirtyCount);
-        }
-      } else {
-        for (let step = 0; step < backwardDistance; step += 1) {
-          const edge = state;
-          state = (state + contract.state.spinSteps - 1)
-            % contract.state.spinSteps;
-          dirtyCount = collect(edge, backwardRows, dirtyCount);
-        }
-      }
-      for (let index = 0; index < dirtyCount; index += 1) {
-        const face = dirtyFaces[index]!;
-        elements[face]!.style.backgroundPositionY = backgroundOffset(
-          dirtyRows[face]!,
-          heights[face]!,
-        );
-        dirtyFlags[face] = 0;
-      }
+      mesh.element.style.setProperty(ROTATION_ROW_VARIABLE, String(nextState));
       currentState = nextState;
-      stateWrites += dirtyCount;
+      stateWrites += 1;
       statePublications += 1;
-      maximumBatch = Math.max(maximumBatch, dirtyCount);
+      maximumBatch = 1;
     },
     destroy(): void {
+      if (destroyed) return;
       destroyed = true;
+      mesh.element.style.removeProperty(ROTATION_ROW_VARIABLE);
     },
   });
 }
 
-export function mountFacesJsScene(
+export async function mountFacesJsScene(
   host: HTMLElement,
   program: FacesJsProgram,
-): FacesJsMountedScene {
+  faceConfig: FacesJsFaceConfig = program.scene.faceConfig,
+): Promise<FacesJsMountedScene> {
   host.replaceChildren();
-  const framing = MODEL_FRAMING_BY_ID[program.scene.id]
-    ?? MODEL_FRAMING_BY_ID["facesjs-lowpoly-head"]!;
+  const initialFaceConfig = validateFacesJsFaceConfig(faceConfig);
+  if (!sameFaceConfig(initialFaceConfig, program.scene.faceConfig)) {
+    throw new TypeError("This CSSFace package contains a different prebaked FaceConfig.");
+  }
+  const initialZoom = resolveZoom(host);
   const camera = createPolyOrthographicCamera({
     distance: 0,
     rotX: 0,
     rotY: 0,
     target: [0, 0, 0],
-    zoom: resolveZoom(host),
+    zoom: initialZoom,
   });
-  const mounted = mountPolyMorphModel(host, program.scene.model, {
+  const scene = createPolyScene(host, {
     camera,
-    resources: program.scene.morphResources,
+    ambientLight: { color: "#ffffff", intensity: 1 },
+    directionalLight: {
+      direction: [0, 0, 1],
+      color: "#ffffff",
+      intensity: 0,
+    },
+    textureLighting: "baked",
+    seamBleed: 0,
   });
-  const deformation = createPolyMorphDeformationRuntime(program.scene.model);
-  const rotationLighting = createRotationLightingRuntime(mounted, program);
-  const values: Record<FacesJsMorphId, number> = {
-    fatness: program.scene.faceConfig.fatness,
-    "body-size": program.scene.faceConfig.body.size,
-    "ear-size": program.scene.faceConfig.ear.size,
-    "nose-size": program.scene.faceConfig.nose.size,
-    brow: program.scene.faceConfig.eyebrow.angle,
-  };
-  const ranges = Object.freeze({
-    fatness: [0, 1],
-    "body-size": [0.75, 1.25],
-    "ear-size": [0.5, 1.5],
-    "nose-size": [0.5, 1.25],
-    brow: [-15, 20],
-  } satisfies Record<FacesJsMorphId, readonly [number, number]>);
-  let tick = 0;
-  let pitch = 0;
+  const mesh = scene.add(parseResult(program), {
+    id: program.scene.id,
+    merge: false,
+    meshResolution: "lossless",
+  });
+  scene.applyCamera();
+  const verticalFraming = captureVerticalFraming(
+    host,
+    program.scene.polygons.length,
+    initialZoom,
+    0,
+  );
+  if (verticalFraming) {
+    const frame = alignedCameraFrame(host, verticalFraming);
+    if (frame) {
+      camera.update({
+        zoom: frame.zoom,
+        target: [frame.targetWorldX, 0, 0],
+      });
+      scene.applyCamera();
+    }
+  }
+  let rotationLighting: RotationLightingRuntime;
+  try {
+    rotationLighting = await createRotationLightingRuntime(mesh, program);
+  } catch (error) {
+    scene.destroy();
+    throw error;
+  }
+
+  let currentConfig = initialFaceConfig;
   let yaw = 0;
   let pointerId: number | null = null;
   let previousX = 0;
-  let previousY = 0;
   let stopped = false;
   let destroyed = false;
+  let applyCount = 0;
 
-  const morphWeights = (): Readonly<Record<string, number>> => Object.freeze({
-    fatness: values.fatness,
-    "body-size": (values["body-size"] - 0.75) / 0.5,
-    "ear-size": (values["ear-size"] - 0.5) / 1,
-    "nose-size": (values["nose-size"] - 0.5) / 0.75,
-    "brow-up": Math.max(0, -values.brow / 15),
-    "brow-down": Math.max(0, values.brow / 20),
-  });
-  const renderMorph = (): void => {
-    const frame = deformation.sample({ tick, morphWeights: morphWeights() });
-    tick += 1;
-    mounted.apply({ leaves: frame.leafUpdates });
-    mounted.assertStableDomIdentity();
-  };
-  const applyOrbit = (): void => {
-    mounted.apply({
-      modelMatrix: multiply(
-        translationY(framing.translationY),
-        multiply(
-          multiply(rotationX(pitch), rotationY(yaw)),
-          scaleY(framing.scaleY),
-        ),
-      ),
-    });
-    rotationLighting.apply(yaw);
-  };
   const assertActive = (): void => {
     if (destroyed) throw new Error("The FacesJS scene is destroyed.");
   };
+  const applyOrbit = (): void => {
+    mesh.setTransform({ rotation: [yaw, 0, 0] });
+    rotationLighting.apply(yaw);
+    applyCount += 1;
+  };
   const controller: FacesJsPrototypeController = Object.freeze({
-    setMorph(id: FacesJsMorphId, value: number): void {
+    async setFaceConfig(config: FacesJsFaceConfig): Promise<void> {
       assertActive();
-      if (!Number.isFinite(value)) throw new TypeError("FacesJS morph values must be finite.");
-      const [minimum, maximum] = ranges[id];
-      values[id] = clamp(value, minimum, maximum);
-      renderMorph();
+      const validated = validateFacesJsFaceConfig(config);
+      if (!sameFaceConfig(validated, program.scene.faceConfig)) {
+        throw new TypeError("Switch the prepared model to render a different FaceConfig.");
+      }
+      currentConfig = validated;
     },
-    setOrbit(yawDegrees: number, pitchDegrees: number = pitch): void {
+    setOrbit(yawDegrees: number): void {
       assertActive();
-      if (!Number.isFinite(yawDegrees) || !Number.isFinite(pitchDegrees)) {
-        throw new TypeError("FacesJS orbit angles must be finite.");
+      if (!Number.isFinite(yawDegrees)) {
+        throw new TypeError("FacesJS orbit angle must be finite.");
       }
       yaw = yawDegrees;
-      pitch = clamp(pitchDegrees, -28, 28);
       applyOrbit();
     },
     snapshot(): FacesJsPrototypeSnapshot {
-      const leaves = [...mounted.leafHandles.values()];
+      const stats = collectPolyRenderStats(host, program.scene.polygons.length);
       return Object.freeze({
         ready: !destroyed,
+        renderer: "dom-css",
+        faceConfig: currentConfig,
         modelId: program.scene.id,
+        fixtureId: program.scene.fixtureId,
         profile: program.manifest.profile,
         generationHash: program.manifest.generationHash,
-        leaves: leaves.length,
+        leaves: stats.mountedPolygonLeafCount,
         canvases: host.querySelectorAll("canvas").length,
-        solidQuads: leaves.filter(({ plan }) => plan.strategy === "solid-quad").length,
-        solidTriangles: leaves.filter(
-          ({ plan }) => plan.strategy === "solid-triangle",
-        ).length,
-        topologyConstructions: mounted.stats.topologyConstructions,
-        applyCount: mounted.stats.applyCount,
+        solidQuads: stats.surfaceLeafCounts.quad,
+        solidTriangles: stats.surfaceLeafCounts.stableTriangle,
+        topologyConstructions: 1,
+        applyCount,
         rotationLightingState: rotationLighting.stats.currentState,
         rotationLightingWrites: rotationLighting.stats.stateWrites,
         rotationLightingPublications: rotationLighting.stats.statePublications,
         rotationLightingMaximumBatch: rotationLighting.stats.maximumBatch,
         rotationLightingTexels: rotationLighting.stats.texelLeaves,
-        weights: morphWeights(),
+        materialVariableWrites: 0,
+        leafIdentity: identity(host, program.scene.polygons.length),
+        selectedComponents: program.scene.selectedKeys,
+        weights: resolveFacesJsMorphWeights(currentConfig),
       });
     },
   });
@@ -418,16 +465,15 @@ export function mountFacesJsScene(
     if (event.button !== 0 || pointerId !== null) return;
     pointerId = event.pointerId;
     previousX = event.clientX;
-    previousY = event.clientY;
     host.setPointerCapture(pointerId);
     host.dataset.dragging = "true";
   };
   const onPointerMove = (event: PointerEvent): void => {
     if (event.pointerId !== pointerId) return;
-    yaw += (event.clientX - previousX) * 0.32;
-    pitch = clamp(pitch - (event.clientY - previousY) * 0.24, -28, 28);
+    const deltaX = event.clientX - previousX;
     previousX = event.clientX;
-    previousY = event.clientY;
+    if (deltaX === 0) return;
+    yaw -= deltaX * 0.32;
     applyOrbit();
   };
   const onPointerRelease = (event: PointerEvent): void => {
@@ -437,13 +483,20 @@ export function mountFacesJsScene(
     delete host.dataset.dragging;
   };
   const onDoubleClick = (): void => {
-    pitch = -4;
     yaw = 0;
     applyOrbit();
   };
   const onResize = (): void => {
-    camera.update({ zoom: resolveZoom(host) });
-    mounted.updateCamera();
+    const frame = verticalFraming && alignedCameraFrame(host, verticalFraming);
+    if (frame) {
+      camera.update({
+        zoom: frame.zoom,
+        target: [frame.targetWorldX, 0, 0],
+      });
+    } else {
+      camera.update({ zoom: resolveZoom(host) });
+    }
+    scene.applyCamera();
   };
   host.addEventListener("pointerdown", onPointerDown);
   host.addEventListener("pointermove", onPointerMove);
@@ -452,7 +505,6 @@ export function mountFacesJsScene(
   host.addEventListener("dblclick", onDoubleClick);
   globalThis.addEventListener("resize", onResize);
 
-  renderMorph();
   applyOrbit();
   host.dataset.facesJsReady = "true";
   const debugGlobal = globalThis as DebugGlobal;
@@ -470,7 +522,8 @@ export function mountFacesJsScene(
     delete host.dataset.dragging;
   };
   return Object.freeze({
-    mounted,
+    scene,
+    mesh,
     controller,
     stop,
     destroy(): void {
@@ -478,7 +531,7 @@ export function mountFacesJsScene(
       destroyed = true;
       stop();
       rotationLighting.destroy();
-      mounted.destroy();
+      scene.destroy();
       delete host.dataset.facesJsReady;
       if (debugGlobal.__facesJsPrototype === controller) {
         delete debugGlobal.__facesJsPrototype;

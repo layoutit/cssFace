@@ -99,5 +99,57 @@
       "glasses": { "id": "none" },
       "accessories": { "id": "none" }
     }
+  },
+  {
+    "id": "bright",
+    "name": "Bright",
+    "modelId": "facesjs-lowpoly-head-bright",
+    "random": false,
+    "face": {
+      "fatness": 0.4,
+      "teamColors": ["#526eb5", "#e0a94f", "#f3e7cf"],
+      "hairBg": { "id": "none" },
+      "body": { "id": "body", "color": "#c98262", "size": 0.94 },
+      "jersey": { "id": "jersey" },
+      "ear": { "id": "ear1", "size": 1.08 },
+      "head": { "id": "head4", "shave": "rgba(0, 0, 0, 0)" },
+      "eyeLine": { "id": "none" },
+      "smileLine": { "id": "none", "size": 1 },
+      "miscLine": { "id": "none" },
+      "facialHair": { "id": "none" },
+      "eye": { "id": "eye3", "angle": -1 },
+      "eyebrow": { "id": "eyebrow2", "angle": -4 },
+      "hair": { "id": "short", "color": "#3e2b24", "flip": false },
+      "mouth": { "id": "smile2", "flip": false },
+      "nose": { "id": "nose2", "flip": false, "size": 0.82 },
+      "glasses": { "id": "none" },
+      "accessories": { "id": "none" }
+    }
+  },
+  {
+    "id": "steady",
+    "name": "Steady",
+    "modelId": "facesjs-lowpoly-head-steady",
+    "random": false,
+    "face": {
+      "fatness": 0.62,
+      "teamColors": ["#456c58", "#263c56", "#d8c29d"],
+      "hairBg": { "id": "none" },
+      "body": { "id": "body", "color": "#8f5948", "size": 1.05 },
+      "jersey": { "id": "jersey" },
+      "ear": { "id": "ear1", "size": 0.9 },
+      "head": { "id": "head7", "shave": "rgba(0, 0, 0, 0)" },
+      "eyeLine": { "id": "none" },
+      "smileLine": { "id": "none", "size": 1 },
+      "miscLine": { "id": "none" },
+      "facialHair": { "id": "none" },
+      "eye": { "id": "eye4", "angle": 1 },
+      "eyebrow": { "id": "eyebrow3", "angle": 4 },
+      "hair": { "id": "short2", "color": "#17191c", "flip": false },
+      "mouth": { "id": "straight", "flip": false },
+      "nose": { "id": "nose4", "flip": false, "size": 1.02 },
+      "glasses": { "id": "none" },
+      "accessories": { "id": "none" }
+    }
   }
 ]
